@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/vue": "^5.1.4",
     "@unocss/reset": "^66.6.0",
     "astro": "^5.16.15",
@@ -17,7 +18,8 @@
   "devDependencies": {
     "@iconify-json/simple-icons": "^1.2.67",
     "@unocss/astro": "^66.6.0",
-    "unocss": "^66.6.0"
+    "unocss": "^66.6.0",
+    "wrangler": "^4.60.0"
   },
   "resolutions": {
     "vite": "^8.0.0-beta.9"
