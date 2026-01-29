@@ -13,7 +13,8 @@ export default defineConfig({
     presetIcons(),
     presetWebFonts({
       fonts: {
-        sans: 'Inter:400,500,600,700',
+        sans: 'Outfit:300,400,500,600',
+        serif: 'Newsreader:400,500,600,700',
         mono: 'JetBrains Mono:400',
       },
     }),

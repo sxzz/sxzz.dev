@@ -15,11 +15,6 @@ const links = {
     { name: 'unplugin', href: 'https://github.com/unplugin' },
     { name: 'Oxc', href: 'https://oxc.rs' },
   ],
-  social: [
-    { icon: 'i-simple-icons-github', href: 'https://github.com/sxzz', label: 'GitHub' },
-    { icon: 'i-simple-icons-bluesky', href: 'https://bsky.app/profile/sxzz.dev', label: 'Bluesky' },
-    { icon: 'i-simple-icons-x', href: 'https://x.com/sanxiaozhizi', label: 'X' },
-  ],
 }
 ---
 
@@ -27,24 +22,27 @@ const links = {
   title="Kevin Deng - Open Source Enthusiast"
   description="Kevin Deng is an open-source enthusiast exploring front-end development. Creator of tsdown, Vue Macros, and Elk. Core team member of Vue, Vite, and more."
 >
-  <main class="min-h-dvh flex items-center justify-center px-6 py-16 md:px-12">
-    <div class="max-w-xl w-full space-y-8">
-      <header>
-        <h1
-          class="text-4xl md:text-5xl font-700 tracking-tight text-gray-950 dark:text-white"
-        >
-          Kevin Deng
-        </h1>
-        <p class="mt-3 text-lg text-gray-500 dark:text-gray-400">
-          Open-source enthusiast
-        </p>
+  <main class="flex-1 flex items-center justify-center px-6 py-12 md:px-12">
+    <div class="max-w-xl w-full space-y-10">
+      <header class="flex items-center gap-5 fade-in-up" style="animation-delay: 80ms">
+        <img
+          src="/avatar.jpg"
+          alt="Kevin Deng"
+          class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover ring-2 ring-stone-200/80 dark:ring-stone-700/50 shadow-lg shadow-stone-400/10 dark:shadow-black/20"
+        />
+        <div>
+          <h1 class="font-serif text-3xl md:text-4xl font-700 tracking-tight text-stone-900 dark:text-white leading-tight">
+            Kevin Deng
+          </h1>
+          <p class="mt-1.5 text-stone-400 dark:text-stone-500">
+            Open-source enthusiast
+          </p>
+        </div>
       </header>
 
-      <div class="space-y-10">
-        <section>
-          <h2
-            class="text-xs font-600 text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-4"
-          >
+      <div class="space-y-8">
+        <section class="fade-in-up" style="animation-delay: 160ms">
+          <h2 class="text-xs font-600 text-stone-400 dark:text-stone-600 uppercase tracking-widest mb-3">
             Creator
           </h2>
           <div class="flex flex-wrap gap-2">
@@ -53,7 +51,7 @@ const links = {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center px-3.5 py-1.5 text-sm font-500 rounded-full border border-gray-200 dark:border-neutral-800 text-gray-700 dark:text-gray-300 hover:border-gray-400 dark:hover:border-neutral-600 hover:text-gray-950 dark:hover:text-white transition-colors duration-150"
+                class="inline-flex items-center px-3.5 py-1.5 text-sm font-500 rounded-full border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-white transition-colors duration-150"
               >
                 {link.name}
               </a>
@@ -61,10 +59,8 @@ const links = {
           </div>
         </section>
 
-        <section>
-          <h2
-            class="text-xs font-600 text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-4"
-          >
+        <section class="fade-in-up" style="animation-delay: 240ms">
+          <h2 class="text-xs font-600 text-stone-400 dark:text-stone-600 uppercase tracking-widest mb-3">
             Team Member
           </h2>
           <div class="flex flex-wrap gap-2">
@@ -73,7 +69,7 @@ const links = {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center px-3.5 py-1.5 text-sm font-500 rounded-full border border-gray-200 dark:border-neutral-800 text-gray-700 dark:text-gray-300 hover:border-gray-400 dark:hover:border-neutral-600 hover:text-gray-950 dark:hover:text-white transition-colors duration-150"
+                class="inline-flex items-center px-3.5 py-1.5 text-sm font-500 rounded-full border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-white transition-colors duration-150"
               >
                 {link.name}
               </a>
@@ -81,20 +77,6 @@ const links = {
           </div>
         </section>
       </div>
-
-      <footer class="flex items-center gap-5">
-        {links.social.map((link) => (
-          <a
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-gray-400 dark:text-gray-600 hover:text-gray-900 dark:hover:text-gray-200 transition-colors duration-150"
-            aria-label={link.label}
-          >
-            <div class:list={[link.icon, 'w-5 h-5']} />
-          </a>
-        ))}
-      </footer>
     </div>
   </main>
 </Layout>

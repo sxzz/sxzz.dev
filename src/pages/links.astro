@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro'
+
+const friends = [
+  {
+    name: 'Anthony Fu',
+    bio: 'A fanatical open sourceror.',
+    avatar: 'https://github.com/antfu.png',
+    href: 'https://antfu.me',
+  },
+  {
+    name: 'February',
+    bio: 'February is February.',
+    avatar: 'https://github.com/so1ve.png',
+    href: 'https://so1ve.me',
+  },
+  // 在这里添加更多友链
+]
+---
+
+<Layout
+  title="Links - Kevin Deng"
+  description="Friends and links from Kevin Deng."
+>
+  <main class="flex-1 px-6 py-16 md:px-12 flex justify-center">
+    <div class="max-w-2xl w-full space-y-10">
+      <header class="fade-in-up" style="animation-delay: 80ms">
+        <h1 class="font-serif text-3xl md:text-4xl font-700 tracking-tight text-stone-900 dark:text-white">
+          Links
+        </h1>
+        <p class="mt-2 text-stone-400 dark:text-stone-500">
+          Friends across the internet.
+        </p>
+      </header>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 fade-in-up" style="animation-delay: 160ms">
+        {friends.map((friend) => (
+          <a
+            href={friend.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex items-center gap-4 p-4 rounded-xl border border-stone-200/80 dark:border-stone-800/80 hover:border-stone-300 dark:hover:border-stone-700 hover:bg-stone-100/50 dark:hover:bg-stone-900/50 transition-all duration-200"
+          >
+            <img
+              src={friend.avatar}
+              alt={friend.name}
+              class="w-12 h-12 rounded-full object-cover ring-1 ring-stone-200/60 dark:ring-stone-700/40 shrink-0"
+            />
+            <div class="min-w-0">
+              <div class="text-sm font-600 text-stone-800 dark:text-stone-200 group-hover:text-stone-950 dark:group-hover:text-white transition-colors duration-200">
+                {friend.name}
+              </div>
+              <div class="mt-0.5 text-xs text-stone-400 dark:text-stone-500 truncate">
+                {friend.bio}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </main>
+</Layout>
