@@ -14,7 +14,10 @@ export default defineConfig({
     presetWebFonts({
       fonts: {
         sans: 'Outfit:300,400,500,600',
-        serif: 'Newsreader:400,500,600,700',
+        serif: [
+          { name: 'Newsreader', weights: [400, 500, 600, 700] },
+          { name: 'Noto Serif SC', weights: [400, 500, 600, 700] },
+        ],
         mono: 'JetBrains Mono:400',
       },
     }),
