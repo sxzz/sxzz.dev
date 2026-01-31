@@ -29,7 +29,7 @@ export const pageCopy = {
         '智子是一名探索前端开发的开源爱好者。tsdown、Vue Macros 与 Elk 的作者，Vue、Vite 等项目核心成员。',
       name: '智子',
       avatar: '/avatar-zh.jpg',
-      tagline: '开源爱好者',
+      tagline: 'INFP • 开源爱好者',
       taglineCharDelay: 160,
       nameSerif: false,
       schema: {
