@@ -7,23 +7,29 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "generate:og": "node scripts/generate-og.ts"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",
-    "@astrojs/vue": "^5.1.4",
+    "@astrojs/sitemap": "^3.7.0",
     "@unocss/reset": "^66.6.0",
     "astro": "^5.16.15",
-    "remark-github-blockquote-alert": "^2.0.1",
-    "vue": "^3.5.27"
+    "remark-github-blockquote-alert": "^2.0.1"
   },
   "devDependencies": {
     "@iconify-json/simple-icons": "^1.2.67",
+    "@resvg/resvg-js": "^2.6.2",
+    "@types/node": "^25.1.0",
     "@unocss/astro": "^66.6.0",
+    "satori": "^0.19.1",
     "unocss": "^66.6.0",
     "wrangler": "^4.60.0"
   },
   "resolutions": {
     "vite": "^8.0.0-beta.9"
+  },
+  "engines": {
+    "node": "^24.0.0"
   }
 }

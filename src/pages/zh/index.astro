@@ -22,6 +22,23 @@ const links = {
   title="智子 - 开源爱好者"
   description="智子是一名探索前端开发的开源爱好者。tsdown、Vue Macros 与 Elk 的作者，Vue、Vite 等项目核心成员。"
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: '智子',
+    url: 'https://sxzz.dev/zh/',
+    author: {
+      '@type': 'Person',
+      name: 'Kevin Deng',
+      alternateName: '智子',
+      url: 'https://sxzz.dev',
+      sameAs: [
+        'https://github.com/sxzz',
+        'https://x.com/zhizijun',
+        'https://bsky.app/profile/sxzz.dev',
+      ],
+    },
+  })} />
   <main class="flex-1 flex items-center justify-center px-6 py-12 md:px-12">
     <div class="max-w-xl w-full space-y-10">
       <header class="flex items-center gap-5 fade-in-up" style="animation-delay: 80ms">

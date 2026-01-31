@@ -22,6 +22,24 @@ const links = {
   title="Kevin Deng - Open Source Enthusiast"
   description="Kevin Deng is an open-source enthusiast exploring front-end development. Creator of tsdown, Vue Macros, and Elk. Core team member of Vue, Vite, and more."
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Kevin Deng',
+    url: 'https://sxzz.dev',
+    author: {
+      '@type': 'Person',
+      name: 'Kevin Deng',
+      alternateName: '智子',
+      url: 'https://sxzz.dev',
+      sameAs: [
+        'https://github.com/sxzz',
+        'https://x.com/sanxiaozhizi',
+        'https://x.com/zhizijun',
+        'https://bsky.app/profile/sxzz.dev',
+      ],
+    },
+  })} />
   <main class="flex-1 flex items-center justify-center px-6 py-12 md:px-12">
     <div class="max-w-xl w-full space-y-10">
       <header class="flex items-center gap-5 fade-in-up" style="animation-delay: 80ms">

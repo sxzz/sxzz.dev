@@ -37,7 +37,19 @@ function formatDate(date: Date) {
   title={`${post.data.title} - Kevin Deng`}
   description={post.data.description}
   availableLangs={availableLangs}
+  ogType="article"
+  publishedDate={post.data.date}
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.data.title,
+    description: post.data.description,
+    datePublished: post.data.date.toISOString(),
+    url: Astro.url.href,
+    inLanguage: locale,
+    author: { '@type': 'Person', name: 'Kevin Deng', url: 'https://sxzz.dev' },
+  })} />
   <main class="flex-1 px-6 py-16 md:px-12 flex justify-center">
     <article class="max-w-xl w-full">
       <header class="mb-10 fade-in-up" style="animation-delay: 80ms">
