@@ -1,0 +1,68 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import Prose from '../Prose.astro'
+import { render } from 'astro:content'
+import { getPageCopy } from '../../i18n/pages'
+import { getLocaleFromLang, useTranslatedPath } from '../../i18n/utils'
+import { formatDate } from '../../utils/content'
+import type { CollectionEntry } from 'astro:content'
+import type { Lang } from '../../i18n/utils'
+
+interface Props {
+  post: CollectionEntry<'posts'>
+  availableLangs: Lang[]
+  lang: Lang
+}
+
+const { post, availableLangs, lang } = Astro.props
+const { Content } = await render(post)
+const translatePath = useTranslatedPath(lang)
+const copy = getPageCopy('post', lang)
+const locale = getLocaleFromLang(lang)
+const author =
+  lang === 'zh'
+    ? { '@type': 'Person', name: 'Kevin Deng', alternateName: '智子', url: 'https://sxzz.dev' }
+    : { '@type': 'Person', name: 'Kevin Deng', url: 'https://sxzz.dev' }
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date.toISOString(),
+  url: Astro.url.href,
+  inLanguage: locale,
+  author,
+}
+---
+
+<Layout
+  title={`${post.data.title} - ${copy.titleSuffix}`}
+  description={post.data.description}
+  availableLangs={availableLangs}
+  ogType="article"
+  publishedDate={post.data.date}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <main class="flex-1 px-6 py-16 md:px-12 flex justify-center">
+    <article class="max-w-xl w-full">
+      <header class="mb-10 fade-in-up" style="animation-delay: 80ms">
+        <a
+          href={translatePath('/posts')}
+          class="inline-flex items-center gap-1 text-sm text-stone-400 dark:text-stone-500 hover:text-stone-700 dark:hover:text-stone-300 transition-colors duration-200 mb-6"
+        >
+          &larr; {copy.backLabel}
+        </a>
+        <h1 class="font-serif text-3xl md:text-4xl font-700 tracking-tight text-stone-900 dark:text-white leading-tight">
+          {post.data.title}
+        </h1>
+        <time class="block mt-2 text-sm text-stone-400 dark:text-stone-500">
+          {formatDate(post.data.date, lang)}
+        </time>
+      </header>
+
+      <Prose class="fade-in-up" style="animation-delay: 160ms" cjkFallback={lang === 'en'}>
+        <Content />
+      </Prose>
+    </article>
+  </main>
+</Layout>

@@ -1,0 +1,198 @@
+---
+interface Props {
+  cjkFallback?: boolean
+  class?: string
+  style?: string
+}
+
+const {
+  cjkFallback = false,
+  class: className,
+  style: styleProp,
+  ...rest
+} = Astro.props
+
+const headingFont = cjkFallback
+  ? "'Newsreader', 'Noto Serif SC', serif"
+  : "'Newsreader', serif"
+const styleParts: string[] = []
+if (styleProp) {
+  const trimmed = styleProp.trim()
+  styleParts.push(trimmed.endsWith(';') ? trimmed : `${trimmed};`)
+}
+styleParts.push(`--prose-heading-font: ${headingFont};`)
+const mergedStyle = styleParts.join(' ')
+---
+
+<div class:list={['prose', className]} style={mergedStyle} {...rest}>
+  <slot />
+</div>
+
+<style is:global>
+  .prose {
+    color: var(--prose-text);
+    line-height: 1.75;
+    overflow-wrap: break-word;
+  }
+
+  :root {
+    --prose-text: #44403c;
+    --prose-heading: #1c1917;
+    --prose-muted: #a8a29e;
+    --prose-border: #e7e5e4;
+    --prose-bg-code: #f5f5f4;
+    --prose-link: #1c1917;
+  }
+
+  .dark {
+    --prose-text: #a8a29e;
+    --prose-heading: #fafaf9;
+    --prose-muted: #57534e;
+    --prose-border: #292524;
+    --prose-bg-code: #1c1917;
+    --prose-link: #e7e5e4;
+  }
+
+  .prose h2 {
+    font-family: var(--prose-heading-font, 'Newsreader', serif);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--prose-heading);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .prose h3 {
+    font-family: var(--prose-heading-font, 'Newsreader', serif);
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--prose-heading);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .prose p {
+    margin-bottom: 1.25rem;
+  }
+
+  .prose a {
+    color: var(--prose-link);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--prose-border);
+    transition: text-decoration-color 0.2s;
+  }
+  .prose a:hover {
+    text-decoration-color: var(--prose-link);
+  }
+
+  .prose strong {
+    font-weight: 600;
+    color: var(--prose-heading);
+  }
+
+  .prose ul,
+  .prose ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .prose ul { list-style: disc; }
+  .prose ol { list-style: decimal; }
+  .prose li { margin-bottom: 0.375rem; }
+
+  .prose code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875em;
+    background: var(--prose-bg-code);
+    padding: 0.15em 0.35em;
+    border-radius: 0.25rem;
+  }
+
+  .prose pre {
+    background: var(--prose-bg-code);
+    border: 1px solid var(--prose-border);
+    border-radius: 0.5rem;
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  .prose pre code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    font-size: 0.85em;
+  }
+
+  .prose hr {
+    border: none;
+    border-top: 1px solid var(--prose-border);
+    margin: 2rem 0;
+  }
+
+  .prose blockquote {
+    border-left: 3px solid var(--prose-border);
+    padding-left: 1rem;
+    color: var(--prose-muted);
+    margin-bottom: 1.25rem;
+    font-style: italic;
+  }
+
+  .prose .markdown-alert {
+    border-left: 3px solid var(--alert-color);
+    padding-left: 1rem;
+    margin-bottom: 1.25rem;
+    font-style: normal;
+  }
+  .prose .markdown-alert > :last-child {
+    margin-bottom: 0;
+  }
+  .prose .markdown-alert-title {
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.01em;
+    color: var(--alert-color);
+    margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+  .prose .markdown-alert-title svg {
+    width: 0.9rem;
+    height: 0.9rem;
+    fill: currentColor;
+  }
+
+  .prose .markdown-alert-note {
+    --alert-color: #9ca3af;
+  }
+  .prose .markdown-alert-tip {
+    --alert-color: #86a07b;
+  }
+  .prose .markdown-alert-important {
+    --alert-color: #9b8ab0;
+  }
+  .prose .markdown-alert-warning {
+    --alert-color: #bda35c;
+  }
+  .prose .markdown-alert-caution {
+    --alert-color: #b87878;
+  }
+
+  .dark .prose .markdown-alert-note {
+    --alert-color: #6b7280;
+  }
+  .dark .prose .markdown-alert-tip {
+    --alert-color: #6b7f5c;
+  }
+  .dark .prose .markdown-alert-important {
+    --alert-color: #7b6a90;
+  }
+  .dark .prose .markdown-alert-warning {
+    --alert-color: #96803f;
+  }
+  .dark .prose .markdown-alert-caution {
+    --alert-color: #906060;
+  }
+</style>

@@ -1,16 +1,18 @@
 ---
-import Layout from '../../../layouts/Layout.astro'
-import { getCollection } from 'astro:content'
-import { getPageCopy } from '../../../i18n/pages'
-import { getLangFromUrl, useTranslatedPath } from '../../../i18n/utils'
-import { formatDate } from '../../../utils/content'
+import Layout from '../../layouts/Layout.astro'
+import { getPageCopy } from '../../i18n/pages'
+import { useTranslatedPath } from '../../i18n/utils'
+import { formatDate, getPostsByLang } from '../../utils/content'
+import type { Lang } from '../../i18n/utils'
 
-const lang = getLangFromUrl(Astro.url)
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
 const translatePath = useTranslatedPath(lang)
-const copy = getPageCopy('musings', lang)
-
-const musings = (await getCollection('musings'))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+const posts = await getPostsByLang(lang)
+const copy = getPageCopy('posts', lang)
 ---
 
 <Layout
@@ -20,16 +22,16 @@ const musings = (await getCollection('musings'))
   <main class="flex-1 px-6 py-16 md:px-12 flex justify-center">
     <div class="max-w-xl w-full space-y-10">
       <header class="fade-in-up" style="animation-delay: 80ms">
-        <h1 class="text-3xl md:text-4xl font-700 tracking-tight text-stone-900 dark:text-white">
+        <h1 class="font-serif text-3xl md:text-4xl font-700 tracking-tight text-stone-900 dark:text-white">
           {copy.heading}
         </h1>
       </header>
 
       <ul class="space-y-1 fade-in-up" style="animation-delay: 160ms">
-        {musings.map((post) => (
+        {posts.map((post) => (
           <li>
             <a
-              href={translatePath(`/musings/${post.id}`)}
+              href={translatePath(`/posts/${post.slug}`)}
               class="group flex items-baseline gap-4 py-3 transition-colors duration-200"
             >
               <time class="shrink-0 text-xs tabular-nums text-stone-400 dark:text-stone-600">

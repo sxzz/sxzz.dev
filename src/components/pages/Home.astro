@@ -1,0 +1,102 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { homeLinks } from '../../data/site'
+import { getPageCopy } from '../../i18n/pages'
+import type { Lang } from '../../i18n/utils'
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+const copy = getPageCopy('home', lang)
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: copy.schema.name,
+  url: copy.schema.url,
+  author: {
+    '@type': 'Person',
+    name: 'Kevin Deng',
+    alternateName: '智子',
+    url: 'https://sxzz.dev',
+    sameAs: copy.schema.sameAs,
+  },
+}
+---
+
+<Layout
+  title={copy.title}
+  description={copy.description}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <main class="flex-1 flex items-center justify-center px-6 py-12 md:px-12">
+    <div class="max-w-xl w-full space-y-10">
+      <header class="flex items-center gap-5 fade-in-up" style="animation-delay: 80ms">
+        <img
+          src={copy.avatar}
+          alt={copy.name}
+          class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover ring-2 ring-stone-200/80 dark:ring-stone-700/50 shadow-lg shadow-stone-400/10 dark:shadow-black/20"
+        />
+        <div>
+          <h1
+            class:list={[
+              'text-3xl md:text-4xl font-700 tracking-tight text-stone-900 dark:text-white leading-tight',
+              copy.nameSerif && 'font-serif',
+            ]}
+          >
+            {copy.name}
+          </h1>
+          <p
+            class="mt-1.5 text-stone-400 dark:text-stone-500 font-mono"
+            data-typewriter
+            data-text={copy.tagline}
+            data-char-delay={copy.taglineCharDelay}
+            aria-label={copy.tagline}
+          ></p>
+        </div>
+      </header>
+
+      <div class="space-y-8">
+        <section class="fade-in-up" style="animation-delay: 160ms">
+          <h2 class="text-xs font-mono text-stone-400 dark:text-stone-600 tracking-wide mb-3">
+            <span class="text-emerald-600/70 dark:text-emerald-500/50 select-none" aria-hidden="true">$ </span>cat creator.md
+          </h2>
+          <div class="flex flex-wrap gap-2">
+            {homeLinks.creator.map((link) => (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center px-3.5 py-1.5 text-sm font-500 rounded-full border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-white transition-colors duration-150"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section class="fade-in-up" style="animation-delay: 240ms">
+          <h2 class="text-xs font-mono text-stone-400 dark:text-stone-600 tracking-wide mb-3">
+            <span class="text-emerald-600/70 dark:text-emerald-500/50 select-none" aria-hidden="true">$ </span>cat team.md
+          </h2>
+          <div class="flex flex-wrap gap-2">
+            {homeLinks.team.map((link) => (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center px-3.5 py-1.5 text-sm font-500 rounded-full border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-white transition-colors duration-150"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <script>
+    import '../../scripts/typewriter'
+  </script>
+</Layout>

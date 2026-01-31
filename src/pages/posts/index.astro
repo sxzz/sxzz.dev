@@ -1,58 +1,8 @@
 ---
-import Layout from '../../layouts/Layout.astro'
-import { getCollection } from 'astro:content'
-import { getLangFromUrl, getLocaleFromLang, useTranslatedPath } from '../../i18n/utils'
+import PostsIndexPage from '../../components/pages/PostsIndex.astro'
+import { getLangFromUrl } from '../../i18n/utils'
 
 const lang = getLangFromUrl(Astro.url)
-const translatePath = useTranslatedPath(lang)
-const locale = getLocaleFromLang(lang)
-
-const posts = (await getCollection('posts'))
-  .filter((post) => post.id.startsWith(`${lang}/`))
-  .map((post) => ({
-    ...post,
-    slug: post.id.split('/').slice(1).join('/'),
-  }))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-
-function formatDate(date: Date) {
-  return date.toLocaleDateString(locale, {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  })
-}
 ---
 
-<Layout
-  title="Posts - Kevin Deng"
-  description="Blog posts by Kevin Deng."
->
-  <main class="flex-1 px-6 py-16 md:px-12 flex justify-center">
-    <div class="max-w-xl w-full space-y-10">
-      <header class="fade-in-up" style="animation-delay: 80ms">
-        <h1 class="font-serif text-3xl md:text-4xl font-700 tracking-tight text-stone-900 dark:text-white">
-          Posts
-        </h1>
-      </header>
-
-      <ul class="space-y-1 fade-in-up" style="animation-delay: 160ms">
-        {posts.map((post) => (
-          <li>
-            <a
-              href={translatePath(`/posts/${post.slug}`)}
-              class="group flex items-baseline gap-4 py-3 transition-colors duration-200"
-            >
-              <time class="shrink-0 text-xs tabular-nums text-stone-400 dark:text-stone-600">
-                {formatDate(post.data.date)}
-              </time>
-              <span class="text-stone-700 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-white transition-colors duration-200">
-                {post.data.title}
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </main>
-</Layout>
+<PostsIndexPage lang={lang} />

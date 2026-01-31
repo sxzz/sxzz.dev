@@ -1,32 +1,8 @@
 ---
-import Layout from '../../layouts/Layout.astro'
+import AboutPage from '../../components/pages/About.astro'
+import { getLangFromUrl } from '../../i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
 ---
 
-<Layout
-  title="关于 - 智子"
-  description="关于智子，一名探索前端开发的开源爱好者。"
->
-  <main class="flex-1 px-6 py-16 md:px-12 flex justify-center">
-    <article class="max-w-xl w-full space-y-10">
-      <header class="fade-in-up" style="animation-delay: 80ms">
-        <h1
-          class="font-serif text-3xl md:text-4xl font-700 tracking-tight text-stone-900 dark:text-white"
-        >
-          关于
-        </h1>
-      </header>
-
-      <section
-        class="space-y-4 text-stone-600 dark:text-stone-400 leading-relaxed fade-in-up"
-        style="animation-delay: 160ms"
-      >
-        <p>
-          你好，我是智子，一名探索前端开发的开源爱好者。
-        </p>
-        <p>
-          tsdown、Vue Macros 和 Elk 的作者，Vue、Vite、VueUse、unjs、unplugin、Oxc 的核心团队成员。
-        </p>
-      </section>
-    </article>
-  </main>
-</Layout>
+<AboutPage lang={lang} />
