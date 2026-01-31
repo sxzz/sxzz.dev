@@ -23,6 +23,9 @@ importers:
       astro:
         specifier: ^5.16.15
         version: 5.16.15(jiti@2.6.1)(rollup@4.56.0)(typescript@5.9.3)
+      remark-github-blockquote-alert:
+        specifier: ^2.0.1
+        version: 2.0.1
       vue:
         specifier: ^3.5.27
         version: 3.5.27(typescript@5.9.3)
@@ -2489,6 +2492,10 @@ packages:
 
   remark-gfm@4.0.1:
     resolution: {integrity: sha512-1quofZ2RQ9EWdeN34S79+KExV1764+wCUGop5CPL1WGdD0ocPpu91lzPGbwWMECpEpd42kJGQwzRfyov9j4yNg==}
+
+  remark-github-blockquote-alert@2.0.1:
+    resolution: {integrity: sha512-0w0u3/wjBEK555yzm5UUnDCWO38Qk60laA5FvJrnES+YA/+r3hvvLgE/5SpMjaVpPOpVzunXk9caob1NTheM0g==}
+    engines: {node: '>=16'}
 
   remark-parse@11.0.0:
     resolution: {integrity: sha512-FCxlKLNGknS5ba/1lmpYijMUzX2esxW5xQqjWxw2eHFfS2MSdaHVINFmhjo+qN1WhZhNimq0dZATN9pH0IDrpA==}
@@ -5637,6 +5644,10 @@ snapshots:
       unified: 11.0.5
     transitivePeerDependencies:
       - supports-color
+
+  remark-github-blockquote-alert@2.0.1:
+    dependencies:
+      unist-util-visit: 5.1.0
 
   remark-parse@11.0.0:
     dependencies:

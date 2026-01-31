@@ -61,6 +61,7 @@ function formatDate(date: Date) {
   .prose {
     color: var(--prose-text);
     line-height: 1.75;
+    overflow-wrap: break-word;
   }
 
   :root {
@@ -165,5 +166,62 @@ function formatDate(date: Date) {
     color: var(--prose-muted);
     margin-bottom: 1.25rem;
     font-style: italic;
+  }
+
+  .prose .markdown-alert {
+    border-left: 3px solid var(--alert-color);
+    padding-left: 1rem;
+    margin-bottom: 1.25rem;
+    font-style: normal;
+  }
+  .prose .markdown-alert > :last-child {
+    margin-bottom: 0;
+  }
+  .prose .markdown-alert-title {
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.01em;
+    color: var(--alert-color);
+    margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+  .prose .markdown-alert-title svg {
+    width: 0.9rem;
+    height: 0.9rem;
+    fill: currentColor;
+  }
+
+  .prose .markdown-alert-note {
+    --alert-color: #9ca3af;
+  }
+  .prose .markdown-alert-tip {
+    --alert-color: #86a07b;
+  }
+  .prose .markdown-alert-important {
+    --alert-color: #9b8ab0;
+  }
+  .prose .markdown-alert-warning {
+    --alert-color: #bda35c;
+  }
+  .prose .markdown-alert-caution {
+    --alert-color: #b87878;
+  }
+
+  .dark .prose .markdown-alert-note {
+    --alert-color: #6b7280;
+  }
+  .dark .prose .markdown-alert-tip {
+    --alert-color: #6b7f5c;
+  }
+  .dark .prose .markdown-alert-important {
+    --alert-color: #7b6a90;
+  }
+  .dark .prose .markdown-alert-warning {
+    --alert-color: #96803f;
+  }
+  .dark .prose .markdown-alert-caution {
+    --alert-color: #906060;
   }
 </style>
