@@ -34,16 +34,19 @@ const links = {
           <h1 class="font-serif text-3xl md:text-4xl font-700 tracking-tight text-stone-900 dark:text-white leading-tight">
             Kevin Deng
           </h1>
-          <p class="mt-1.5 text-stone-400 dark:text-stone-500">
-            Open-source enthusiast
-          </p>
+          <p
+            class="mt-1.5 text-stone-400 dark:text-stone-500 font-mono"
+            data-typewriter
+            data-text="Open-source enthusiast"
+            aria-label="Open-source enthusiast"
+          ></p>
         </div>
       </header>
 
       <div class="space-y-8">
         <section class="fade-in-up" style="animation-delay: 160ms">
-          <h2 class="text-xs font-600 text-stone-400 dark:text-stone-600 uppercase tracking-widest mb-3">
-            Creator
+          <h2 class="text-xs font-mono text-stone-400 dark:text-stone-600 tracking-wide mb-3">
+            <span class="text-emerald-600/70 dark:text-emerald-500/50 select-none" aria-hidden="true">$ </span>cat creator.md
           </h2>
           <div class="flex flex-wrap gap-2">
             {links.creator.map((link) => (
@@ -60,8 +63,8 @@ const links = {
         </section>
 
         <section class="fade-in-up" style="animation-delay: 240ms">
-          <h2 class="text-xs font-600 text-stone-400 dark:text-stone-600 uppercase tracking-widest mb-3">
-            Team Member
+          <h2 class="text-xs font-mono text-stone-400 dark:text-stone-600 tracking-wide mb-3">
+            <span class="text-emerald-600/70 dark:text-emerald-500/50 select-none" aria-hidden="true">$ </span>cat team.md
           </h2>
           <div class="flex flex-wrap gap-2">
             {links.team.map((link) => (
@@ -79,4 +82,7 @@ const links = {
       </div>
     </div>
   </main>
+  <script>
+    import '../scripts/typewriter'
+  </script>
 </Layout>

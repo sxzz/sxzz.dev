@@ -52,7 +52,9 @@ const showLangSwitcher = !basePath.startsWith('/musings')
           lang !== 'zh' && 'font-serif',
         ]}
       >
-        {lang === 'zh' ? '智子' : 'Kevin Deng'}
+        {lang === 'zh' ? '智子' : 'Kevin Deng'}{(pathname === '/' || pathname === '/zh/' || pathname === '/zh') &&
+          <span class="terminal-cursor font-mono text-base ml-0.5" aria-hidden="true">_</span>
+        }
       </a>
       <div
         class="flex items-center gap-6 text-sm font-500 text-stone-400 dark:text-stone-500"
@@ -194,5 +196,22 @@ const showLangSwitcher = !basePath.startsWith('/musings')
 
   .fade-in-up {
     animation: fadeInUp 0.5s ease-out both;
+  }
+
+  @keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .terminal-cursor {
+    animation: cursorBlink 1s step-end infinite;
+    color: inherit;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .terminal-cursor {
+      animation: none;
+      display: none;
+    }
   }
 </style>

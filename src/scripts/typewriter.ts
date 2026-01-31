@@ -1,0 +1,33 @@
+const prefersReducedMotion = window.matchMedia(
+  '(prefers-reduced-motion: reduce)',
+).matches
+
+document.querySelectorAll<HTMLElement>('[data-typewriter]').forEach((el) => {
+  const text = el.dataset.text || ''
+
+  if (prefersReducedMotion) {
+    el.textContent = text
+    return
+  }
+
+  const charDelay = Number.parseInt(el.dataset.charDelay || '60', 10)
+  const startDelay = Number.parseInt(el.dataset.startDelay || '650', 10)
+
+  const cursor = document.createElement('span')
+  cursor.className = 'terminal-cursor'
+  cursor.textContent = '\u258C'
+  cursor.setAttribute('aria-hidden', 'true')
+  el.appendChild(cursor)
+
+  let i = 0
+  setTimeout(() => {
+    const interval = setInterval(() => {
+      if (i < text.length) {
+        el.insertBefore(document.createTextNode(text[i]), cursor)
+        i++
+      } else {
+        clearInterval(interval)
+      }
+    }, charDelay)
+  }, startDelay)
+})
