@@ -17,7 +17,7 @@ Hi, I'm Kevin Deng, a member of the Vue core team. Vue 3.3 focused on improving 
 - (Experimental) `defineModel` sugar
 - Deprecation of Reactivity Transform
 
-When I first joined Vue last year, I kept submitting PRs, but only recently did they land in Vue 3.3. Vue 3.3 absorbed five or six features from [Vue Macros](https://vue-macros.sxzz.moe/). Today I'll talk about the parts I contributed.
+When I first joined Vue last year, I kept submitting PRs, but only recently did they land in Vue 3.3. Vue 3.3 absorbed five or six features from [Vue Macros](https://vue-macros.dev/). Today I'll talk about the parts I contributed.
 
 ## The `defineOptions` macro
 
@@ -197,7 +197,7 @@ Because VueUse just combines `props` and `emit` into a `Ref` and cannot define c
 
 ### The story behind it
 
-😛 There's not much of a story here -- it's just that writing the old way was annoying. I first implemented `defineModel` in [Vue Macros](https://vue-macros.sxzz.moe/) (now renamed to `defineModels` to differentiate from the official one), and it worked well.
+😛 There's not much of a story here -- it's just that writing the old way was annoying. I first implemented `defineModel` in [Vue Macros](https://vue-macros.dev/) (now renamed to `defineModels` to differentiate from the official one), and it worked well.
 
 ## Importing external types in SFCs
 
@@ -212,7 +212,7 @@ There were two paths to solve it:
 
 As everyone knows, TypeScript type gymnastics can be terrifying. If we wanted to solve the issue perfectly, the Vue SFC compiler would need to parse and compute all types like the TypeScript compiler. The first option works, but it comes with a huge downside: it requires the massive, heavyweight TS compiler and would greatly slow down builds.
 
-In the end, I chose the second approach in [Vue Macros](https://vue-macros.sxzz.moe/). That means complex types still aren't suitable for macros yet, but this will be improved over time.
+In the end, I chose the second approach in [Vue Macros](https://vue-macros.dev/). That means complex types still aren't suitable for macros yet, but this will be improved over time.
 
 ### Vue 3.3 vs. Vue Macros
 
@@ -303,7 +303,7 @@ At the beginning of the year, the Vue team announced that Reactivity Transform w
 
 > Personally, I think Reactivity Transform still has its place.
 
-Although it's deprecated officially, the feature moved to [Vue Macros](https://vue-macros.sxzz.moe/). That means you don't need to rush to migrate back to the old syntax -- use the [plugin](https://vue-macros.sxzz.moe/features/reactivity-transform.html) and it will continue to work and receive fixes.
+Although it's deprecated officially, the feature moved to [Vue Macros](https://vue-macros.dev/). That means you don't need to rush to migrate back to the old syntax -- use the [plugin](https://vue-macros.dev/features/reactivity-transform.html) and it will continue to work and receive fixes.
 
 For why it was removed, see [this comment](https://github.com/vuejs/rfcs/discussions/369#discussioncomment-5059028).
 
@@ -315,7 +315,7 @@ P.S. If anyone is willing to translate this article into English, please submit 
 
 ### About Vue Macros
 
-[Vue Macros](https://vue-macros.sxzz.moe/) is currently an independent project, not part of official Vue. Unlike Vue core, its goal is to explore different possibilities.
+[Vue Macros](https://vue-macros.dev/) is currently an independent project, not part of official Vue. Unlike Vue core, its goal is to explore different possibilities.
 
 I want to see more aggressive ideas, even if they're not mature yet. We can experiment in Vue Macros first, then try to upstream them to Vue core once they're ready.
 

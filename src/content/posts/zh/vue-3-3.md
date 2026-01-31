@@ -17,7 +17,7 @@ Hi，这里是三咲智子，Vue 核心团队成员。Vue 3.3 的这次发布主
 - (试验性) `defineModel` 语法糖
 - 废弃 Reactivity Transform
 
-在去年刚加入 Vue 的那段时间，我一直在为 Vue 3 贡献 PR，但最近才最终在 Vue 3.3 中落地。Vue 3.3 从 [Vue Macros](https://vue-macros.sxzz.moe/) 一共吸收了五六个特性，今天来浅谈我自己贡献的部分。
+在去年刚加入 Vue 的那段时间，我一直在为 Vue 3 贡献 PR，但最近才最终在 Vue 3.3 中落地。Vue 3.3 从 [Vue Macros](https://vue-macros.dev/) 一共吸收了五六个特性，今天来浅谈我自己贡献的部分。
 
 ## defineOptions 宏
 
@@ -197,7 +197,7 @@ modelValue.value++
 
 ### 背后的故事
 
-😛 这个背后就没什么故事了，纯粹是觉得写着麻烦。起初是在 [Vue Macros](https://vue-macros.sxzz.moe/) 做了 `defineModel` 的宏（现改名为 `defineModels`，与官方做出区分），用着效果还不错。
+😛 这个背后就没什么故事了，纯粹是觉得写着麻烦。起初是在 [Vue Macros](https://vue-macros.dev/) 做了 `defineModel` 的宏（现改名为 `defineModels`，与官方做出区分），用着效果还不错。
 
 ## 在 SFC 导入外部类型
 
@@ -212,7 +212,7 @@ modelValue.value++
 
 众所周知，TypeScript 的类型体操有多恐怖。如果真的要完美地解决这个 issue，Vue 的 SFC 编译器就需要像 TypeScript 编译器一样，解析并计算出所有的类型。第一套方案虽好，但是也有个巨大的缺点：这必不可免地需要依赖 TypeScript 那套庞大而又臃肿的编译器，会极大地拖慢构建的时长。
 
-最后，在 [Vue Macros](https://vue-macros.sxzz.moe/) 中我还是选择了第二套方案。因此目前并不适合在宏中传递复杂的类型。不过这将在以后被逐步完善。
+最后，在 [Vue Macros](https://vue-macros.dev/) 中我还是选择了第二套方案。因此目前并不适合在宏中传递复杂的类型。不过这将在以后被逐步完善。
 
 ### Vue 3.3 与 Vue Macros
 
@@ -303,7 +303,7 @@ const emits = defineEmits<{
 
 > 我个人认为 Reactivity Transform 仍然有其用武之地的。
 
-虽然被官方废弃了，但功能被移动到了 [Vue Macros](https://vue-macros.sxzz.moe/)。这意味着你仍可以不必着急迁移至老语法，使用[插件](https://vue-macros.sxzz.moe/features/reactivity-transform.html)仍可以正常使用以及后续的漏洞修复。
+虽然被官方废弃了，但功能被移动到了 [Vue Macros](https://vue-macros.dev/)。这意味着你仍可以不必着急迁移至老语法，使用[插件](https://vue-macros.dev/features/reactivity-transform.html)仍可以正常使用以及后续的漏洞修复。
 
 对于具体为什么移除，可以阅读[此篇评论](https://github.com/vuejs/rfcs/discussions/369#discussioncomment-5059028)。
 
@@ -315,7 +315,7 @@ P.S. 如果有人愿意将本篇文章翻译至英文，请在翻译好后提交
 
 ### 关于 Vue Macros
 
-[Vue Macros](https://vue-macros.sxzz.moe/) 目前是一个独立于 Vue 官方的项目。不同于 Vue 官方，它的目的是为了探索一些不一样的可能性。
+[Vue Macros](https://vue-macros.dev/) 目前是一个独立于 Vue 官方的项目。不同于 Vue 官方，它的目的是为了探索一些不一样的可能性。
 
 我更愿意看到一些更激进的想法，哪怕这个想法不那么成熟。我们可以在 Vue Macros 先进一步实验，等成熟了再尝试合并到 Vue 官方仓库中。
 
