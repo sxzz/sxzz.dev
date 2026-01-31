@@ -3,7 +3,7 @@ import Layout from '../../../layouts/Layout.astro'
 import Prose from '../../../components/Prose.astro'
 import { getCollection, render } from 'astro:content'
 import { getPageCopy } from '../../../i18n/pages'
-import { getLangFromUrl, useTranslatedPath } from '../../../i18n/utils'
+import { getLangFromUrl, getLocaleFromLang, useTranslatedPath } from '../../../i18n/utils'
 import { formatDate } from '../../../utils/content'
 
 export async function getStaticPaths() {
@@ -17,6 +17,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props
 const { Content } = await render(post)
 const lang = getLangFromUrl(Astro.url)
+const locale = getLocaleFromLang(lang)
 const translatePath = useTranslatedPath(lang)
 const copy = getPageCopy('musings', lang)
 ---
