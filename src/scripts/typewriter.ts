@@ -1,4 +1,4 @@
-const prefersReducedMotion = window.matchMedia(
+const prefersReducedMotion = globalThis.matchMedia(
   '(prefers-reduced-motion: reduce)',
 ).matches
 
@@ -17,7 +17,7 @@ document.querySelectorAll<HTMLElement>('[data-typewriter]').forEach((el) => {
   cursor.className = 'terminal-cursor'
   cursor.textContent = '\u258C'
   cursor.setAttribute('aria-hidden', 'true')
-  el.appendChild(cursor)
+  el.append(cursor)
 
   let i = 0
   setTimeout(() => {

@@ -1,9 +1,13 @@
 ---
-import Layout from '../../../layouts/Layout.astro'
-import Prose from '../../../components/Prose.astro'
 import { getCollection, render } from 'astro:content'
+import Prose from '../../../components/Prose.astro'
 import { getPageCopy } from '../../../i18n/pages'
-import { getLangFromUrl, getLocaleFromLang, useTranslatedPath } from '../../../i18n/utils'
+import {
+  getLangFromUrl,
+  getLocaleFromLang,
+  useTranslatedPath,
+} from '../../../i18n/utils'
+import Layout from '../../../layouts/Layout.astro'
 import { formatDate } from '../../../utils/content'
 
 export async function getStaticPaths() {
@@ -30,31 +34,46 @@ const copy = getPageCopy('musings', lang)
   publishedDate={post.data.date}
   updatedDate={post.data.updatedAt}
 >
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.data.title,
-    description: post.data.description,
-    datePublished: post.data.date.toISOString(),
-    ...(post.data.updatedAt && { dateModified: post.data.updatedAt.toISOString() }),
-    ...(post.data.image && { image: new URL(post.data.image, Astro.site).href }),
-    url: Astro.url.href,
-    inLanguage: locale,
-    author: { '@type': 'Person', name: 'Kevin Deng', alternateName: '智子', url: 'https://sxzz.dev' },
-  })} />
-  <main class="flex-1 px-6 py-16 md:px-12 flex justify-center">
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: post.data.title,
+      description: post.data.description,
+      datePublished: post.data.date.toISOString(),
+      ...(post.data.updatedAt && {
+        dateModified: post.data.updatedAt.toISOString(),
+      }),
+      ...(post.data.image && {
+        image: new URL(post.data.image, Astro.site).href,
+      }),
+      url: Astro.url.href,
+      inLanguage: locale,
+      author: {
+        '@type': 'Person',
+        name: 'Kevin Deng',
+        alternateName: '智子',
+        url: 'https://sxzz.dev',
+      },
+    })}
+  />
+  <main class="flex flex-1 justify-center px-6 py-16 md:px-12">
     <article class="max-w-xl w-full">
-      <header class="mb-10 fade-in-up" style="animation-delay: 80ms">
+      <header class="fade-in-up mb-10" style="animation-delay: 80ms">
         <a
           href={translatePath('/musings')}
-          class="inline-flex items-center gap-1 text-sm text-stone-400 dark:text-stone-500 hover:text-stone-700 dark:hover:text-stone-300 transition-colors duration-200 mb-6"
+          class="mb-6 inline-flex items-center gap-1 text-sm text-stone-400 transition-colors duration-200 dark:text-stone-500 hover:text-stone-700 dark:hover:text-stone-300"
         >
           &larr; {copy.backLabel}
         </a>
-        <h1 class="text-3xl md:text-4xl font-700 tracking-tight text-stone-900 dark:text-white leading-tight">
+        <h1
+          class="text-3xl text-stone-900 font-700 leading-tight tracking-tight md:text-4xl dark:text-white"
+        >
           {post.data.title}
         </h1>
-        <time class="block mt-2 text-sm text-stone-400 dark:text-stone-500">
+        <time class="mt-2 block text-sm text-stone-400 dark:text-stone-500">
           {formatDate(post.data.date, lang)}
         </time>
       </header>

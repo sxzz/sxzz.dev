@@ -118,6 +118,10 @@ export const pageCopy = {
   },
 } as const
 
-export function getPageCopy<K extends keyof typeof pageCopy>(key: K, lang: Lang) {
-  return pageCopy[key][lang] ?? pageCopy[key][defaultLang]
+export function getPageCopy<K extends keyof typeof pageCopy>(
+  key: K,
+  lang: Lang,
+): (typeof pageCopy)[K][typeof defaultLang] {
+  return (pageCopy[key][lang] ??
+    pageCopy[key][defaultLang]) as (typeof pageCopy)[K][typeof defaultLang]
 }

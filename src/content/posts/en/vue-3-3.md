@@ -1,5 +1,5 @@
 ---
-title: "Vue 3.3: Major New Features"
+title: 'Vue 3.3: Major New Features'
 date: 2023-05-12
 description: A deep dive into defineOptions, defineModel, defineSlots, and more, plus the stories behind them.
 ---
@@ -91,7 +91,7 @@ The `_hoisted_1` variable is intentionally hoisted to the top level. If you disa
 
 ### `hoistStatic` in `<script>`
 
-Before Vue 3.3, only templates had this optimization. In Vue 3.3 we added a similar optimization: if a constant's value is a primitive ([primitive values](https://developer.mozilla.org/zh-CN/docs/Glossary/Primitive)  --  string, number, boolean, bigint, ~~symbol~~, null, undefined), then its declaration will be hoisted to the top level. (Note: symbol isn't implemented yet.)
+Before Vue 3.3, only templates had this optimization. In Vue 3.3 we added a similar optimization: if a constant's value is a primitive ([primitive values](https://developer.mozilla.org/zh-CN/docs/Glossary/Primitive) -- string, number, boolean, bigint, ~~symbol~~, null, undefined), then its declaration will be hoisted to the top level. (Note: symbol isn't implemented yet.)
 
 Because these values can't be mutated, it doesn't matter where they're declared.
 

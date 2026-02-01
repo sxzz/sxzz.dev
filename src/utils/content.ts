@@ -1,8 +1,6 @@
-import { getCollection } from 'astro:content'
+import { getCollection, type CollectionEntry } from 'astro:content'
 import { languages } from '../i18n/ui'
-import { getLocaleFromLang } from '../i18n/utils'
-import type { CollectionEntry } from 'astro:content'
-import type { Lang } from '../i18n/utils'
+import { getLocaleFromLang, type Lang } from '../i18n/utils'
 
 export type PostEntry = CollectionEntry<'posts'>
 
@@ -28,13 +26,15 @@ export async function getPostsByLang(lang: Lang) {
       ...post,
       slug: getPostSlug(post.id),
     }))
-    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+    .toSorted((a, b) => b.data.date.getTime() - a.data.date.getTime())
 }
 
 export async function getAvailableLangsForPost(slug: string) {
   const posts = await getCollection('posts')
   const langKeys = Object.keys(languages) as Lang[]
-  return langKeys.filter((lang) => posts.some((post) => post.id === `${lang}/${slug}`))
+  return langKeys.filter((lang) =>
+    posts.some((post) => post.id === `${lang}/${slug}`),
+  )
 }
 
 export function formatDate(date: Date, lang: Lang) {

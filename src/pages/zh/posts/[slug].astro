@@ -1,9 +1,13 @@
 ---
 import PostDetailPage from '../../../components/pages/PostDetail.astro'
 import { getLangFromUrl } from '../../../i18n/utils'
-import { getAvailableLangsForPost, getPostPaths, getPostSlug } from '../../../utils/content'
+import {
+  getAvailableLangsForPost,
+  getPostPaths,
+  getPostSlug,
+} from '../../../utils/content'
 
-export async function getStaticPaths() {
+export function getStaticPaths() {
   return getPostPaths('zh')
 }
 

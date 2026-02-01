@@ -1,7 +1,7 @@
 ---
-import Layout from '../../layouts/Layout.astro'
 import { homeLinks } from '../../data/site'
 import { getPageCopy } from '../../i18n/pages'
+import Layout from '../../layouts/Layout.astro'
 import type { Lang } from '../../i18n/utils'
 
 interface Props {
@@ -25,18 +25,22 @@ const schema = {
 }
 ---
 
-<Layout
-  title={copy.title}
-  description={copy.description}
->
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
-  <main class="flex-1 flex items-center justify-center px-6 py-12 md:px-12">
+<Layout title={copy.title} description={copy.description}>
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+  />
+  <main class="flex flex-1 items-center justify-center px-6 py-12 md:px-12">
     <div class="max-w-xl w-full space-y-10">
-      <header class="flex items-center gap-5 fade-in-up" style="animation-delay: 80ms">
+      <header
+        class="fade-in-up flex items-center gap-5"
+        style="animation-delay: 80ms"
+      >
         <img
           src={copy.avatar}
           alt={copy.name}
-          class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover ring-2 ring-stone-200/80 dark:ring-stone-700/50 shadow-lg shadow-stone-400/10 dark:shadow-black/20"
+          class="h-20 w-20 rounded-full object-cover shadow-lg shadow-stone-400/10 ring-2 ring-stone-200/80 md:h-24 md:w-24 dark:shadow-black/20 dark:ring-stone-700/50"
         />
         <div>
           <h1
@@ -48,49 +52,66 @@ const schema = {
             {copy.name}
           </h1>
           <p
-            class="mt-1.5 text-stone-400 dark:text-stone-500 font-mono"
+            class="mt-1.5 text-stone-400 font-mono dark:text-stone-500"
             data-typewriter
             data-text={copy.tagline}
             data-char-delay={copy.taglineCharDelay}
             aria-label={copy.tagline}
-          ></p>
+          >
+          </p>
         </div>
       </header>
 
       <div class="space-y-8">
         <section class="fade-in-up" style="animation-delay: 160ms">
-          <h2 class="text-xs font-mono text-stone-400 dark:text-stone-600 tracking-wide mb-3">
-            <span class="text-emerald-600/70 dark:text-emerald-500/50 select-none" aria-hidden="true">$ </span>cat creator.md
+          <h2
+            class="mb-3 text-xs text-stone-400 tracking-wide font-mono dark:text-stone-600"
+          >
+            <span
+              class="select-none text-emerald-600/70 dark:text-emerald-500/50"
+              aria-hidden="true"
+              >$
+            </span>cat creator.md
           </h2>
           <div class="flex flex-wrap gap-2">
-            {homeLinks.creator.map((link) => (
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center px-3.5 py-1.5 text-sm font-500 rounded-full border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-white transition-colors duration-150"
-              >
-                {link.name}
-              </a>
-            ))}
+            {
+              homeLinks.creator.map((link) => (
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center border border-stone-200 rounded-full px-3.5 py-1.5 text-sm text-stone-600 font-500 transition-colors duration-150 dark:border-stone-800 hover:border-stone-400 dark:text-stone-300 hover:text-stone-900 dark:hover:border-stone-600 dark:hover:text-white"
+                >
+                  {link.name}
+                </a>
+              ))
+            }
           </div>
         </section>
 
         <section class="fade-in-up" style="animation-delay: 240ms">
-          <h2 class="text-xs font-mono text-stone-400 dark:text-stone-600 tracking-wide mb-3">
-            <span class="text-emerald-600/70 dark:text-emerald-500/50 select-none" aria-hidden="true">$ </span>cat team.md
+          <h2
+            class="mb-3 text-xs text-stone-400 tracking-wide font-mono dark:text-stone-600"
+          >
+            <span
+              class="select-none text-emerald-600/70 dark:text-emerald-500/50"
+              aria-hidden="true"
+              >$
+            </span>cat team.md
           </h2>
           <div class="flex flex-wrap gap-2">
-            {homeLinks.team.map((link) => (
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center px-3.5 py-1.5 text-sm font-500 rounded-full border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-white transition-colors duration-150"
-              >
-                {link.name}
-              </a>
-            ))}
+            {
+              homeLinks.team.map((link) => (
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center border border-stone-200 rounded-full px-3.5 py-1.5 text-sm text-stone-600 font-500 transition-colors duration-150 dark:border-stone-800 hover:border-stone-400 dark:text-stone-300 hover:text-stone-900 dark:hover:border-stone-600 dark:hover:text-white"
+                >
+                  {link.name}
+                </a>
+              ))
+            }
           </div>
         </section>
       </div>

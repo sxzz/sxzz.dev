@@ -1,12 +1,12 @@
 import rss from '@astrojs/rss'
-import type { APIContext } from 'astro'
 import { getCollection } from 'astro:content'
 import { defaultLang } from '../i18n/ui'
+import type { APIContext } from 'astro'
 
 export async function GET(context: APIContext) {
   const posts = (await getCollection('posts'))
     .filter((post) => post.id.startsWith(`${defaultLang}/`))
-    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+    .toSorted((a, b) => b.data.date.getTime() - a.data.date.getTime())
 
   return rss({
     title: 'Kevin Deng',

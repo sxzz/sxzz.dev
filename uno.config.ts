@@ -1,9 +1,9 @@
 import {
   defineConfig,
-  presetWind3,
   presetAttributify,
   presetIcons,
   presetWebFonts,
+  presetWind3,
 } from 'unocss'
 
 export default defineConfig({
