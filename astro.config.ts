@@ -1,7 +1,7 @@
-import { defineConfig } from 'astro/config'
-import UnoCSS from '@unocss/astro'
 import cloudflare from '@astrojs/cloudflare'
 import sitemap from '@astrojs/sitemap'
+import UnoCSS from '@unocss/astro'
+import { defineConfig } from 'astro/config'
 import remarkGithubBlockquoteAlert from 'remark-github-blockquote-alert'
 
 // https://astro.build/config

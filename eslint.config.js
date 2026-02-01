@@ -1,0 +1,29 @@
+// @ts-check
+
+import { sxzz } from '@sxzz/eslint-config'
+import pluginAstro from 'eslint-plugin-astro'
+
+export default sxzz({
+  vue: true,
+})
+  .append(pluginAstro.configs['flat/recommended'])
+  .append({
+    files: ['**/*.md/**', '**/*.md'],
+    rules: {
+      'yml/no-empty-document': 'off',
+    },
+  })
+  .append({
+    files: ['src/content/**'],
+    /// keep-sorted
+    rules: {
+      '@typescript-eslint/method-signature-style': 'off',
+      'perfectionist/sort-imports': 'off',
+      'prefer-template': 'off',
+      'unicorn/no-new-array': 'off',
+      'unicorn/prefer-code-point': 'off',
+      'unicorn/prefer-number-properties': 'off',
+      'unicorn/prefer-string-raw': 'off',
+      'vue/valid-define-emits': 'off',
+    },
+  })

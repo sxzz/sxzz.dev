@@ -13,7 +13,7 @@ function getPreferredLang(header: string | null) {
       const q = rawQ ? Number.parseFloat(rawQ) : 1
       return { lang: rawLang.toLowerCase(), q: Number.isNaN(q) ? 0 : q }
     })
-    .sort((a, b) => b.q - a.q)
+    .toSorted((a, b) => b.q - a.q)
 
   for (const entry of parsed) {
     if (supportedLangs.has(entry.lang)) return entry.lang

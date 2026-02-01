@@ -1021,7 +1021,7 @@ Error: GDBus.Error:org.gtk.GDBus.UnmappedGError.Quark._g_2dio_2derror_2dquark.Co
 
 看来要用 `getflag3` 来调用。在 `flagserver.c` 可以看到，它通过读取 `/proc/<pid>/comm` 来获得进程名。如果不是 `getflag3`，就会返回错误。
 
-这里我用的办法比较朴实，直接重新编译 `getflag3`，但是添加遗憾的代码把 flag 打印出来。
+这里我用的办法比较朴实，直接重新编译 `getflag3`，但是添加一行代码把 flag 打印出来。
 
 ```c
 g_print("%s\n", flag);

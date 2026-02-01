@@ -209,7 +209,7 @@ Open the [first image](http://202.38.93.141:12345/photos/image01.jpg). At first 
 
 > Question 4: What is the name of the scenic spot where this landscape is located? (Three Chinese characters.)
 
-I spent a long time searching with the [second image](http://202.38.93.141:12345/photos/image04.jpg), thinking it was also in Lu'an. I didn't expect the clue "And the distance between these two photos... isn't it a bit far?" to mean *that* far...
+I spent a long time searching with the [second image](http://202.38.93.141:12345/photos/image04.jpg), thinking it was also in Lu'an. I didn't expect the clue "And the distance between these two photos... isn't it a bit far?" to mean _that_ far...
 
 In the end I used Xiaohongshu to find other people's travel photos and videos.
 

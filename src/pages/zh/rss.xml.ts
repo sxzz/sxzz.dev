@@ -1,6 +1,6 @@
 import rss from '@astrojs/rss'
-import type { APIContext } from 'astro'
 import { getCollection } from 'astro:content'
+import type { APIContext } from 'astro'
 
 export async function GET(context: APIContext) {
   const posts = (await getCollection('posts'))
@@ -22,7 +22,7 @@ export async function GET(context: APIContext) {
     link: `/zh/musings/${musing.id}/`,
   }))
 
-  const items = [...posts, ...musings].sort(
+  const items = [...posts, ...musings].toSorted(
     (a, b) => b.pubDate.getTime() - a.pubDate.getTime(),
   )
 
