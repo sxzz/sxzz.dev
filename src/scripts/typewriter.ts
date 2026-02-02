@@ -1,33 +1,40 @@
-const prefersReducedMotion = globalThis.matchMedia(
-  '(prefers-reduced-motion: reduce)',
-).matches
+const runTypewriter = () => {
+  const prefersReducedMotion = globalThis.matchMedia(
+    '(prefers-reduced-motion: reduce)',
+  ).matches
 
-document.querySelectorAll<HTMLElement>('[data-typewriter]').forEach((el) => {
-  const text = el.dataset.text || ''
+  document.querySelectorAll<HTMLElement>('[data-typewriter]').forEach((el) => {
+    if (el.dataset.typewriterReady === 'true') return
+    el.dataset.typewriterReady = 'true'
 
-  if (prefersReducedMotion) {
-    el.textContent = text
-    return
-  }
+    const text = el.dataset.text || ''
 
-  const charDelay = Number.parseInt(el.dataset.charDelay || '60', 10)
-  const startDelay = Number.parseInt(el.dataset.startDelay || '650', 10)
+    if (prefersReducedMotion) {
+      el.textContent = text
+      return
+    }
 
-  const cursor = document.createElement('span')
-  cursor.className = 'terminal-cursor'
-  cursor.textContent = '\u258C'
-  cursor.setAttribute('aria-hidden', 'true')
-  el.append(cursor)
+    const charDelay = Number.parseInt(el.dataset.charDelay || '60', 10)
+    const startDelay = Number.parseInt(el.dataset.startDelay || '650', 10)
 
-  let i = 0
-  setTimeout(() => {
-    const interval = setInterval(() => {
-      if (i < text.length) {
-        el.insertBefore(document.createTextNode(text[i]), cursor)
-        i++
-      } else {
-        clearInterval(interval)
-      }
-    }, charDelay)
-  }, startDelay)
-})
+    const cursor = document.createElement('span')
+    cursor.className = 'terminal-cursor'
+    cursor.textContent = '\u258C'
+    cursor.setAttribute('aria-hidden', 'true')
+    el.append(cursor)
+
+    let i = 0
+    setTimeout(() => {
+      const interval = setInterval(() => {
+        if (i < text.length) {
+          el.insertBefore(document.createTextNode(text[i]), cursor)
+          i++
+        } else {
+          clearInterval(interval)
+        }
+      }, charDelay)
+    }, startDelay)
+  })
+}
+
+document.addEventListener('astro:page-load', runTypewriter)

@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions'
 import { nav, social } from '../consts'
 import { defaultLang, languages, localeByLang } from '../i18n/ui'
 import {
@@ -121,6 +122,7 @@ const hreflangLangs = isMusingsPage
       href={new URL(lang === 'zh' ? '/zh/rss.xml' : '/rss.xml', site).href}
     />
 
+    <ClientRouter />
     <slot name="head" />
     <script
       defer
@@ -287,39 +289,70 @@ const hreflangLangs = isMusingsPage
 </html>
 
 <script>
-  const toggle = document.querySelector('#theme-toggle')
-  toggle?.addEventListener('click', () => {
-    const isDark = document.documentElement.classList.toggle('dark')
-    localStorage.setItem('theme', isDark ? 'dark' : 'light')
-  })
+  const prefersDarkQuery = globalThis.matchMedia(
+    '(prefers-color-scheme: dark)',
+  )
 
-  globalThis
-    .matchMedia('(prefers-color-scheme: dark)')
-    .addEventListener('change', (e) => {
-      if (!localStorage.getItem('theme')) {
-        document.documentElement.classList.toggle('dark', e.matches)
-      }
-    })
+  const applyTheme = (doc = document) => {
+    const stored = localStorage.getItem('theme')
+    const shouldDark = stored ? stored === 'dark' : prefersDarkQuery.matches
+    doc.documentElement.classList.toggle('dark', shouldDark)
+  }
+
+  const toggleTheme = () => {
+    const isDark = !document.documentElement.classList.contains('dark')
+    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+    document.documentElement.classList.toggle('dark', isDark)
+  }
 
   document.addEventListener('click', (e) => {
+    const target = e.target
+    const targetEl = target instanceof Element ? target : null
+    if (targetEl?.closest('#theme-toggle')) {
+      toggleTheme()
+    }
+
     document.querySelectorAll('.lang-switcher[open]').forEach((el) => {
-      if (!el.contains(e.target as Node)) el.removeAttribute('open')
+      if (targetEl && el.contains(targetEl)) return
+      el.removeAttribute('open')
     })
   })
 
-  document.querySelectorAll('.lang-switcher').forEach((el) => {
-    el.addEventListener('toggle', () => {
-      if ((el as HTMLDetailsElement).open) {
-        const menu = el.querySelector('.lang-switcher-menu') as HTMLElement
-        if (menu) {
-          menu.style.animation = 'none'
-          // eslint-disable-next-line no-void -- trigger reflow
-          void menu.offsetHeight
-          menu.style.animation = ''
-        }
-      }
-    })
+  prefersDarkQuery.addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      document.documentElement.classList.toggle('dark', e.matches)
+    }
   })
+
+  document.addEventListener('astro:before-swap', (e) => {
+    const event = e as { newDocument?: Document }
+    if (event?.newDocument) {
+      applyTheme(event.newDocument)
+    }
+  })
+
+  document.addEventListener('astro:page-load', () => {
+    applyTheme()
+  })
+
+  document.addEventListener(
+    'toggle',
+    (e) => {
+      const details = e.target
+      if (!(details instanceof HTMLDetailsElement)) return
+      if (!details.classList.contains('lang-switcher') || !details.open) return
+      const menu = details.querySelector('.lang-switcher-menu') as
+        | HTMLElement
+        | null
+      if (menu) {
+        menu.style.animation = 'none'
+        // eslint-disable-next-line no-void -- trigger reflow
+        void menu.offsetHeight
+        menu.style.animation = ''
+      }
+    },
+    true,
+  )
 </script>
 
 <style is:global>
