@@ -1,12 +1,20 @@
 // @ts-check
 
 import { sxzz } from '@sxzz/eslint-config'
-import pluginAstro from 'eslint-plugin-astro'
 
 export default sxzz({
   vue: true,
+  astro: true,
+  baseline: {
+    ignoreFeatures: ['top-level-await'],
+  },
 })
-  .append(pluginAstro.configs['flat/recommended'])
+  .append({
+    files: ['**/*.astro', '**/*.astro/**'],
+    rules: {
+      'prettier/prettier': 'off',
+    },
+  })
   .append({
     files: ['**/*.md/**', '**/*.md'],
     rules: {
