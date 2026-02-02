@@ -1,4 +1,21 @@
-export const homeLinks = {
+interface Link {
+  name: string
+  href: string
+}
+
+interface Friend {
+  name: string
+  bio: string
+  avatar: string
+  href: string
+}
+
+interface HomeLinks {
+  creator: Link[]
+  team: Link[]
+}
+
+export const homeLinks: HomeLinks = {
   creator: [
     { name: 'tsdown', href: 'https://tsdown.dev' },
     { name: 'Vue Macros', href: 'https://vue-macros.dev' },
@@ -12,9 +29,9 @@ export const homeLinks = {
     { name: 'unplugin', href: 'https://github.com/unplugin' },
     { name: 'Oxc', href: 'https://oxc.rs' },
   ],
-} as const
+}
 
-export const friends = [
+export const friends: Friend[] = [
   {
     name: 'SXYAZI',
     bio: 'Creator of Yazi.',
@@ -69,4 +86,10 @@ export const friends = [
     avatar: 'https://libra.wiki/avatar.png',
     href: 'https://libra.wiki/',
   },
-] as const
+  {
+    name: 'XCちゃん',
+    bio: '困困困困困困',
+    avatar: 'https://spacexc.net/logo.png',
+    href: 'https://spacexc.net/',
+  },
+]

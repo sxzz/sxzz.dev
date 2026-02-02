@@ -1,7 +1,64 @@
 import { defaultLang } from './ui'
 import type { Lang } from './utils'
 
-export const pageCopy = {
+interface HomeCopy {
+  title: string
+  description: string
+  name: string
+  avatar: string
+  tagline: string
+  taglineCharDelay?: number
+  nameSerif: boolean
+  schema: {
+    name: string
+    url: string
+    sameAs: string[]
+  }
+}
+
+interface AboutCopy {
+  title: string
+  description: string
+  heading: string
+  paragraphs: string[]
+}
+
+interface LinksCopy {
+  title: string
+  description: string
+  heading: string
+  subheading: string
+}
+
+interface PostsCopy {
+  title: string
+  description: string
+  heading: string
+}
+
+interface PostCopy {
+  backLabel: string
+  titleSuffix: string
+}
+
+interface MusingsCopy {
+  title: string
+  description: string
+  heading: string
+  backLabel: string
+  titleSuffix: string
+}
+
+interface PageCopy {
+  home: Record<Lang, HomeCopy>
+  about: Record<Lang, AboutCopy>
+  links: Record<Lang, LinksCopy>
+  posts: Record<Lang, PostsCopy>
+  post: Record<Lang, PostCopy>
+  musings: Record<Lang, MusingsCopy>
+}
+
+export const pageCopy: PageCopy = {
   home: {
     en: {
       title: 'Kevin Deng - Open Source Enthusiast',
@@ -10,7 +67,6 @@ export const pageCopy = {
       name: 'Kevin Deng',
       avatar: '/avatar.jpg',
       tagline: 'Open-source enthusiast',
-      taglineCharDelay: undefined,
       nameSerif: true,
       schema: {
         name: 'Kevin Deng',
@@ -116,7 +172,7 @@ export const pageCopy = {
       titleSuffix: '智子',
     },
   },
-} as const
+}
 
 export function getPageCopy<K extends keyof typeof pageCopy>(
   key: K,
