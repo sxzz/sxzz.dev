@@ -1,4 +1,4 @@
-import rss from '@astrojs/rss'
+import rss, { type RSSFeedItem } from '@astrojs/rss'
 import { getCollection } from 'astro:content'
 import { defaultLang } from '../i18n/ui'
 import type { APIContext } from 'astro'
@@ -12,7 +12,7 @@ export async function GET(context: APIContext) {
     title: 'Kevin Deng',
     description: 'Blog posts by Kevin Deng, an open-source enthusiast.',
     site: context.site!,
-    items: posts.map((post) => {
+    items: posts.map((post): RSSFeedItem => {
       const slug = post.id.split('/').slice(1).join('/')
       return {
         title: post.data.title,

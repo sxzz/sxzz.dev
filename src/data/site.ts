@@ -98,4 +98,10 @@ export const friends: Friend[] = [
     avatar: 'https://static.lyc.sh/2022/10/cropped-profile.png',
     href: 'https://blog.lyc.sh/',
   },
+  {
+    name: 'Patrick.T',
+    bio: 'Patrick碎碎念',
+    avatar: 'https://cdn.tzih.top/avatar.jpg',
+    href: 'https://tzih.top/',
+  },
 ]
