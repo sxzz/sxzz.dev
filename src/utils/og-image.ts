@@ -26,6 +26,20 @@ const cacheDir = join(root, 'node_modules/.cache/fonts')
 
 const FONT_SOURCES: FontSource[] = [
   {
+    name: 'Outfit',
+    weight: 400,
+    style: 'normal',
+    filename: 'Outfit-Regular.ttf',
+    url: 'https://raw.githubusercontent.com/Outfitio/Outfit-Fonts/main/fonts/ttf/Outfit-Regular.ttf',
+  },
+  {
+    name: 'Outfit',
+    weight: 600,
+    style: 'normal',
+    filename: 'Outfit-SemiBold.ttf',
+    url: 'https://raw.githubusercontent.com/Outfitio/Outfit-Fonts/main/fonts/ttf/Outfit-SemiBold.ttf',
+  },
+  {
     name: 'Source Han Sans SC',
     weight: 700,
     style: 'normal',
@@ -278,7 +292,7 @@ export async function renderDefaultOgImage(): Promise<Buffer> {
           justifyContent: 'center',
           alignItems: 'center',
           background: 'linear-gradient(135deg, #fafaf9 0%, #e7e5e4 100%)',
-          fontFamily: 'Source Han Sans SC',
+          fontFamily: 'Outfit, Source Han Sans SC',
         },
         children: [
           {
