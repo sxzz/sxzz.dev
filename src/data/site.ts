@@ -3,8 +3,8 @@ interface Link {
   href: string
 }
 
-interface Friend {
-  name: string
+export interface Friend {
+  name: string | { en: string; zh: string }
   bio: string
   avatar: string
   href: string
@@ -103,5 +103,23 @@ export const friends: Friend[] = [
     bio: 'Patrick碎碎念',
     avatar: 'https://cdn.tzih.top/avatar.jpg',
     href: 'https://tzih.top/',
+  },
+  {
+    name: { en: 'Angine', zh: '安擎' },
+    bio: 'By the power of language.',
+    avatar: 'https://angine.tech/images/avatar.png',
+    href: 'https://angine.tech/',
+  },
+  {
+    name: 'SkyWT',
+    bio: '',
+    avatar: 'https://img.skywt.net/avatar.jpg',
+    href: 'https://skywt.net/',
+  },
+  {
+    name: { en: 'Citron', zh: '枸櫞' },
+    bio: '',
+    avatar: 'https://avatars.githubusercontent.com/u/45784494?v=4',
+    href: 'https://lcandy.me/',
   },
 ]

@@ -1,5 +1,5 @@
 ---
-import { friends } from '../../data/site'
+import { friends, type Friend } from '../../data/site'
 import { getPageCopy } from '../../i18n/pages'
 import Layout from '../../layouts/Layout.astro'
 import type { Lang } from '../../i18n/utils'
@@ -10,6 +10,11 @@ interface Props {
 
 const { lang } = Astro.props
 const copy = getPageCopy('links', lang)
+
+function getFriendName(friend: Friend): string {
+  if (typeof friend.name === 'string') return friend.name
+  return friend.name[lang]
+}
 ---
 
 <Layout title={copy.title} description={copy.description}>
@@ -41,12 +46,12 @@ const copy = getPageCopy('links', lang)
             >
               <img
                 src={friend.avatar}
-                alt={friend.name}
+                alt={getFriendName(friend)}
                 class="h-12 w-12 shrink-0 rounded-full object-cover ring-1 ring-stone-200/60 dark:ring-stone-700/40"
               />
               <div class="min-w-0">
                 <div class="text-sm text-stone-800 font-600 transition-colors duration-200 dark:text-stone-200 group-hover:text-stone-950 dark:group-hover:text-white">
-                  {friend.name}
+                  {getFriendName(friend)}
                 </div>
                 <div class="mt-0.5 truncate text-xs text-stone-500 dark:text-stone-400">
                   {friend.bio}
