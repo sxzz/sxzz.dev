@@ -15,6 +15,15 @@ function getFriendName(friend: Friend): string {
   if (typeof friend.name === 'string') return friend.name
   return friend.name[lang]
 }
+
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = array.slice()
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+  return shuffled
+}
 ---
 
 <Layout title={copy.title} description={copy.description}>
@@ -37,7 +46,7 @@ function getFriendName(friend: Friend): string {
         style="animation-delay: 160ms"
       >
         {
-          friends.map((friend) => (
+          shuffleArray(friends).map((friend) => (
             <a
               href={friend.href}
               target="_blank"
@@ -66,7 +75,7 @@ function getFriendName(friend: Friend): string {
 </Layout>
 
 <script>
-  const shuffleFriendsGrid = () => {
+  function shuffleFriendsGrid() {
     const grid = document.querySelector('#friends-grid')
     if (!grid) return
 
