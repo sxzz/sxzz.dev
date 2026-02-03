@@ -2,20 +2,17 @@ import { Buffer } from 'node:buffer'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import process from 'node:process'
-import { fileURLToPath } from 'node:url'
 import { Resvg } from '@resvg/resvg-js'
 import satori, { type Font } from 'satori'
 import { siteCopy, siteMeta } from '../data/site'
 import { ui } from '../i18n/ui'
 import { getLocaleFromLang, type Lang } from '../i18n/utils'
 
-type OgKind = 'post' | 'musing'
-
 interface OgOptions {
   title: string
   description: string
   lang: Lang
-  kind: OgKind
+  kind: 'post' | 'musing'
   date?: Date
 }
 
@@ -24,10 +21,7 @@ interface FontSource extends Pick<Font, 'name' | 'weight' | 'style' | 'lang'> {
   url: string
 }
 
-const root =
-  process !== undefined && process.cwd
-    ? process.cwd()
-    : fileURLToPath(new URL('../../', import.meta.url))
+const root = process.cwd()
 const cacheDir = join(root, 'node_modules/.cache/fonts')
 
 const FONT_SOURCES: FontSource[] = [
@@ -47,23 +41,8 @@ const FONT_SOURCES: FontSource[] = [
   },
 ]
 
-const kindNavKeys = {
-  post: 'nav.posts',
-  musing: 'nav.musings',
-} as const satisfies Record<OgKind, keyof (typeof ui)['en']>
-
 let fontsPromise: Promise<Font[]> | undefined
 let avatarDataUrl: string | undefined
-
-const cjkRegex = /[\u4E00-\u9FFF]/
-const latinRegex = /[A-Z0-9]/i
-const mixedSeparator = '\u00A0'
-
-function normalizeMixedText(text: string) {
-  return text
-    .replaceAll(/([\u4E00-\u9FFF])([A-Z0-9])/gi, `$1${mixedSeparator}$2`)
-    .replaceAll(/([A-Z0-9])([\u4E00-\u9FFF])/gi, `$1${mixedSeparator}$2`)
-}
 
 async function ensureFonts() {
   mkdirSync(cacheDir, { recursive: true })
@@ -111,14 +90,9 @@ export async function renderOgImage({
   date,
 }: OgOptions): Promise<Buffer> {
   const fonts = await getFonts()
-  const normalizedTitle = normalizeMixedText(title)
-  const normalizedDescription = normalizeMixedText(description)
-  const hasMixedDescription =
-    cjkRegex.test(normalizedDescription) &&
-    latinRegex.test(normalizedDescription)
   const locale = getLocaleFromLang(lang)
-  const isZh = lang === 'zh'
-  const label = (ui[lang] ?? ui.en)[kindNavKeys[kind]]
+  const isEn = lang === 'en'
+  const label = (ui[lang] ?? ui.en)[`nav.${kind}s` as const]
   const dateText = date
     ? date.toLocaleDateString(locale, {
         year: 'numeric',
@@ -141,7 +115,7 @@ export async function renderOgImage({
           padding: 64,
           gap: 24,
           background: 'linear-gradient(135deg, #fafaf9 0%, #e7e5e4 100%)',
-          fontFamily: 'Outfit, Source Han Sans SC',
+          fontFamily: 'Source Han Sans SC',
         },
         children: [
           {
@@ -166,8 +140,7 @@ export async function renderOgImage({
                       backgroundColor: 'rgba(120, 113, 108, 0.12)',
                       fontSize: 20,
                       fontWeight: 600,
-                      letterSpacing: isZh ? '0px' : '0.14em',
-                      textTransform: isZh ? 'none' : 'uppercase',
+                      textTransform: isEn ? 'uppercase' : 'none',
                       color: '#1c1917',
                     },
                     children: label,
@@ -180,7 +153,6 @@ export async function renderOgImage({
                       fontSize: 22,
                       fontWeight: 400,
                       color: '#78716c',
-                      letterSpacing: isZh ? '0px' : '0.02em',
                     },
                     children: dateText,
                   },
@@ -198,7 +170,7 @@ export async function renderOgImage({
                 maxHeight: 220,
                 overflow: 'hidden',
               },
-              children: normalizedTitle,
+              children: title,
             },
           },
           {
@@ -209,11 +181,10 @@ export async function renderOgImage({
                 fontWeight: 400,
                 color: '#57534e',
                 lineHeight: 1.45,
-                wordSpacing: hasMixedDescription ? '0.08em' : '0em',
                 maxHeight: 140,
                 overflow: 'hidden',
               },
-              children: normalizedDescription,
+              children: description,
             },
           },
           {
@@ -265,7 +236,6 @@ export async function renderOgImage({
                             fontSize: 18,
                             fontWeight: 400,
                             color: '#a8a29e',
-                            letterSpacing: isZh ? '0px' : '0.12em',
                           },
                           children: siteMeta.domain,
                         },
@@ -308,7 +278,7 @@ export async function renderDefaultOgImage(): Promise<Buffer> {
           justifyContent: 'center',
           alignItems: 'center',
           background: 'linear-gradient(135deg, #fafaf9 0%, #e7e5e4 100%)',
-          fontFamily: 'Outfit, Source Han Sans SC',
+          fontFamily: 'Source Han Sans SC',
         },
         children: [
           {
