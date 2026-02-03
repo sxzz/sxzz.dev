@@ -23,6 +23,7 @@
     "@astrojs/sitemap": "^3.7.0",
     "@unocss/reset": "^66.6.0",
     "astro": "^5.16.15",
+    "nprogress": "^0.2.0",
     "remark-github-blockquote-alert": "^2.0.1"
   },
   "devDependencies": {

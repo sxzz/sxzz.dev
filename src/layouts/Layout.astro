@@ -292,6 +292,8 @@ const hreflangLangs = isMusingsPage
 </html>
 
 <script>
+  import NProgress from 'nprogress'
+
   const prefersDarkQuery = globalThis.matchMedia('(prefers-color-scheme: dark)')
 
   const applyTheme = (doc = document) => {
@@ -310,6 +312,29 @@ const hreflangLangs = isMusingsPage
     document.documentElement.classList.toggle('dark', isDark)
   }
 
+  NProgress.configure({
+    showSpinner: false,
+    trickleSpeed: 120,
+    minimum: 0.08,
+  })
+
+  let nprogressTimer = 0
+
+  const startProgress = () => {
+    if (nprogressTimer) return
+    nprogressTimer = window.setTimeout(() => {
+      NProgress.start()
+    }, 120)
+  }
+
+  const stopProgress = () => {
+    if (nprogressTimer) {
+      clearTimeout(nprogressTimer)
+      nprogressTimer = 0
+    }
+    NProgress.done(true)
+  }
+
   document.addEventListener('click', (e) => {
     const target = e.target
     const targetEl = target instanceof Element ? target : null
@@ -322,6 +347,10 @@ const hreflangLangs = isMusingsPage
       el.removeAttribute('open')
     })
   })
+
+  document.addEventListener('astro:before-preparation', startProgress)
+  document.addEventListener('astro:after-swap', stopProgress)
+  document.addEventListener('astro:page-load', stopProgress)
 
   prefersDarkQuery.addEventListener('change', (e) => {
     if (!localStorage.getItem('theme')) {
@@ -421,6 +450,78 @@ const hreflangLangs = isMusingsPage
   .terminal-cursor {
     animation: cursorBlink 1s step-end infinite;
     color: inherit;
+  }
+
+  :root {
+    --nprogress-color: rgba(28, 25, 23, 0.45);
+  }
+
+  .dark {
+    --nprogress-color: rgba(231, 229, 228, 0.5);
+  }
+
+  #nprogress {
+    pointer-events: none;
+  }
+
+  #nprogress .bar {
+    background: var(--nprogress-color);
+    position: fixed;
+    z-index: 1031;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+  }
+
+  #nprogress .peg {
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 100px;
+    height: 100%;
+    box-shadow: 0 0 6px var(--nprogress-color),
+      0 0 3px var(--nprogress-color);
+    opacity: 1;
+    transform: rotate(3deg) translate(0, -4px);
+  }
+
+  #nprogress .spinner {
+    display: block;
+    position: fixed;
+    z-index: 1031;
+    top: 15px;
+    right: 15px;
+  }
+
+  #nprogress .spinner-icon {
+    width: 18px;
+    height: 18px;
+    box-sizing: border-box;
+    border: solid 2px transparent;
+    border-top-color: var(--nprogress-color);
+    border-left-color: var(--nprogress-color);
+    border-radius: 50%;
+    animation: nprogress-spinner 400ms linear infinite;
+  }
+
+  .nprogress-custom-parent {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .nprogress-custom-parent #nprogress .spinner,
+  .nprogress-custom-parent #nprogress .bar {
+    position: absolute;
+  }
+
+  @keyframes nprogress-spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 
   html {

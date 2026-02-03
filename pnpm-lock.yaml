@@ -26,6 +26,9 @@ importers:
       astro:
         specifier: ^5.16.15
         version: 5.17.1(@types/node@25.2.0)(jiti@2.6.1)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
+      nprogress:
+        specifier: ^0.2.0
+        version: 0.2.0
       remark-github-blockquote-alert:
         specifier: ^2.0.1
         version: 2.0.1
@@ -3139,6 +3142,9 @@ packages:
   normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
+
+  nprogress@0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
 
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
@@ -7325,6 +7331,8 @@ snapshots:
   node-releases@2.0.27: {}
 
   normalize-path@3.0.0: {}
+
+  nprogress@0.2.0: {}
 
   nth-check@2.1.1:
     dependencies:
