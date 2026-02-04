@@ -1,7 +1,7 @@
 import { getCollection } from 'astro:content'
-import type { APIRoute } from 'astro'
 import { defaultLang } from '../../i18n/ui'
 import { getPostSlug } from '../../utils/content'
+import type { APIRoute } from 'astro'
 
 export const prerender = true
 
@@ -15,7 +15,7 @@ export async function getStaticPaths() {
     }))
 }
 
-export const GET: APIRoute = async ({ props }) => {
+export const GET: APIRoute = ({ props }) => {
   if (!props?.post) {
     return new Response('Not found', { status: 404 })
   }

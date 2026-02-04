@@ -25,7 +25,7 @@ const copy = getPageCopy('post', lang)
 const locale = getLocaleFromLang(lang)
 const ogImage = post.data.image ?? getPostOgImagePath(post.id)
 const author = getAuthorSchema(lang)
-const mdUrl = new URL(Astro.url.pathname.replace(/\/$/, '') + '.md', Astro.site)
+const mdUrl = new URL(`${Astro.url.pathname.replace(/\/$/, '')}.md`, Astro.site)
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -87,7 +87,7 @@ const schema = {
         <Content />
       </Prose>
     </article>
-    <div class="fade-in-up hidden pl-12 xl:block animate-delay-240">
+    <div class="fade-in-up hidden animate-delay-240 pl-12 xl:block">
       <TableOfContents headings={headings} lang={lang} />
     </div>
   </main>

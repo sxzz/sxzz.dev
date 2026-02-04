@@ -11,7 +11,7 @@ export async function getStaticPaths() {
   }))
 }
 
-export const GET: APIRoute = async ({ props }) => {
+export const GET: APIRoute = ({ props }) => {
   if (!props?.post) {
     return new Response('Not found', { status: 404 })
   }

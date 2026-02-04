@@ -320,10 +320,10 @@ const hreflangLangs = isMusingsPage
     minimum: 0.08,
   })
 
-  let nprogressTimer: number | undefined
+  let nprogressTimer: ReturnType<typeof globalThis.setTimeout> | undefined
   function startProgress() {
     if (nprogressTimer) return
-    nprogressTimer = window.setTimeout(() => {
+    nprogressTimer = globalThis.setTimeout(() => {
       NProgress.start()
     }, 120)
   }

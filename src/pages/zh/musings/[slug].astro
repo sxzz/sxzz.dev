@@ -27,7 +27,7 @@ const locale = getLocaleFromLang(lang)
 const translatePath = useTranslatedPath(lang)
 const copy = getPageCopy('musings', lang)
 const ogImage = post.data.image ?? getMusingOgImagePath(post.id, lang)
-const mdUrl = new URL(Astro.url.pathname.replace(/\/$/, '') + '.md', Astro.site)
+const mdUrl = new URL(`${Astro.url.pathname.replace(/\/$/, '')}.md`, Astro.site)
 ---
 
 <Layout
