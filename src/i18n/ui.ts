@@ -17,6 +17,9 @@ export const ui = {
     'lang.switch': 'Switch language',
     'toggle.theme': 'Toggle dark mode',
     'toc.title': 'On this page',
+    'notFound.title': 'Page Not Found',
+    'notFound.description': 'The page you are looking for does not exist.',
+    'notFound.backHome': 'Back to Home',
   },
   zh: {
     'nav.posts': '文章',
@@ -28,6 +31,9 @@ export const ui = {
     'lang.switch': '切换语言',
     'toggle.theme': '切换深色模式',
     'toc.title': '目录',
+    'notFound.title': '页面未找到',
+    'notFound.description': '您访问的页面不存在。',
+    'notFound.backHome': '返回首页',
   },
 } as const
 
