@@ -1,4 +1,5 @@
 ---
+import { execSync } from 'node:child_process'
 import { getPageCopy } from '../../i18n/pages'
 import Layout from '../../layouts/Layout.astro'
 import type { Lang } from '../../i18n/utils'
@@ -9,6 +10,9 @@ interface Props {
 
 const { lang } = Astro.props
 const copy = getPageCopy('about', lang)
+
+const gitCommitSha = execSync('git rev-parse --short HEAD').toString().trim()
+const buildDate = new Date().toISOString().split('T')[0]
 ---
 
 <Layout title={copy.title} description={copy.description}>
@@ -28,6 +32,20 @@ const copy = getPageCopy('about', lang)
       >
         {copy.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
       </section>
+
+      <footer
+        class="fade-in-up text-stone-400 text-sm dark:text-stone-600"
+        style="animation-delay: 240ms"
+      >
+        <p>
+          Built from <a
+            href={`https://github.com/sxzz/sxzz.dev/commit/${gitCommitSha}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-mono hover:underline">{gitCommitSha}</a
+          > on {buildDate}
+        </p>
+      </footer>
     </article>
   </main>
 </Layout>
