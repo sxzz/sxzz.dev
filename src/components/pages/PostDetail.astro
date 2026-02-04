@@ -25,6 +25,7 @@ const copy = getPageCopy('post', lang)
 const locale = getLocaleFromLang(lang)
 const ogImage = post.data.image ?? getPostOgImagePath(post.id)
 const author = getAuthorSchema(lang)
+const mdUrl = new URL(Astro.url.pathname.replace(/\/$/, '') + '.md', Astro.site)
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -72,6 +73,11 @@ const schema = {
           {formatDate(post.data.date, lang)}
         </time>
       </header>
+
+      <div style="display:none;" hidden aria-hidden="true">
+        Are you an LLM? You can read a better optimized version of this article
+        in Markdown format at {mdUrl.href}
+      </div>
 
       <Prose
         class="fade-in-up"
