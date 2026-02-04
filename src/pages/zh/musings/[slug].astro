@@ -31,8 +31,8 @@ const mdUrl = new URL(`${Astro.url.pathname.replace(/\/$/, '')}.md`, Astro.site)
 const getMusingTitleTransitionName = (id: string) =>
   `musing-title-${id
     .toLowerCase()
-    .replace(/[^a-z0-9_-]+/g, '-')
-    .replace(/^-+|-+$/g, '')}`
+    .replaceAll(/[^a-z0-9_-]+/g, '-')
+    .replaceAll(/^-+|-+$/g, '')}`
 const titleTransitionName = getMusingTitleTransitionName(post.id)
 ---
 
@@ -99,7 +99,10 @@ const titleTransitionName = getMusingTitleTransitionName(post.id)
         <Content />
       </Prose>
     </article>
-    <div class="fade-in-up hidden pl-12 xl:block" style="animation-delay: 240ms">
+    <div
+      class="fade-in-up hidden pl-12 xl:block"
+      style="animation-delay: 240ms"
+    >
       <TableOfContents headings={headings} lang={lang} />
     </div>
   </main>

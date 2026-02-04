@@ -16,8 +16,8 @@ const musings = (await getCollection('musings')).toSorted(
 const getMusingTitleTransitionName = (id: string) =>
   `musing-title-${id
     .toLowerCase()
-    .replace(/[^a-z0-9_-]+/g, '-')
-    .replace(/^-+|-+$/g, '')}`
+    .replaceAll(/[^a-z0-9_-]+/g, '-')
+    .replaceAll(/^-+|-+$/g, '')}`
 ---
 
 <Layout title={copy.title} description={copy.description}>

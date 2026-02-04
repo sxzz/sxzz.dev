@@ -16,8 +16,8 @@ const copy = getPageCopy('posts', lang)
 const getPostTitleTransitionName = (slug: string, currentLang: Lang) =>
   `post-title-${currentLang}-${slug
     .toLowerCase()
-    .replace(/[^a-z0-9_-]+/g, '-')
-    .replace(/^-+|-+$/g, '')}`
+    .replaceAll(/[^a-z0-9_-]+/g, '-')
+    .replaceAll(/^-+|-+$/g, '')}`
 ---
 
 <Layout title={copy.title} description={copy.description}>

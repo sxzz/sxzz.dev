@@ -301,10 +301,10 @@ const hreflangLangs = isMusingsPage
     '(prefers-reduced-motion: reduce)',
   )
 
-  function applyTheme() {
+  function applyTheme(doc = document) {
     const stored = localStorage.getItem('theme')
     const shouldDark = stored ? stored === 'dark' : prefersDarkQuery.matches
-    document.documentElement.classList.toggle('dark', shouldDark)
+    doc.documentElement.classList.toggle('dark', shouldDark)
   }
 
   function toggleTheme() {
@@ -371,13 +371,13 @@ const hreflangLangs = isMusingsPage
     }
   })
 
-  const normalizePath = (path) =>
+  const normalizePath = (path: string) =>
     path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path
-  const isPostsIndex = (path) => {
+  const isPostsIndex = (path: string) => {
     const normalized = normalizePath(path)
     return normalized === '/posts' || normalized === '/zh/posts'
   }
-  const isPostsDetail = (path) => {
+  const isPostsDetail = (path: string) => {
     const normalized = normalizePath(path)
     return (
       (normalized.startsWith('/posts/') ||
@@ -385,11 +385,11 @@ const hreflangLangs = isMusingsPage
       !isPostsIndex(normalized)
     )
   }
-  const isMusingsIndex = (path) => {
+  const isMusingsIndex = (path: string) => {
     const normalized = normalizePath(path)
     return normalized === '/musings' || normalized === '/zh/musings'
   }
-  const isMusingsDetail = (path) => {
+  const isMusingsDetail = (path: string) => {
     const normalized = normalizePath(path)
     return (
       (normalized.startsWith('/musings/') ||
@@ -397,19 +397,15 @@ const hreflangLangs = isMusingsPage
       !isMusingsIndex(normalized)
     )
   }
-  const isListDetailTransition = (fromPath, toPath) =>
+  const isListDetailTransition = (fromPath: string, toPath: string) =>
     (isPostsIndex(fromPath) && isPostsDetail(toPath)) ||
     (isPostsDetail(fromPath) && isPostsIndex(toPath)) ||
     (isMusingsIndex(fromPath) && isMusingsDetail(toPath)) ||
     (isMusingsDetail(fromPath) && isMusingsIndex(toPath))
 
   document.addEventListener('astro:before-swap', (event) => {
-    applyTheme()
-    if (
-      !('from' in event) ||
-      !('to' in event) ||
-      !('newDocument' in event)
-    ) {
+    applyTheme(event.newDocument)
+    if (!('from' in event) || !('to' in event) || !('newDocument' in event)) {
       return
     }
     const { from, to, newDocument } = event

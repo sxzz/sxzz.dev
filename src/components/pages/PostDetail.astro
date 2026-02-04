@@ -33,8 +33,8 @@ const mdUrl = new URL(`${Astro.url.pathname.replace(/\/$/, '')}.md`, Astro.site)
 const getPostTitleTransitionName = (slug: string, currentLang: Lang) =>
   `post-title-${currentLang}-${slug
     .toLowerCase()
-    .replace(/[^a-z0-9_-]+/g, '-')
-    .replace(/^-+|-+$/g, '')}`
+    .replaceAll(/[^a-z0-9_-]+/g, '-')
+    .replaceAll(/^-+|-+$/g, '')}`
 const postSlug = getPostSlug(post.id)
 const titleTransitionName = getPostTitleTransitionName(postSlug, lang)
 const schema = {
