@@ -42,3 +42,7 @@ export function getPathWithoutLang(pathname: string): string {
 export function getUrlPrefix(lang: Lang): string {
   return !showDefaultLang && lang === defaultLang ? '' : `/${lang}`
 }
+
+export function getAllLangPrefixes(): string[] {
+  return (Object.keys(ui) as Lang[]).map((lang) => getUrlPrefix(lang))
+}

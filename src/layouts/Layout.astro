@@ -5,6 +5,7 @@ import { siteMeta } from '../data/site'
 import { pageCopy } from '../i18n/pages'
 import { defaultLang, languages, localeByLang } from '../i18n/ui'
 import {
+  getAllLangPrefixes,
   getLangFromUrl,
   getPathWithoutLang,
   getUrlPrefix,
@@ -131,6 +132,7 @@ const hreflangLangs = isMusingsPage
     <ClientRouter />
     <slot name="head" />
     <script
+      is:inline
       defer
       data-domain={siteMeta.analytics.domain}
       src={siteMeta.analytics.scriptSrc}></script>
@@ -160,7 +162,7 @@ const hreflangLangs = isMusingsPage
         ]}
       >
         {pageCopy.home[lang].name}{
-          (pathname === '/' || pathname === '/zh/' || pathname === '/zh') && (
+          basePath === '/' && (
             <span
               class="terminal-cursor ml-0.5 text-base font-mono"
               aria-hidden="true"
@@ -230,40 +232,55 @@ const hreflangLangs = isMusingsPage
   </body>
 </html>
 
-<script>
-  const normalizePath = (path: string) =>
-    path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path
-  const isPostsIndex = (path: string) => {
-    const normalized = normalizePath(path)
-    return normalized === '/posts' || normalized === '/zh/posts'
+<script is:inline define:vars={{ langPrefixes: getAllLangPrefixes() }}>
+  function normalizePath(path) {
+    return path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path
   }
-  const isPostsDetail = (path: string) => {
+  function stripLangPrefix(path) {
     const normalized = normalizePath(path)
+    for (const prefix of langPrefixes) {
+      if (!prefix) continue
+      if (normalized.startsWith(prefix)) {
+        return normalized.slice(prefix.length)
+      }
+    }
+    return normalized
+  }
+  function isPostsIndex(path) {
+    return stripLangPrefix(path) === '/posts'
+  }
+  function isPostsDetail(path) {
+    const stripped = stripLangPrefix(path)
+    return stripped.startsWith('/posts/') && stripped !== '/posts'
+  }
+  function isMusingsIndex(path) {
+    console.log(stripLangPrefix(path))
+
+    return stripLangPrefix(path) === '/musings'
+  }
+  function isMusingsDetail(path) {
+    const stripped = stripLangPrefix(path)
+    return stripped.startsWith('/musings/') && stripped !== '/musings'
+  }
+  function isListToDetail(fromPath, toPath) {
+    console.log(
+      fromPath,
+      isMusingsIndex(fromPath),
+      toPath,
+      isMusingsDetail(toPath),
+    )
+
     return (
-      (normalized.startsWith('/posts/') ||
-        normalized.startsWith('/zh/posts/')) &&
-      !isPostsIndex(normalized)
+      (isPostsIndex(fromPath) && isPostsDetail(toPath)) ||
+      (isMusingsIndex(fromPath) && isMusingsDetail(toPath))
     )
   }
-  const isMusingsIndex = (path: string) => {
-    const normalized = normalizePath(path)
-    return normalized === '/musings' || normalized === '/zh/musings'
-  }
-  const isMusingsDetail = (path: string) => {
-    const normalized = normalizePath(path)
+  function isDetailToList(fromPath, toPath) {
     return (
-      (normalized.startsWith('/musings/') ||
-        normalized.startsWith('/zh/musings/')) &&
-      !isMusingsIndex(normalized)
+      (isPostsDetail(fromPath) && isPostsIndex(toPath)) ||
+      (isMusingsDetail(fromPath) && isMusingsIndex(toPath))
     )
   }
-  const isListPage = (path: string) =>
-    isPostsIndex(path) || isMusingsIndex(path)
-  const isDetailPage = (path: string) =>
-    isPostsDetail(path) || isMusingsDetail(path)
-  const isListToDetail = (fromPath: string, toPath: string) =>
-    (isPostsIndex(fromPath) && isPostsDetail(toPath)) ||
-    (isMusingsIndex(fromPath) && isMusingsDetail(toPath))
 
   document.addEventListener('astro:before-swap', (event) => {
     const { from, to, newDocument } = event
@@ -271,8 +288,8 @@ const hreflangLangs = isMusingsPage
     if (isListToDetail(from.pathname, to.pathname)) {
       newDocument.documentElement.dataset.disableTitleEntryAnimation = 'true'
     }
-    if (isDetailPage(from.pathname) && isListPage(to.pathname)) {
-      newDocument.documentElement.dataset.disableListTitleTransition = 'true'
+    if (isDetailToList(from.pathname, to.pathname)) {
+      newDocument.documentElement.dataset.disableListEntryAnimation = 'true'
     }
   })
 </script>
@@ -312,12 +329,7 @@ const hreflangLangs = isMusingsPage
     transform: none !important;
   }
 
-  html[data-disable-list-title-transition='true'] .list-title {
-    view-transition-name: none !important;
-  }
-
-  html[data-disable-entry-animation='true'] .fade-in,
-  html[data-disable-entry-animation='true'] .fade-in-up {
+  html[data-disable-list-entry-animation='true'] .fade-in-up {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
