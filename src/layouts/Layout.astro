@@ -328,7 +328,7 @@ const hreflangLangs = isMusingsPage
     }, 120)
   }
   function stopProgress() {
-    if (nprogressTimer == null) {
+    if (nprogressTimer != null) {
       clearTimeout(nprogressTimer)
       nprogressTimer = undefined
     }
