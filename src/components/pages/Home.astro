@@ -115,6 +115,7 @@ const schema = {
     </div>
   </main>
   <script>
-    import '../../scripts/typewriter'
+    import { runTypewriter } from '../../scripts/typewriter'
+    document.addEventListener('astro:page-load', runTypewriter)
   </script>
 </Layout>

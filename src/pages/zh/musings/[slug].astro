@@ -55,7 +55,9 @@ const ogImage = post.data.image ?? getMusingOgImagePath(post.id, lang)
       author: getAuthorSchema(lang),
     })}
   />
-  <main class="grid grid-cols-[1fr_minmax(0,36rem)_1fr] flex-1 px-6 py-16 md:px-12">
+  <main
+    class="grid grid-cols-[1fr_minmax(0,36rem)_1fr] flex-1 px-6 py-16 md:px-12"
+  >
     <div></div>
     <article class="min-w-0 w-full">
       <header class="fade-in-up mb-10" style="animation-delay: 80ms">
@@ -79,11 +81,15 @@ const ogImage = post.data.image ?? getMusingOgImagePath(post.id, lang)
         <Content />
       </Prose>
     </article>
-    <div class="fade-in-up hidden pl-12 xl:block" style="animation-delay: 240ms">
+    <div
+      class="fade-in-up hidden pl-12 xl:block"
+      style="animation-delay: 240ms"
+    >
       <TableOfContents headings={headings} lang={lang} />
     </div>
   </main>
   <script>
-    import '../../../scripts/toc'
+    import { initToc } from '../../../scripts/toc'
+    initToc()
   </script>
 </Layout>

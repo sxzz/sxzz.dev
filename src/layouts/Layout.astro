@@ -298,13 +298,13 @@ const hreflangLangs = isMusingsPage
 
   const prefersDarkQuery = globalThis.matchMedia('(prefers-color-scheme: dark)')
 
-  const applyTheme = (doc = document) => {
+  function applyTheme(doc = document) {
     const stored = localStorage.getItem('theme')
     const shouldDark = stored ? stored === 'dark' : prefersDarkQuery.matches
     doc.documentElement.classList.toggle('dark', shouldDark)
   }
 
-  const toggleTheme = () => {
+  function toggleTheme() {
     const isDark = !document.documentElement.classList.contains('dark')
     if (isDark === prefersDarkQuery.matches) {
       localStorage.removeItem('theme')

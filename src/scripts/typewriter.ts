@@ -1,4 +1,4 @@
-const runTypewriter = () => {
+export function runTypewriter() {
   const prefersReducedMotion = globalThis.matchMedia(
     '(prefers-reduced-motion: reduce)',
   ).matches
@@ -36,5 +36,3 @@ const runTypewriter = () => {
     }, startDelay)
   })
 }
-
-document.addEventListener('astro:page-load', runTypewriter)
