@@ -149,21 +149,21 @@ export const pageCopy: PageCopy = {
   issueAwards: {
     en: {
       title: `Issue Awards - ${authorName.en}`,
-      description: `A curated collection of the #迷惑 issue 大赏 tweets shared by ${authorName.en}.`,
+      description: `A curated collection of the #迷惑issue大赏 tweets shared by ${authorName.en}.`,
       heading: 'Issue Awards',
       intro:
-        'Collected highlights from the #迷惑 issue 大赏 hashtag. These are snapshots of the funniest and most confusing issues encountered in open source.',
+        'Collected highlights from the #迷惑issue大赏 hashtag. These are snapshots of the funniest and most confusing issues encountered in open source.',
       timelineTitle: 'Hashtag timeline',
-      footer: 'Follow the hashtag for more: #迷惑 issue 大赏',
+      footer: 'Follow the hashtag for more: #迷惑issue大赏',
     },
     zh: {
       title: `迷惑 issue 大赏 - ${authorName.zh}`,
-      description: `来自 #迷惑 issue 大赏 的迷惑 issue 记录墙。`,
+      description: `来自 #迷惑issue大赏 的迷惑 issue 记录墙。`,
       heading: '迷惑 issue 大赏',
       intro:
-        '这里整理了 #迷惑 issue 大赏 下的推文，记录那些令人哭笑不得的 issue 现场。',
+        '这里整理了 #迷惑issue大赏 下的推文，记录那些令人哭笑不得的 issue 现场。',
       timelineTitle: '话题时间线',
-      footer: '更多内容见话题：#迷惑 issue 大赏',
+      footer: '更多内容见话题：#迷惑issue大赏',
     },
   },
   post: {
