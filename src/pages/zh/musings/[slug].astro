@@ -28,6 +28,12 @@ const translatePath = useTranslatedPath(lang)
 const copy = getPageCopy('musings', lang)
 const ogImage = post.data.image ?? getMusingOgImagePath(post.id, lang)
 const mdUrl = new URL(`${Astro.url.pathname.replace(/\/$/, '')}.md`, Astro.site)
+const getMusingTitleTransitionName = (id: string) =>
+  `musing-title-${id
+    .toLowerCase()
+    .replace(/[^a-z0-9_-]+/g, '-')
+    .replace(/^-+|-+$/g, '')}`
+const titleTransitionName = getMusingTitleTransitionName(post.id)
 ---
 
 <Layout
@@ -61,19 +67,25 @@ const mdUrl = new URL(`${Astro.url.pathname.replace(/\/$/, '')}.md`, Astro.site)
   >
     <div></div>
     <article class="min-w-0 w-full">
-      <header class="fade-in-up mb-10" style="animation-delay: 80ms">
+      <header class="mb-10">
         <a
           href={translatePath('/musings')}
-          class="mb-6 inline-flex items-center gap-1 text-sm text-stone-500 transition-colors duration-200 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
+          class="fade-in-up mb-6 inline-flex items-center gap-1 text-sm text-stone-500 transition-colors duration-200 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
+          style="animation-delay: 80ms"
         >
           &larr; {copy.backLabel}
         </a>
         <h1
           class="text-3xl text-stone-900 font-700 leading-tight tracking-tight md:text-4xl dark:text-white"
         >
-          {post.data.title}
+          <span style={`view-transition-name: ${titleTransitionName};`}>
+            {post.data.title}
+          </span>
         </h1>
-        <time class="mt-2 block text-sm text-stone-500 dark:text-stone-400">
+        <time
+          class="fade-in-up mt-2 block text-sm text-stone-500 dark:text-stone-400"
+          style="animation-delay: 120ms"
+        >
           {formatDate(post.data.date, lang)}
         </time>
       </header>
@@ -87,10 +99,7 @@ const mdUrl = new URL(`${Astro.url.pathname.replace(/\/$/, '')}.md`, Astro.site)
         <Content />
       </Prose>
     </article>
-    <div
-      class="fade-in-up hidden pl-12 xl:block"
-      style="animation-delay: 240ms"
-    >
+    <div class="fade-in-up hidden pl-12 xl:block" style="animation-delay: 240ms">
       <TableOfContents headings={headings} lang={lang} />
     </div>
   </main>

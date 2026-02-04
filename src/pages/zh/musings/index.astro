@@ -12,6 +12,12 @@ const copy = getPageCopy('musings', lang)
 const musings = (await getCollection('musings')).toSorted(
   (a, b) => b.data.date.getTime() - a.data.date.getTime(),
 )
+
+const getMusingTitleTransitionName = (id: string) =>
+  `musing-title-${id
+    .toLowerCase()
+    .replace(/[^a-z0-9_-]+/g, '-')
+    .replace(/^-+|-+$/g, '')}`
 ---
 
 <Layout title={copy.title} description={copy.description}>
@@ -36,7 +42,12 @@ const musings = (await getCollection('musings')).toSorted(
                 <time class="shrink-0 text-xs text-stone-500 tabular-nums dark:text-stone-400">
                   {formatDate(post.data.date, lang)}
                 </time>
-                <span class="text-stone-700 transition-colors duration-200 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-white">
+                <span
+                  class="text-stone-700 transition-colors duration-200 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-white"
+                  style={`view-transition-name: ${getMusingTitleTransitionName(
+                    post.id,
+                  )};`}
+                >
                   {post.data.title}
                 </span>
               </a>

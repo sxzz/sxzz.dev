@@ -8,7 +8,11 @@ import {
   type Lang,
 } from '../../i18n/utils'
 import Layout from '../../layouts/Layout.astro'
-import { formatDate, getPostOgImagePath } from '../../utils/content'
+import {
+  formatDate,
+  getPostOgImagePath,
+  getPostSlug,
+} from '../../utils/content'
 import Prose from '../Prose.astro'
 import TableOfContents from '../TableOfContents.astro'
 
@@ -26,6 +30,13 @@ const locale = getLocaleFromLang(lang)
 const ogImage = post.data.image ?? getPostOgImagePath(post.id)
 const author = getAuthorSchema(lang)
 const mdUrl = new URL(`${Astro.url.pathname.replace(/\/$/, '')}.md`, Astro.site)
+const getPostTitleTransitionName = (slug: string, currentLang: Lang) =>
+  `post-title-${currentLang}-${slug
+    .toLowerCase()
+    .replace(/[^a-z0-9_-]+/g, '-')
+    .replace(/^-+|-+$/g, '')}`
+const postSlug = getPostSlug(post.id)
+const titleTransitionName = getPostTitleTransitionName(postSlug, lang)
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -57,19 +68,25 @@ const schema = {
   >
     <div></div>
     <article class="min-w-0 w-full">
-      <header class="fade-in-up mb-10" style="animation-delay: 80ms">
+      <header class="mb-10">
         <a
           href={translatePath('/posts')}
-          class="mb-6 inline-flex items-center gap-1 text-sm text-stone-500 transition-colors duration-200 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
+          class="fade-in-up mb-6 inline-flex items-center gap-1 text-sm text-stone-500 transition-colors duration-200 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
+          style="animation-delay: 80ms"
         >
           &larr; {copy.backLabel}
         </a>
         <h1
           class="text-3xl text-stone-900 font-700 leading-tight tracking-tight font-serif md:text-4xl dark:text-white"
         >
-          {post.data.title}
+          <span style={`view-transition-name: ${titleTransitionName};`}>
+            {post.data.title}
+          </span>
         </h1>
-        <time class="mt-2 block text-sm text-stone-500 dark:text-stone-400">
+        <time
+          class="fade-in-up mt-2 block text-sm text-stone-500 dark:text-stone-400"
+          style="animation-delay: 120ms"
+        >
           {formatDate(post.data.date, lang)}
         </time>
       </header>

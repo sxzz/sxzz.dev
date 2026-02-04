@@ -12,6 +12,12 @@ const { lang } = Astro.props
 const translatePath = useTranslatedPath(lang)
 const posts = await getPostsByLang(lang)
 const copy = getPageCopy('posts', lang)
+
+const getPostTitleTransitionName = (slug: string, currentLang: Lang) =>
+  `post-title-${currentLang}-${slug
+    .toLowerCase()
+    .replace(/[^a-z0-9_-]+/g, '-')
+    .replace(/^-+|-+$/g, '')}`
 ---
 
 <Layout title={copy.title} description={copy.description}>
@@ -36,7 +42,13 @@ const copy = getPageCopy('posts', lang)
                 <time class="shrink-0 text-xs text-stone-500 tabular-nums dark:text-stone-400">
                   {formatDate(post.data.date, lang)}
                 </time>
-                <span class="text-stone-700 transition-colors duration-200 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-white">
+                <span
+                  class="text-stone-700 font-serif transition-colors duration-200 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-white"
+                  style={`view-transition-name: ${getPostTitleTransitionName(
+                    post.slug,
+                    lang,
+                  )};`}
+                >
                   {post.data.title}
                 </span>
               </a>

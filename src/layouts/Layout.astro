@@ -371,8 +371,52 @@ const hreflangLangs = isMusingsPage
     }
   })
 
-  document.addEventListener('astro:before-swap', () => {
+  const normalizePath = (path) =>
+    path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path
+  const isPostsIndex = (path) => {
+    const normalized = normalizePath(path)
+    return normalized === '/posts' || normalized === '/zh/posts'
+  }
+  const isPostsDetail = (path) => {
+    const normalized = normalizePath(path)
+    return (
+      (normalized.startsWith('/posts/') ||
+        normalized.startsWith('/zh/posts/')) &&
+      !isPostsIndex(normalized)
+    )
+  }
+  const isMusingsIndex = (path) => {
+    const normalized = normalizePath(path)
+    return normalized === '/musings' || normalized === '/zh/musings'
+  }
+  const isMusingsDetail = (path) => {
+    const normalized = normalizePath(path)
+    return (
+      (normalized.startsWith('/musings/') ||
+        normalized.startsWith('/zh/musings/')) &&
+      !isMusingsIndex(normalized)
+    )
+  }
+  const isListDetailTransition = (fromPath, toPath) =>
+    (isPostsIndex(fromPath) && isPostsDetail(toPath)) ||
+    (isPostsDetail(fromPath) && isPostsIndex(toPath)) ||
+    (isMusingsIndex(fromPath) && isMusingsDetail(toPath)) ||
+    (isMusingsDetail(fromPath) && isMusingsIndex(toPath))
+
+  document.addEventListener('astro:before-swap', (event) => {
     applyTheme()
+    if (
+      !('from' in event) ||
+      !('to' in event) ||
+      !('newDocument' in event)
+    ) {
+      return
+    }
+    const { from, to, newDocument } = event
+    if (!(from instanceof URL) || !(to instanceof URL)) return
+    if (isListDetailTransition(from.pathname, to.pathname)) {
+      newDocument.documentElement.dataset.disableEntryAnimation = 'true'
+    }
   })
 
   document.addEventListener('astro:page-load', () => {
@@ -443,6 +487,13 @@ const hreflangLangs = isMusingsPage
 
   .fade-in-up {
     animation: fadeInUp 0.5s ease-out both;
+  }
+
+  html[data-disable-entry-animation='true'] .fade-in,
+  html[data-disable-entry-animation='true'] .fade-in-up {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   @keyframes cursorBlink {
