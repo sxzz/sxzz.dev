@@ -229,4 +229,10 @@ export const friends: Friend[] = [
     avatar: 'https://img.mk1.io/img/avatar.png',
     href: 'https://mk1.io',
   },
+  {
+    name: '愧怍',
+    bio: 'born to differ.',
+    avatar: 'https://kuizuo.me/img/logo.png',
+    href: 'https://kuizuo.me',
+  },
 ]
