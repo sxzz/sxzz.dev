@@ -36,6 +36,15 @@ interface PostsCopy {
   heading: string
 }
 
+interface IssueAwardsCopy {
+  title: string
+  description: string
+  heading: string
+  intro: string
+  timelineTitle: string
+  footer: string
+}
+
 interface PostCopy {
   backLabel: string
   titleSuffix: string
@@ -54,6 +63,7 @@ interface PageCopy {
   about: Record<Lang, AboutCopy>
   links: Record<Lang, LinksCopy>
   posts: Record<Lang, PostsCopy>
+  issueAwards: Record<Lang, IssueAwardsCopy>
   post: Record<Lang, PostCopy>
   musings: Record<Lang, MusingsCopy>
 }
@@ -134,6 +144,26 @@ export const pageCopy: PageCopy = {
       title: `文章 - ${authorName.zh}`,
       description: `${authorName.zh}的博客文章。`,
       heading: '文章',
+    },
+  },
+  issueAwards: {
+    en: {
+      title: `Issue Awards - ${authorName.en}`,
+      description: `A curated wall of the #迷惑issue大赏 tweets shared by ${authorName.en}.`,
+      heading: 'Issue Awards',
+      intro:
+        'Collected highlights from the #迷惑issue大赏 hashtag. These are snapshots of the funniest and most confusing issues encountered in open source.',
+      timelineTitle: 'Hashtag timeline',
+      footer: 'Follow the hashtag for more: #迷惑issue大赏',
+    },
+    zh: {
+      title: `迷惑 issue 大赏 - ${authorName.zh}`,
+      description: `来自 #迷惑issue大赏 的迷惑 issue 记录墙。`,
+      heading: '迷惑 issue 大赏',
+      intro:
+        '这里整理了 #迷惑issue大赏 下的推文，记录那些令人哭笑不得的 issue 现场。',
+      timelineTitle: '话题时间线',
+      footer: '更多内容见话题：#迷惑issue大赏',
     },
   },
   post: {

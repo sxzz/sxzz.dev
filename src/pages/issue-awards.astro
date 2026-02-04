@@ -1,0 +1,8 @@
+---
+import IssueAwardsPage from '../components/pages/IssueAwards.astro'
+import { getLangFromUrl } from '../i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+---
+
+<IssueAwardsPage lang={lang} />

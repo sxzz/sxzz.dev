@@ -10,6 +10,7 @@ export const ui = {
   en: {
     'nav.posts': 'Posts',
     'nav.musings': 'Musings',
+    'nav.issueAwards': 'Issue Awards',
     'nav.links': 'Links',
     'nav.about': 'About',
     'lang.en': 'EN',
@@ -24,6 +25,7 @@ export const ui = {
   zh: {
     'nav.posts': '文章',
     'nav.musings': '碎碎念',
+    'nav.issueAwards': '迷惑 issue 大赏',
     'nav.links': '友链',
     'nav.about': '关于',
     'lang.en': 'EN',

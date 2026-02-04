@@ -1,0 +1,87 @@
+---
+import { getPageCopy } from '../../i18n/pages'
+import Layout from '../../layouts/Layout.astro'
+import type { Lang } from '../../i18n/utils'
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+const copy = getPageCopy('issueAwards', lang)
+const timelineHref = 'https://x.com/hashtag/迷惑issue大赏'
+---
+
+<Layout title={copy.title} description={copy.description}>
+  <main class="flex flex-1 justify-center px-6 py-16 md:px-12">
+    <div class="max-w-2xl w-full space-y-10">
+      <header class="fade-in-up" style="animation-delay: 80ms">
+        <h1
+          class="text-3xl text-stone-900 font-700 tracking-tight font-serif md:text-4xl dark:text-white"
+        >
+          {copy.heading}
+        </h1>
+        <p class="mt-2 text-stone-500 dark:text-stone-400">{copy.intro}</p>
+      </header>
+
+      <section class="fade-in-up space-y-4" style="animation-delay: 160ms">
+        <div class="flex items-center justify-between gap-4">
+          <h2 class="text-sm text-stone-600 font-600 dark:text-stone-300">
+            {copy.timelineTitle}
+          </h2>
+          <a
+            href={timelineHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-xs text-stone-500 font-mono transition-colors duration-200 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200"
+          >
+            {timelineHref}
+          </a>
+        </div>
+        <div class="border border-stone-200/80 rounded-2xl p-4 shadow-sm dark:border-stone-800/80">
+          <a
+            class="twitter-timeline"
+            data-lang={lang === 'zh' ? 'zh-cn' : 'en'}
+            data-theme="light"
+            data-chrome="noheader nofooter noborders transparent"
+            href={timelineHref}
+            >#迷惑issue大赏</a
+          >
+        </div>
+      </section>
+
+      <footer
+        class="fade-in-up text-sm text-stone-500 dark:text-stone-400"
+        style="animation-delay: 240ms"
+      >
+        <p>{copy.footer}</p>
+      </footer>
+    </div>
+  </main>
+  <script>
+    const prefersDark = globalThis.matchMedia('(prefers-color-scheme: dark)')
+    const toggleSelector = '#theme-toggle'
+    function applyTheme() {
+      const timeline = document.querySelector('.twitter-timeline')
+      if (!(timeline instanceof HTMLElement)) return
+      const isDark = document.documentElement.classList.contains('dark')
+      timeline.dataset.theme = isDark ? 'dark' : 'light'
+      if (globalThis.twttr?.widgets?.load) {
+        globalThis.twttr.widgets.load()
+      }
+    }
+    document.addEventListener('astro:page-load', applyTheme)
+    prefersDark.addEventListener('change', applyTheme)
+    document.addEventListener('click', (event) => {
+      const target = event.target
+      if (!(target instanceof Element)) return
+      if (!target.closest(toggleSelector)) return
+      globalThis.setTimeout(applyTheme, 0)
+    })
+  </script>
+  <script
+    async
+    src="https://platform.twitter.com/widgets.js"
+    charset="utf8"
+  ></script>
+</Layout>

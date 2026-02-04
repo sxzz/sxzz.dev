@@ -12,6 +12,7 @@ export default defineConfig({
     presetAttributify(),
     presetIcons(),
     presetWebFonts({
+      provider: 'none',
       fonts: {
         sans: 'Outfit:300,400,500,600',
         serif: [
