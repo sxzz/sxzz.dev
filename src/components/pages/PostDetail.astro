@@ -71,15 +71,18 @@ const schema = {
       <header class="mb-10">
         <a
           href={translatePath('/posts')}
-          class="fade-in-up mb-6 inline-flex items-center gap-1 text-sm text-stone-500 transition-colors duration-200 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
-          style="animation-delay: 80ms"
+          class="mb-6 inline-flex items-center gap-1 text-sm text-stone-500 transition-colors duration-200 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
         >
           &larr; {copy.backLabel}
         </a>
         <h1
-          class="text-3xl text-stone-900 font-700 leading-tight tracking-tight font-serif md:text-4xl dark:text-white"
+          class="detail-title fade-in-up text-3xl text-stone-900 font-700 leading-tight tracking-tight font-serif md:text-4xl dark:text-white"
+          style="animation-delay: 100ms"
         >
-          <span style={`view-transition-name: ${titleTransitionName};`}>
+          <span
+            class="detail-title-transition"
+            style={`view-transition-name: ${titleTransitionName};`}
+          >
             {post.data.title}
           </span>
         </h1>

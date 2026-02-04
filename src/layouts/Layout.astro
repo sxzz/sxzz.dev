@@ -12,6 +12,8 @@ import {
   useTranslations,
 } from '../i18n/utils'
 import '@unocss/reset/tailwind.css'
+import LanguageSwitcher from '../components/LanguageSwitcher.astro'
+import ThemeSwitcher from '../components/ThemeSwitcher.astro'
 
 interface Props {
   title: string
@@ -132,16 +134,15 @@ const hreflangLangs = isMusingsPage
       defer
       data-domain={siteMeta.analytics.domain}
       src={siteMeta.analytics.scriptSrc}></script>
-    <script is:inline>
-      ;(function () {
-        const stored = localStorage.getItem('theme')
-        const prefersDark = globalThis.matchMedia(
-          '(prefers-color-scheme: dark)',
-        ).matches
-        if (stored === 'dark' || (!stored && prefersDark)) {
-          document.documentElement.classList.add('dark')
-        }
-      })()
+
+    <script is:inline type="module">
+      const stored = localStorage.getItem('theme')
+      const prefersDark = globalThis.matchMedia(
+        '(prefers-color-scheme: dark)',
+      ).matches
+      if (stored === 'dark' || (!stored && prefersDark)) {
+        document.documentElement.classList.add('dark')
+      }
     </script>
   </head>
   <body
@@ -191,36 +192,7 @@ const hreflangLangs = isMusingsPage
         }
         {
           showLangSwitcher && (
-            <details class="lang-switcher relative text-xs font-600 tracking-wide uppercase">
-              <summary class="cursor-pointer select-none list-none text-stone-500 transition-colors duration-200 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200">
-                {t(`lang.${lang}` as any) ?? languages[lang]}
-              </summary>
-              <div class="lang-switcher-menu absolute right-1/2 z-10 mt-2 min-w-22 translate-x-1/2 border border-stone-200/50 rounded-lg bg-white/80 py-1.5 shadow-lg backdrop-blur-sm dark:border-stone-800/50 dark:bg-stone-900/80">
-                {languageKeys
-                  .filter((key) => key !== lang)
-                  .map((key) => {
-                    const label = t(`lang.${key}` as any) ?? languages[key]
-                    const isAvailable =
-                      !availableLangs || availableLangs.includes(key)
-                    const href = isAvailable
-                      ? translatePath(basePath, key)
-                      : translatePath('/', key)
-                    return (
-                      <a
-                        href={href}
-                        class:list={[
-                          'block px-3 py-1 text-center transition-colors duration-200',
-                          isAvailable
-                            ? 'text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200'
-                            : 'text-stone-300 dark:text-stone-700 line-through',
-                        ]}
-                      >
-                        {label}
-                      </a>
-                    )
-                  })}
-              </div>
-            </details>
+            <LanguageSwitcher availableLangs={availableLangs} />
           )
         }
         <a
@@ -232,42 +204,7 @@ const hreflangLangs = isMusingsPage
         >
           <div class="i-simple-icons-rss h-3.5 w-3.5"></div>
         </a>
-        <button
-          id="theme-toggle"
-          aria-label={t('toggle.theme')}
-          class="cursor-pointer p-1 text-stone-500 transition-colors duration-200 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200"
-        >
-          <svg
-            class="h-4 w-4 dark:hidden"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-          <svg
-            class="hidden h-4 w-4 dark:block"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-          </svg>
-        </button>
+        <ThemeSwitcher />
       </div>
     </nav>
 
@@ -294,83 +231,6 @@ const hreflangLangs = isMusingsPage
 </html>
 
 <script>
-  import NProgress from 'nprogress'
-
-  const prefersDarkQuery = globalThis.matchMedia('(prefers-color-scheme: dark)')
-  const prefersReducedMotionQuery = globalThis.matchMedia(
-    '(prefers-reduced-motion: reduce)',
-  )
-
-  function applyTheme(doc = document) {
-    const stored = localStorage.getItem('theme')
-    const shouldDark = stored ? stored === 'dark' : prefersDarkQuery.matches
-    doc.documentElement.classList.toggle('dark', shouldDark)
-  }
-
-  function toggleTheme() {
-    const shouldDark = !document.documentElement.classList.contains('dark')
-    const apply = () => {
-      if (shouldDark === prefersDarkQuery.matches) {
-        localStorage.removeItem('theme')
-      } else {
-        localStorage.setItem('theme', shouldDark ? 'dark' : 'light')
-      }
-      document.documentElement.classList.toggle('dark', shouldDark)
-    }
-
-    if (!document.startViewTransition || prefersReducedMotionQuery.matches) {
-      apply()
-      return
-    }
-    document.startViewTransition(() => {
-      apply()
-    })
-  }
-
-  NProgress.configure({
-    showSpinner: false,
-    trickleSpeed: 120,
-    minimum: 0.08,
-  })
-
-  let nprogressTimer: ReturnType<typeof globalThis.setTimeout> | undefined
-  function startProgress() {
-    if (nprogressTimer) return
-    nprogressTimer = globalThis.setTimeout(() => {
-      NProgress.start()
-    }, 120)
-  }
-  function stopProgress() {
-    if (nprogressTimer != null) {
-      clearTimeout(nprogressTimer)
-      nprogressTimer = undefined
-    }
-    NProgress.done(true)
-  }
-
-  document.addEventListener('click', (e) => {
-    const target = e.target
-    const targetEl = target instanceof Element ? target : null
-    if (targetEl?.closest('#theme-toggle')) {
-      toggleTheme()
-    }
-
-    document.querySelectorAll('.lang-switcher[open]').forEach((el) => {
-      if (targetEl && el.contains(targetEl)) return
-      el.removeAttribute('open')
-    })
-  })
-
-  document.addEventListener('astro:before-preparation', startProgress)
-  document.addEventListener('astro:after-swap', stopProgress)
-  document.addEventListener('astro:page-load', stopProgress)
-
-  prefersDarkQuery.addEventListener('change', (e) => {
-    if (!localStorage.getItem('theme')) {
-      document.documentElement.classList.toggle('dark', e.matches)
-    }
-  })
-
   const normalizePath = (path: string) =>
     path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path
   const isPostsIndex = (path: string) => {
@@ -397,66 +257,27 @@ const hreflangLangs = isMusingsPage
       !isMusingsIndex(normalized)
     )
   }
-  const isListDetailTransition = (fromPath: string, toPath: string) =>
+  const isListPage = (path: string) =>
+    isPostsIndex(path) || isMusingsIndex(path)
+  const isDetailPage = (path: string) =>
+    isPostsDetail(path) || isMusingsDetail(path)
+  const isListToDetail = (fromPath: string, toPath: string) =>
     (isPostsIndex(fromPath) && isPostsDetail(toPath)) ||
-    (isPostsDetail(fromPath) && isPostsIndex(toPath)) ||
-    (isMusingsIndex(fromPath) && isMusingsDetail(toPath)) ||
-    (isMusingsDetail(fromPath) && isMusingsIndex(toPath))
+    (isMusingsIndex(fromPath) && isMusingsDetail(toPath))
 
   document.addEventListener('astro:before-swap', (event) => {
-    applyTheme(event.newDocument)
-    if (!('from' in event) || !('to' in event) || !('newDocument' in event)) {
-      return
-    }
     const { from, to, newDocument } = event
-    if (!(from instanceof URL) || !(to instanceof URL)) return
-    if (isListDetailTransition(from.pathname, to.pathname)) {
-      newDocument.documentElement.dataset.disableEntryAnimation = 'true'
+
+    if (isListToDetail(from.pathname, to.pathname)) {
+      newDocument.documentElement.dataset.disableTitleEntryAnimation = 'true'
+    }
+    if (isDetailPage(from.pathname) && isListPage(to.pathname)) {
+      newDocument.documentElement.dataset.disableListTitleTransition = 'true'
     }
   })
-
-  document.addEventListener('astro:page-load', () => {
-    applyTheme()
-  })
-
-  document.addEventListener(
-    'toggle',
-    (e) => {
-      const details = e.target
-      if (!(details instanceof HTMLDetailsElement)) return
-      if (!details.classList.contains('lang-switcher') || !details.open) return
-      const menu = details.querySelector<HTMLElement>('.lang-switcher-menu')
-      if (menu) {
-        menu.style.animation = 'none'
-        // eslint-disable-next-line no-void -- trigger reflow
-        void menu.offsetHeight
-        menu.style.animation = ''
-      }
-    },
-    true,
-  )
 </script>
 
 <style is:global>
-  .lang-switcher summary::-webkit-details-marker {
-    display: none;
-  }
-
-  @keyframes langMenuIn {
-    from {
-      opacity: 0;
-      transform: translateX(50%) translateY(-4px) scale(0.96);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(50%) translateY(0) scale(1);
-    }
-  }
-
-  .lang-switcher[open] .lang-switcher-menu {
-    animation: langMenuIn 0.15s ease both;
-  }
-
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -485,6 +306,16 @@ const hreflangLangs = isMusingsPage
     animation: fadeInUp 0.5s ease-out both;
   }
 
+  html[data-disable-title-entry-animation='true'] .detail-title {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  html[data-disable-list-title-transition='true'] .list-title {
+    view-transition-name: none !important;
+  }
+
   html[data-disable-entry-animation='true'] .fade-in,
   html[data-disable-entry-animation='true'] .fade-in-up {
     animation: none !important;
@@ -508,7 +339,6 @@ const hreflangLangs = isMusingsPage
   }
 
   :root {
-    --nprogress-color: rgba(28, 25, 23, 0.45);
     view-transition-name: root;
   }
 
@@ -541,6 +371,58 @@ const hreflangLangs = isMusingsPage
 
   ::view-transition-new(root) {
     animation: themeFadeIn 220ms ease both;
+  }
+
+  html {
+    scroll-padding-top: 5rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .terminal-cursor {
+      animation: none;
+      display: none;
+    }
+  }
+</style>
+
+<!-- NProgress -->
+<script>
+  import NProgress from 'nprogress'
+
+  NProgress.configure({
+    showSpinner: false,
+    trickleSpeed: 120,
+    minimum: 0.08,
+  })
+
+  let nprogressTimer: ReturnType<typeof globalThis.setTimeout> | undefined
+  function startProgress() {
+    if (nprogressTimer) return
+    nprogressTimer = globalThis.setTimeout(() => {
+      NProgress.start()
+    }, 120)
+  }
+  function stopProgress() {
+    if (nprogressTimer != null) {
+      clearTimeout(nprogressTimer)
+      nprogressTimer = undefined
+    }
+    NProgress.done(true)
+  }
+
+  document.addEventListener('astro:before-preparation', startProgress)
+  document.addEventListener('astro:after-swap', stopProgress)
+  document.addEventListener('astro:page-load', stopProgress)
+</script>
+<style is:global>
+  :root {
+    --nprogress-color: rgba(28, 25, 23, 0.45);
   }
 
   .dark {
@@ -609,23 +491,6 @@ const hreflangLangs = isMusingsPage
     }
     100% {
       transform: rotate(360deg);
-    }
-  }
-
-  html {
-    scroll-padding-top: 5rem;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    html {
-      scroll-behavior: smooth;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .terminal-cursor {
-      animation: none;
-      display: none;
     }
   }
 </style>
