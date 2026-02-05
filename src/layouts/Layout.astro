@@ -2,10 +2,9 @@
 import { ClientRouter } from 'astro:transitions'
 import LanguageSwitcher from '../components/LanguageSwitcher.astro'
 import ThemeSwitcher from '../components/ThemeSwitcher.astro'
-import { nav, social } from '../consts'
 import { siteMeta } from '../data/site'
 import { pageCopy } from '../i18n/pages'
-import { defaultLang, languages, localeByLang } from '../i18n/ui'
+import { defaultLang, languages, localeByLang, nav, social } from '../i18n/ui'
 import {
   getAllLangPrefixes,
   getLangFromUrl,

@@ -9,7 +9,9 @@ export function getLangFromUrl(url: URL): Lang {
 }
 
 export function useTranslations(lang: Lang) {
-  return function t(key: keyof (typeof ui)[typeof defaultLang]) {
+  return function t(
+    key: keyof (typeof ui)[typeof defaultLang],
+  ) {
     return ui[lang][key] ?? ui[defaultLang][key]
   }
 }

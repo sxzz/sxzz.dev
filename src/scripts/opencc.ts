@@ -1,3 +1,4 @@
+import { replayAnimations } from './animate'
 import type * as OpenCCModule from 'opencc-js'
 import type { HTMLConvertHandler } from 'opencc-js'
 
@@ -92,13 +93,7 @@ async function applyMode(mode: OpenCCMode) {
 
 function animateContent() {
   if (!openccRoot) return
-  console.log(openccRoot.getAnimations())
-  for (
-    const animation of document.querySelector('.prose')!.getAnimations()
-  ) {
-    animation.cancel()
-    animation.play()
-  }
+  replayAnimations(openccRoot)
 }
 
 function handleClick(event: MouseEvent) {

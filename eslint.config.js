@@ -17,6 +17,12 @@ export default sxzz({
     },
   })
   .append({
+    files: ['src/scripts/**'],
+    rules: {
+      'no-console': 'error',
+    },
+  })
+  .append({
     files: ['src/content/**'],
     /// keep-sorted
     rules: {
