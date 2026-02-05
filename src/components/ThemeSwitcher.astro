@@ -43,56 +43,56 @@ const t = useTranslations(lang)
 </button>
 
 <script>
-  const prefersDarkQuery = globalThis.matchMedia('(prefers-color-scheme: dark)')
-  const prefersReducedMotionQuery = globalThis.matchMedia(
-    '(prefers-reduced-motion: reduce)',
-  )
+const prefersDarkQuery = globalThis.matchMedia('(prefers-color-scheme: dark)')
+const prefersReducedMotionQuery = globalThis.matchMedia(
+  '(prefers-reduced-motion: reduce)',
+)
 
-  function applyTheme(doc = document) {
-    const stored = localStorage.getItem('theme')
-    const shouldDark = stored ? stored === 'dark' : prefersDarkQuery.matches
-    doc.documentElement.classList.toggle('dark', shouldDark)
+function applyTheme(doc = document) {
+  const stored = localStorage.getItem('theme')
+  const shouldDark = stored ? stored === 'dark' : prefersDarkQuery.matches
+  doc.documentElement.classList.toggle('dark', shouldDark)
+}
+
+function toggleTheme() {
+  const shouldDark = !document.documentElement.classList.contains('dark')
+  const apply = () => {
+    if (shouldDark === prefersDarkQuery.matches) {
+      localStorage.removeItem('theme')
+    } else {
+      localStorage.setItem('theme', shouldDark ? 'dark' : 'light')
+    }
+    document.documentElement.classList.toggle('dark', shouldDark)
   }
 
-  function toggleTheme() {
-    const shouldDark = !document.documentElement.classList.contains('dark')
-    const apply = () => {
-      if (shouldDark === prefersDarkQuery.matches) {
-        localStorage.removeItem('theme')
-      } else {
-        localStorage.setItem('theme', shouldDark ? 'dark' : 'light')
-      }
-      document.documentElement.classList.toggle('dark', shouldDark)
-    }
-
-    if (!document.startViewTransition || prefersReducedMotionQuery.matches) {
-      apply()
-      return
-    }
-    document.startViewTransition(() => {
-      apply()
-    })
+  if (!document.startViewTransition || prefersReducedMotionQuery.matches) {
+    apply()
+    return
   }
-
-  document.addEventListener('click', (e) => {
-    const target = e.target
-    const targetEl = target instanceof Element ? target : null
-    if (targetEl?.closest('#theme-toggle')) {
-      toggleTheme()
-    }
+  document.startViewTransition(() => {
+    apply()
   })
+}
 
-  prefersDarkQuery.addEventListener('change', (e) => {
-    if (!localStorage.getItem('theme')) {
-      document.documentElement.classList.toggle('dark', e.matches)
-    }
-  })
+document.addEventListener('click', (e) => {
+  const target = e.target
+  const targetEl = target instanceof Element ? target : null
+  if (targetEl?.closest('#theme-toggle')) {
+    toggleTheme()
+  }
+})
 
-  document.addEventListener('astro:before-swap', (event) => {
-    applyTheme(event.newDocument)
-  })
+prefersDarkQuery.addEventListener('change', (e) => {
+  if (!localStorage.getItem('theme')) {
+    document.documentElement.classList.toggle('dark', e.matches)
+  }
+})
 
-  document.addEventListener('astro:page-load', () => {
-    applyTheme()
-  })
+document.addEventListener('astro:before-swap', (event) => {
+  applyTheme(event.newDocument)
+})
+
+document.addEventListener('astro:page-load', () => {
+  applyTheme()
+})
 </script>

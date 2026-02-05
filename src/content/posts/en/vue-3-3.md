@@ -72,7 +72,9 @@ Let's look at an example 🌰.
 
 ```vue
 <template>
-  <div id="title">Hello World</div>
+  <div id="title">
+    Hello World
+  </div>
 </template>
 ```
 
@@ -264,7 +266,9 @@ defineSlots<{
 <template>
   <!-- Parent component -->
   <Paginator :data="[1, 2, 3]">
-    <template #default="{ item }">{{ item }}</template>
+    <template #default="{ item }">
+      {{ item }}
+    </template>
   </Paginator>
 </template>
 ```

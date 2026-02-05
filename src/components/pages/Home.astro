@@ -66,61 +66,53 @@ const schema = {
 
       <div class="space-y-8">
         <section class="fade-in-up" style="animation-delay: 160ms">
-          <h2
-            class="mb-3 text-xs text-stone-500 tracking-wide font-mono dark:text-stone-400"
-          >
+          <h2 class="mb-3 text-xs text-stone-500 tracking-wide font-mono dark:text-stone-400">
             <span
               class="select-none text-emerald-600/70 dark:text-emerald-500/50"
               aria-hidden="true"
-              >$
+            >$
             </span>cat creator.md
           </h2>
           <div class="flex flex-wrap gap-2">
-            {
-              homeLinks.creator.map((link) => (
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center border border-stone-200 rounded-full px-3.5 py-1.5 text-sm text-stone-600 font-500 transition-colors duration-150 dark:border-stone-800 hover:border-stone-400 dark:text-stone-300 hover:text-stone-900 dark:hover:border-stone-600 dark:hover:text-white"
-                >
-                  {link.name}
-                </a>
-              ))
-            }
+            {homeLinks.creator.map((link) => (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center border border-stone-200 rounded-full px-3.5 py-1.5 text-sm text-stone-600 font-500 transition-colors duration-150 dark:border-stone-800 hover:border-stone-400 dark:text-stone-300 hover:text-stone-900 dark:hover:border-stone-600 dark:hover:text-white"
+              >
+                {link.name}
+              </a>
+            ))}
           </div>
         </section>
 
         <section class="fade-in-up" style="animation-delay: 240ms">
-          <h2
-            class="mb-3 text-xs text-stone-500 tracking-wide font-mono dark:text-stone-400"
-          >
+          <h2 class="mb-3 text-xs text-stone-500 tracking-wide font-mono dark:text-stone-400">
             <span
               class="select-none text-emerald-600/70 dark:text-emerald-500/50"
               aria-hidden="true"
-              >$
+            >$
             </span>cat team.md
           </h2>
           <div class="flex flex-wrap gap-2">
-            {
-              homeLinks.team.map((link) => (
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center border border-stone-200 rounded-full px-3.5 py-1.5 text-sm text-stone-600 font-500 transition-colors duration-150 dark:border-stone-800 hover:border-stone-400 dark:text-stone-300 hover:text-stone-900 dark:hover:border-stone-600 dark:hover:text-white"
-                >
-                  {link.name}
-                </a>
-              ))
-            }
+            {homeLinks.team.map((link) => (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center border border-stone-200 rounded-full px-3.5 py-1.5 text-sm text-stone-600 font-500 transition-colors duration-150 dark:border-stone-800 hover:border-stone-400 dark:text-stone-300 hover:text-stone-900 dark:hover:border-stone-600 dark:hover:text-white"
+              >
+                {link.name}
+              </a>
+            ))}
           </div>
         </section>
       </div>
     </div>
   </main>
   <script>
-    import { runTypewriter } from '../../scripts/typewriter'
-    document.addEventListener('astro:page-load', runTypewriter)
+  import { runTypewriter } from '../../scripts/typewriter'
+  document.addEventListener('astro:page-load', runTypewriter)
   </script>
 </Layout>

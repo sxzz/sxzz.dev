@@ -252,9 +252,9 @@ let s = ''
 for (let i = 0; i < arr.length; i += 2) {
   s += String.fromCharCode(
     parseInt(
-      '0x' +
-        arr[i + 1].charCodeAt(0).toString(16) +
-        arr[i].charCodeAt(0).toString(16),
+      '0x'
+        + arr[i + 1].charCodeAt(0).toString(16)
+        + arr[i].charCodeAt(0).toString(16),
     ),
   )
 }
@@ -881,7 +881,7 @@ jq -r .bytecode.object < ./out/my-flag1.sol/Sink.json
 
 ### Transfer Failed Again
 
-By diffing `challenge1.sol` and `challenge2.sol`, we see they added `(bool success, ) = ` to handle failed transfers. So I searched for other reasons a contract might fail.
+By diffing `challenge1.sol` and `challenge2.sol`, we see they added `(bool success, ) =` to handle failed transfers. So I searched for other reasons a contract might fail.
 
 In other languages, if you don't explicitly throw an error, what else can cause a function to fail? The simplest is an infinite loop.
 

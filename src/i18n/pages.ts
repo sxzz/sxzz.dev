@@ -69,7 +69,8 @@ export const pageCopy: PageCopy = {
   home: {
     en: {
       title: `${authorName.en} - ${authorTitleRole.en}`,
-      description: `${authorName.en} is an open-source enthusiast exploring front-end development. Creator of tsdown, Vue Macros, and Elk. Core team member of Vue, Vite, and more.`,
+      description:
+        `${authorName.en} is an open-source enthusiast exploring front-end development. Creator of tsdown, Vue Macros, and Elk. Core team member of Vue, Vite, and more.`,
       name: authorName.en,
       avatar: {
         avif: '/avatar.avif',
@@ -84,7 +85,8 @@ export const pageCopy: PageCopy = {
     },
     zh: {
       title: `${authorName.zh} - ${authorTitleRole.zh}`,
-      description: `${authorName.zh}是一名探索前端开发的开源爱好者。tsdown、Vue Macros 与 Elk 的作者，Vue、Vite 等项目核心成员。`,
+      description:
+        `${authorName.zh}是一名探索前端开发的开源爱好者。tsdown、Vue Macros 与 Elk 的作者，Vue、Vite 等项目核心成员。`,
       name: authorName.zh,
       avatar: {
         avif: '/avatar-zh.avif',
@@ -102,7 +104,8 @@ export const pageCopy: PageCopy = {
   about: {
     en: {
       title: `About - ${authorName.en}`,
-      description: `About ${authorName.en}, an open-source enthusiast exploring front-end development.`,
+      description:
+        `About ${authorName.en}, an open-source enthusiast exploring front-end development.`,
       heading: 'About',
       paragraphs: [
         `Hi, I'm ${authorName.en}. An open-source enthusiast exploring front-end development.`,
@@ -177,6 +180,6 @@ export function getPageCopy<K extends keyof typeof pageCopy>(
   key: K,
   lang: Lang,
 ): (typeof pageCopy)[K][typeof defaultLang] {
-  return (pageCopy[key][lang] ??
-    pageCopy[key][defaultLang]) as (typeof pageCopy)[K][typeof defaultLang]
+  return (pageCopy[key][lang]
+    ?? pageCopy[key][defaultLang]) as (typeof pageCopy)[K][typeof defaultLang]
 }

@@ -14,46 +14,48 @@ const musings = (await getCollection('musings')).toSorted(
 )
 
 const getMusingTitleTransitionName = (id: string) =>
-  `musing-title-${id
-    .toLowerCase()
-    .replaceAll(/[^a-z0-9_-]+/g, '-')
-    .replaceAll(/^-+|-+$/g, '')}`
+  `musing-title-${
+    id
+      .toLowerCase()
+      .replaceAll(/[^a-z0-9_-]+/g, '-')
+      .replaceAll(/^-+|-+$/g, '')
+  }`
 ---
 
 <Layout title={copy.title} description={copy.description}>
   <main class="flex flex-1 justify-center px-6 py-16 md:px-12">
     <div class="max-w-xl w-full space-y-10">
       <header class="fade-in-up" style="animation-delay: 80ms">
-        <h1
-          class="text-3xl text-stone-900 font-700 tracking-tight md:text-4xl dark:text-white"
-        >
+        <h1 class="text-3xl text-stone-900 font-700 tracking-tight md:text-4xl dark:text-white">
           {copy.heading}
         </h1>
       </header>
 
       <ul class="fade-in-up space-y-1" style="animation-delay: 160ms">
-        {
-          musings.map((post) => (
-            <li>
-              <a
-                href={translatePath(`/musings/${post.id}/`)}
-                class="group flex items-baseline gap-4 py-3 transition-colors duration-200"
+        {musings.map((post) => (
+          <li>
+            <a
+              href={translatePath(`/musings/${post.id}/`)}
+              class="group flex items-baseline gap-4 py-3 transition-colors duration-200"
+            >
+              <time
+                class="shrink-0 text-xs text-stone-500 tabular-nums dark:text-stone-400"
               >
-                <time class="shrink-0 text-xs text-stone-500 tabular-nums dark:text-stone-400">
-                  {formatDate(post.data.date, lang)}
-                </time>
-                <span
-                  class="list-title text-stone-700 transition-colors duration-200 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-white"
-                  style={`view-transition-name: ${getMusingTitleTransitionName(
+                {formatDate(post.data.date, lang)}
+              </time>
+              <span
+                class="list-title text-stone-700 transition-colors duration-200 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-white"
+                style={`view-transition-name: ${
+                  getMusingTitleTransitionName(
                     post.id,
-                  )};`}
-                >
-                  {post.data.title}
-                </span>
-              </a>
-            </li>
-          ))
-        }
+                  )
+                };`}
+              >
+                {post.data.title}
+              </span>
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
   </main>

@@ -212,7 +212,8 @@ export const friends: Friend[] = [
   },
   {
     name: '余弦の博客',
-    bio: 'FE / ACG / 手工 / 深色模式强迫症 / INFP / 兴趣广泛养两只猫的老宅女 / remote',
+    bio:
+      'FE / ACG / 手工 / 深色模式强迫症 / INFP / 兴趣广泛养两只猫的老宅女 / remote',
     avatar: 'https://blog.cosine.ren/img/avatar.webp',
     href: 'https://blog.cosine.ren',
   },

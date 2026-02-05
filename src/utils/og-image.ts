@@ -30,28 +30,32 @@ const FONT_SOURCES: FontSource[] = [
     weight: 400,
     style: 'normal',
     filename: 'Outfit-Regular.ttf',
-    url: 'https://raw.githubusercontent.com/Outfitio/Outfit-Fonts/main/fonts/ttf/Outfit-Regular.ttf',
+    url:
+      'https://raw.githubusercontent.com/Outfitio/Outfit-Fonts/main/fonts/ttf/Outfit-Regular.ttf',
   },
   {
     name: 'Outfit',
     weight: 600,
     style: 'normal',
     filename: 'Outfit-SemiBold.ttf',
-    url: 'https://raw.githubusercontent.com/Outfitio/Outfit-Fonts/main/fonts/ttf/Outfit-SemiBold.ttf',
+    url:
+      'https://raw.githubusercontent.com/Outfitio/Outfit-Fonts/main/fonts/ttf/Outfit-SemiBold.ttf',
   },
   {
     name: 'Source Han Sans SC',
     weight: 700,
     style: 'normal',
     filename: 'SourceHanSansSC-Bold.otf',
-    url: 'https://raw.githubusercontent.com/adobe-fonts/source-han-sans/release/OTF/SimplifiedChinese/SourceHanSansSC-Bold.otf',
+    url:
+      'https://raw.githubusercontent.com/adobe-fonts/source-han-sans/release/OTF/SimplifiedChinese/SourceHanSansSC-Bold.otf',
   },
   {
     name: 'Source Han Sans SC',
     weight: 400,
     style: 'normal',
     filename: 'SourceHanSansSC-Regular.otf',
-    url: 'https://raw.githubusercontent.com/adobe-fonts/source-han-sans/release/OTF/SimplifiedChinese/SourceHanSansSC-Regular.otf',
+    url:
+      'https://raw.githubusercontent.com/adobe-fonts/source-han-sans/release/OTF/SimplifiedChinese/SourceHanSansSC-Regular.otf',
   },
 ]
 
@@ -109,10 +113,10 @@ export async function renderOgImage({
   const label = (ui[lang] ?? ui.en)[`nav.${kind}s` as const]
   const dateText = date
     ? date.toLocaleDateString(locale, {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-      })
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    })
     : ''
   const author = siteCopy.author.displayName[lang]
 

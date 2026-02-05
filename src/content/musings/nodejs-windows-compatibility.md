@@ -37,7 +37,7 @@ console.log('/') // 没有意外，输出一个正斜杠
 
 #### [test: try fix path for windows](https://github.com/sxzz/tsdown/commit/5f490037c95758026708013375792accb4c3d647)
 
-这个 commit 旨在解决单元测试在 Windows 上的兼容性问题。我们需要传递一个 [glob 表达式](<https://en.wikipedia.org/wiki/Glob_(programming)>)给 `entry` 选项。这在 Unix-like 系统中，可以直接传递文件的路径 `/path/to/file` 来直接匹配确切的文件，这很好。
+这个 commit 旨在解决单元测试在 Windows 上的兼容性问题。我们需要传递一个 [glob 表达式](https://en.wikipedia.org/wiki/Glob_(programming))给 `entry` 选项。这在 Unix-like 系统中，可以直接传递文件的路径 `/path/to/file` 来直接匹配确切的文件，这很好。
 
 而 glob 是起源于 UNIX 的功能，在 Windows 中，使用反斜杠并不能在 [fast-glob](https://github.com/mrmlnc/fast-glob) 中像在 Unix-like 系统中那样正常工作。这就造成了一致性问题。
 虽然 `fast-glob` 提供了 `convertPathToPattern` 函数帮你转义 Windows 的反斜杠，但仍有部分情况未能解决。

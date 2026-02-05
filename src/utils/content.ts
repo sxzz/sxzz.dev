@@ -43,7 +43,7 @@ export async function getAvailableLangsForPost(slug: string) {
   const posts = await getCollection('posts')
   const langKeys = Object.keys(languages) as Lang[]
   return langKeys.filter((lang) =>
-    posts.some((post) => post.id === `${lang}/${slug}`),
+    posts.some((post) => post.id === `${lang}/${slug}`)
   )
 }
 

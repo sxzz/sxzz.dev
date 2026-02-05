@@ -19,9 +19,7 @@ const buildDate = new Date().toISOString().split('T')[0]
   <main class="flex flex-1 justify-center px-6 py-16 md:px-12">
     <article class="max-w-xl w-full space-y-10">
       <header class="fade-in-up" style="animation-delay: 80ms">
-        <h1
-          class="text-3xl text-stone-900 font-700 tracking-tight font-serif md:text-4xl dark:text-white"
-        >
+        <h1 class="text-3xl text-stone-900 font-700 tracking-tight font-serif md:text-4xl dark:text-white">
           {copy.heading}
         </h1>
       </header>
@@ -42,8 +40,8 @@ const buildDate = new Date().toISOString().split('T')[0]
             href={`https://github.com/sxzz/sxzz.dev/commit/${gitCommitSha}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="font-mono hover:underline">{gitCommitSha}</a
-          > on {buildDate}
+            class="font-mono hover:underline"
+          >{gitCommitSha}</a> on {buildDate}
         </p>
       </footer>
     </article>

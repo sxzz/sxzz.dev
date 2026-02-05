@@ -29,10 +29,12 @@ const copy = getPageCopy('musings', lang)
 const ogImage = post.data.image ?? getMusingOgImagePath(post.id, lang)
 const mdUrl = new URL(`${Astro.url.pathname.replace(/\/$/, '')}.md`, Astro.site)
 const getMusingTitleTransitionName = (id: string) =>
-  `musing-title-${id
-    .toLowerCase()
-    .replaceAll(/[^a-z0-9_-]+/g, '-')
-    .replaceAll(/^-+|-+$/g, '')}`
+  `musing-title-${
+    id
+      .toLowerCase()
+      .replaceAll(/[^a-z0-9_-]+/g, '-')
+      .replaceAll(/^-+|-+$/g, '')
+  }`
 const titleTransitionName = getMusingTitleTransitionName(post.id)
 ---
 
@@ -63,9 +65,7 @@ const titleTransitionName = getMusingTitleTransitionName(post.id)
       author: getAuthorSchema(lang),
     })}
   />
-  <main
-    class="grid grid-cols-[1fr_minmax(0,36rem)_1fr] flex-1 px-6 py-16 md:px-12"
-  >
+  <main class="grid grid-cols-[1fr_minmax(0,36rem)_1fr] flex-1 px-6 py-16 md:px-12">
     <div></div>
     <article class="min-w-0 w-full">
       <header class="mb-10">
@@ -94,7 +94,7 @@ const titleTransitionName = getMusingTitleTransitionName(post.id)
         </time>
       </header>
 
-      <div style="display:none;" hidden aria-hidden="true">
+      <div style="display: none" hidden aria-hidden="true">
         Are you an LLM? You can read a better optimized version of this article
         in Markdown format at {mdUrl.href}
       </div>
@@ -111,7 +111,7 @@ const titleTransitionName = getMusingTitleTransitionName(post.id)
     </div>
   </main>
   <script>
-    import { initToc } from '../../../scripts/toc'
-    initToc()
+  import { initToc } from '../../../scripts/toc'
+  initToc()
   </script>
 </Layout>

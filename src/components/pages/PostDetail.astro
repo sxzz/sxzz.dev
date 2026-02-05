@@ -31,10 +31,12 @@ const ogImage = post.data.image ?? getPostOgImagePath(post.id)
 const author = getAuthorSchema(lang)
 const mdUrl = new URL(`${Astro.url.pathname.replace(/\/$/, '')}.md`, Astro.site)
 const getPostTitleTransitionName = (slug: string, currentLang: Lang) =>
-  `post-title-${currentLang}-${slug
-    .toLowerCase()
-    .replaceAll(/[^a-z0-9_-]+/g, '-')
-    .replaceAll(/^-+|-+$/g, '')}`
+  `post-title-${currentLang}-${
+    slug
+      .toLowerCase()
+      .replaceAll(/[^a-z0-9_-]+/g, '-')
+      .replaceAll(/^-+|-+$/g, '')
+  }`
 const postSlug = getPostSlug(post.id)
 const titleTransitionName = getPostTitleTransitionName(postSlug, lang)
 const schema = {
@@ -64,9 +66,7 @@ const schema = {
     type="application/ld+json"
     set:html={JSON.stringify(schema)}
   />
-  <main
-    class="grid grid-cols-[1fr_minmax(0,36rem)_1fr] flex-1 px-6 py-16 md:px-12"
-  >
+  <main class="grid grid-cols-[1fr_minmax(0,36rem)_1fr] flex-1 px-6 py-16 md:px-12">
     <div></div>
     <article class="min-w-0 w-full">
       <header class="mb-10">
@@ -95,7 +95,7 @@ const schema = {
         </time>
       </header>
 
-      <div style="display:none;" hidden aria-hidden="true">
+      <div style="display: none" hidden aria-hidden="true">
         Are you an LLM? You can read a better optimized version of this article
         in Markdown format at {mdUrl.href}
       </div>
@@ -113,7 +113,7 @@ const schema = {
     </div>
   </main>
   <script>
-    import { initToc } from '../../scripts/toc'
-    initToc()
+  import { initToc } from '../../scripts/toc'
+  initToc()
   </script>
 </Layout>

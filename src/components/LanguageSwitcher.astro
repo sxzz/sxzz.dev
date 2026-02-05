@@ -21,89 +21,81 @@ const languageKeys = Object.keys(languages) as (keyof typeof languages)[]
 const { availableLangs } = Astro.props
 ---
 
-<details
-  class="lang-switcher relative text-xs font-600 tracking-wide uppercase"
->
-  <summary
-    class="cursor-pointer select-none list-none text-stone-500 transition-colors duration-200 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200"
-  >
+<details class="lang-switcher relative text-xs font-600 tracking-wide uppercase">
+  <summary class="cursor-pointer select-none list-none text-stone-500 transition-colors duration-200 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200">
     {t(`lang.${lang}` as any) ?? languages[lang]}
   </summary>
-  <div
-    class="lang-switcher-menu absolute right-1/2 z-10 mt-2 min-w-22 translate-x-1/2 border border-stone-200/50 rounded-lg bg-white/80 py-1.5 shadow-lg backdrop-blur-sm dark:border-stone-800/50 dark:bg-stone-900/80"
-  >
-    {
-      languageKeys
-        .filter((key) => key !== lang)
-        .map((key) => {
-          const label = t(`lang.${key}` as any) ?? languages[key]
-          const isAvailable = !availableLangs || availableLangs.includes(key)
-          const href = isAvailable
-            ? translatePath(basePath, key)
-            : translatePath('/', key)
-          return (
-            <a
-              href={href}
-              class:list={[
-                'block px-3 py-1 text-center transition-colors duration-200',
-                isAvailable
-                  ? 'text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200'
-                  : 'text-stone-300 dark:text-stone-700 line-through',
-              ]}
-            >
-              {label}
-            </a>
-          )
-        })
-    }
+  <div class="lang-switcher-menu absolute right-1/2 z-10 mt-2 min-w-22 translate-x-1/2 border border-stone-200/50 rounded-lg bg-white/80 py-1.5 shadow-lg backdrop-blur-sm dark:border-stone-800/50 dark:bg-stone-900/80">
+    {languageKeys
+      .filter((key) => key !== lang)
+      .map((key) => {
+        const label = t(`lang.${key}` as any) ?? languages[key]
+        const isAvailable = !availableLangs || availableLangs.includes(key)
+        const href = isAvailable
+          ? translatePath(basePath, key)
+          : translatePath('/', key)
+        return (
+          <a
+            href={href}
+            class:list={[
+              'block px-3 py-1 text-center transition-colors duration-200',
+              isAvailable
+                ? 'text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200'
+                : 'text-stone-300 dark:text-stone-700 line-through',
+            ]}
+          >
+            {label}
+          </a>
+        )
+      })}
   </div>
 </details>
 
 <script>
-  document.addEventListener('click', (e) => {
-    const target = e.target
-    const targetEl = target instanceof Element ? target : null
-    document.querySelectorAll('.lang-switcher[open]').forEach((el) => {
-      if (targetEl && el.contains(targetEl)) return
-      el.removeAttribute('open')
-    })
+document.addEventListener('click', (e) => {
+  const target = e.target
+  const targetEl = target instanceof Element ? target : null
+  document.querySelectorAll('.lang-switcher[open]').forEach((el) => {
+    if (targetEl && el.contains(targetEl)) return
+    el.removeAttribute('open')
   })
+})
 
-  document.addEventListener(
-    'toggle',
-    (e) => {
-      const details = e.target
-      if (!(details instanceof HTMLDetailsElement)) return
-      if (!details.classList.contains('lang-switcher') || !details.open) return
-      const menu = details.querySelector<HTMLElement>('.lang-switcher-menu')
-      if (menu) {
-        menu.style.animation = 'none'
-        // eslint-disable-next-line no-void -- trigger reflow
-        void menu.offsetHeight
-        menu.style.animation = ''
-      }
-    },
-    true,
-  )
+document.addEventListener(
+  'toggle',
+  (e) => {
+    const details = e.target
+    if (!(details instanceof HTMLDetailsElement)) return
+    if (!details.classList.contains('lang-switcher') || !details.open) return
+    const menu = details.querySelector<HTMLElement>('.lang-switcher-menu')
+    if (menu) {
+      menu.style.animation = 'none'
+      // eslint-disable-next-line no-void -- trigger reflow
+      void menu.offsetHeight
+      menu.style.animation = ''
+    }
+  },
+  true,
+)
 </script>
 
 <style is:global>
-  .lang-switcher summary::-webkit-details-marker {
-    display: none;
-  }
+.lang-switcher summary::-webkit-details-marker {
+  display: none;
+}
 
-  .lang-switcher[open] .lang-switcher-menu {
-    animation: langMenuIn 0.15s ease both;
-  }
+.lang-switcher[open] .lang-switcher-menu {
+  animation: langMenuIn 0.15s ease both;
+}
 
-  @keyframes langMenuIn {
-    from {
-      opacity: 0;
-      transform: translateX(50%) translateY(-4px) scale(0.96);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(50%) translateY(0) scale(1);
-    }
+@keyframes langMenuIn {
+  from {
+    opacity: 0;
+    transform: translateX(50%) translateY(-4px) scale(0.96);
   }
+  to {
+    opacity: 1;
+    transform: translateX(50%) translateY(0) scale(1);
+  }
+}
 </style>

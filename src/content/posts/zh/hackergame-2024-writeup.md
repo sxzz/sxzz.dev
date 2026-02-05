@@ -173,7 +173,7 @@ submit(state.values.map(([a, b]) => (a < b ? '<' : '>')))
 
 ### LEO_CHAN?
 
-> **问题 1: 照片拍摄的位置距离中科大的哪个校门更近？（格式：**`X校区Y门`**，均为一个汉字）**
+> **问题 1: 照片拍摄的位置距离中科大的哪个校门更近？（格式：** `X校区Y门` **，均为一个汉字）**
 
 直接在高德地图（嗯，我不用百度地图），搜索「科里科气科创驿站」。会发现科大附近就有[一个地方](https://www.amap.com/detail/B0IAYRYV8C?citycode=340100)，那就决定是你啦！打开图片一看，确实没错。
 
@@ -252,9 +252,9 @@ let s = ''
 for (let i = 0; i < arr.length; i += 2) {
   s += String.fromCharCode(
     parseInt(
-      '0x' +
-        arr[i + 1].charCodeAt(0).toString(16) +
-        arr[i].charCodeAt(0).toString(16),
+      '0x'
+        + arr[i + 1].charCodeAt(0).toString(16)
+        + arr[i].charCodeAt(0).toString(16),
     ),
   )
 }
@@ -882,7 +882,7 @@ jq -r .bytecode.object < ./out/my-flag1.sol/Sink.json
 
 ### 转账又失败
 
-我们通过 diff 看到 `challenge1.sol` 和 `challenge2.sol` 的区别，发现了多了 `(bool success, ) = ` 来处理转账失败的情况。所以我就搜了下，还有什么可能会导致合约执行失败。
+我们通过 diff 看到 `challenge1.sol` 和 `challenge2.sol` 的区别，发现了多了 `(bool success, ) =` 来处理转账失败的情况。所以我就搜了下，还有什么可能会导致合约执行失败。
 
 想想在其他语言中，如果不显式的 throw error，还有什么可能会导致函数执行失败呢？最简单的就是死循环。
 

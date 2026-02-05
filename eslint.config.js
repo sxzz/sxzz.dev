@@ -5,16 +5,11 @@ import { sxzz } from '@sxzz/eslint-config'
 export default sxzz({
   vue: true,
   astro: true,
+  prettier: false,
   baseline: {
     ignoreFeatures: ['top-level-await'],
   },
 })
-  .append({
-    files: ['**/*.astro', '**/*.astro/**'],
-    rules: {
-      'prettier/prettier': 'off',
-    },
-  })
   .append({
     files: ['**/*.md/**', '**/*.md'],
     rules: {
