@@ -119,16 +119,6 @@ const hreflangLangs = isMusingsPage
       href={new URL(`${getUrlPrefix(lang)}/rss.xml`, site).href}
     />
 
-    <ClientRouter />
-    <slot name="head" />
-    <script
-      is:inline
-      defer
-      data-domain={siteMeta.analytics.domain}
-      src={siteMeta.analytics.scriptSrc}
-    >
-    </script>
-
     <script is:inline type="module">
     const stored = localStorage.getItem('theme')
     const prefersDark = globalThis.matchMedia(
@@ -137,6 +127,16 @@ const hreflangLangs = isMusingsPage
     if (stored === 'dark' || (!stored && prefersDark)) {
       document.documentElement.classList.add('dark')
     }
+    </script>
+
+    <ClientRouter />
+    <slot name="head" />
+    <script
+      is:inline
+      defer
+      data-domain={siteMeta.analytics.domain}
+      src={siteMeta.analytics.scriptSrc}
+    >
     </script>
   </head>
   <body
