@@ -135,10 +135,19 @@ const schema = {
       <TableOfContents headings={headings} lang={lang} />
     </div>
   </main>
+
   <script>
   import { initToc } from '../../scripts/toc'
   initToc()
   </script>
+
+  <style>
+  @media (prefers-reduced-motion: reduce) {
+    .detail-title-transition {
+      view-transition-name: none !important;
+    }
+  }
+  </style>
 
   {showOpenCCToggle && (
     <script>

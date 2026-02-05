@@ -88,6 +88,12 @@ document.addEventListener(
   animation: langMenuIn 0.15s ease both;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .lang-switcher[open] .lang-switcher-menu {
+    animation: none;
+  }
+}
+
 @keyframes langMenuIn {
   from {
     opacity: 0;
