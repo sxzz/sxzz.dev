@@ -43,7 +43,7 @@ export const localeByLang = {
 } as const
 
 export const nav: ReadonlyArray<{
-  key: string
+  key: keyof typeof ui[keyof typeof ui]
   href: string
   langs?: readonly string[]
 }> = [
