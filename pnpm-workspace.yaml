@@ -2,3 +2,5 @@ allowBuilds:
   esbuild: false
   sharp: false
   workerd: false
+  dprint: false
+  simple-git-hooks: false
