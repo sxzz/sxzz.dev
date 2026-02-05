@@ -57,7 +57,7 @@ const hreflangLangs = isMusingsPage
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} data-lang-prefixes={JSON.stringify(getAllLangPrefixes())}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -232,11 +232,14 @@ const hreflangLangs = isMusingsPage
   </body>
 </html>
 
-<script is:inline define:vars={{ langPrefixes: getAllLangPrefixes() }}>
-  function normalizePath(path) {
+<script>
+  const langPrefixes: string[] = JSON.parse(
+    document.documentElement.dataset.langPrefixes!,
+  )
+  function normalizePath(path: string) {
     return path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path
   }
-  function stripLangPrefix(path) {
+  function stripLangPrefix(path: string) {
     const normalized = normalizePath(path)
     for (const prefix of langPrefixes) {
       if (!prefix) continue
@@ -246,36 +249,27 @@ const hreflangLangs = isMusingsPage
     }
     return normalized
   }
-  function isPostsIndex(path) {
+  function isPostsIndex(path: string) {
     return stripLangPrefix(path) === '/posts'
   }
-  function isPostsDetail(path) {
+  function isPostsDetail(path: string) {
     const stripped = stripLangPrefix(path)
     return stripped.startsWith('/posts/') && stripped !== '/posts'
   }
-  function isMusingsIndex(path) {
-    console.log(stripLangPrefix(path))
-
+  function isMusingsIndex(path: string) {
     return stripLangPrefix(path) === '/musings'
   }
-  function isMusingsDetail(path) {
+  function isMusingsDetail(path: string) {
     const stripped = stripLangPrefix(path)
     return stripped.startsWith('/musings/') && stripped !== '/musings'
   }
-  function isListToDetail(fromPath, toPath) {
-    console.log(
-      fromPath,
-      isMusingsIndex(fromPath),
-      toPath,
-      isMusingsDetail(toPath),
-    )
-
+  function isListToDetail(fromPath: string, toPath: string) {
     return (
       (isPostsIndex(fromPath) && isPostsDetail(toPath)) ||
       (isMusingsIndex(fromPath) && isMusingsDetail(toPath))
     )
   }
-  function isDetailToList(fromPath, toPath) {
+  function isDetailToList(fromPath: string, toPath: string) {
     return (
       (isPostsDetail(fromPath) && isPostsIndex(toPath)) ||
       (isMusingsDetail(fromPath) && isMusingsIndex(toPath))

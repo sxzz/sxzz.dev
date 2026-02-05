@@ -35,11 +35,15 @@ const schema = {
         class="fade-in-up flex items-center gap-5"
         style="animation-delay: 80ms"
       >
-        <img
-          src={copy.avatar}
-          alt={copy.name}
-          class="h-20 w-20 rounded-full object-cover shadow-lg shadow-stone-400/10 ring-2 ring-stone-200/80 md:h-24 md:w-24 dark:shadow-black/20 dark:ring-stone-700/50"
-        />
+        <picture>
+          <source srcset={copy.avatar.avif} type="image/avif" />
+          <img
+            src={copy.avatar.fallback}
+            alt={copy.name}
+            class="h-20 w-20 rounded-full object-cover shadow-lg shadow-stone-400/10 ring-2 ring-stone-200/80 md:h-24 md:w-24 dark:shadow-black/20 dark:ring-stone-700/50"
+          />
+        </picture>
+
         <div>
           <h1
             class:list={[

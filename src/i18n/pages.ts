@@ -6,7 +6,10 @@ interface HomeCopy {
   title: string
   description: string
   name: string
-  avatar: string
+  avatar: {
+    avif: string
+    fallback: string
+  }
   tagline: string
   taglineCharDelay?: number
   nameSerif: boolean
@@ -68,7 +71,10 @@ export const pageCopy: PageCopy = {
       title: `${authorName.en} - ${authorTitleRole.en}`,
       description: `${authorName.en} is an open-source enthusiast exploring front-end development. Creator of tsdown, Vue Macros, and Elk. Core team member of Vue, Vite, and more.`,
       name: authorName.en,
-      avatar: '/avatar.jpg',
+      avatar: {
+        avif: '/avatar.avif',
+        fallback: '/avatar.jpg',
+      },
       tagline: authorTagline.en,
       nameSerif: true,
       schema: {
@@ -80,7 +86,10 @@ export const pageCopy: PageCopy = {
       title: `${authorName.zh} - ${authorTitleRole.zh}`,
       description: `${authorName.zh}是一名探索前端开发的开源爱好者。tsdown、Vue Macros 与 Elk 的作者，Vue、Vite 等项目核心成员。`,
       name: authorName.zh,
-      avatar: '/avatar-zh.jpg',
+      avatar: {
+        avif: '/avatar-zh.avif',
+        fallback: '/avatar-zh.jpg',
+      },
       tagline: authorTagline.zh,
       taglineCharDelay: 160,
       nameSerif: false,

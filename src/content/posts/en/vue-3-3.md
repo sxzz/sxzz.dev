@@ -23,7 +23,7 @@ When I first joined Vue last year, I kept submitting PRs, but only recently did 
 
 - PR: https://github.com/vuejs/core/pull/5738
 - RFC: https://github.com/vuejs/rfcs/discussions/430
-- Dev logs: https://www.bilibili.com/video/BV1uu411y7WE
+- Dev logs: https://www.bilibili.com/video/BV1uu411y7WE (Chinese)
 
 ### Background
 
@@ -60,7 +60,7 @@ This feature originated while refactoring Element Plus components to `<script se
 ## Hoisting static constants
 
 - PR: https://github.com/vuejs/core/pull/5752
-- Dev logs: https://www.bilibili.com/video/BV1st4y1G7sG
+- Dev logs: https://www.bilibili.com/video/BV1st4y1G7sG (Chinese)
 
 This feature is a compiler optimization for SFCs. It adds a `hoistStatic` option to the `script` block.
 
@@ -152,7 +152,7 @@ So I wanted to avoid duplicating the name string by extracting it into a constan
 
 - PR: https://github.com/vuejs/core/pull/8018
 - RFC: https://github.com/vuejs/rfcs/discussions/503
-- Dev logs: [Part 1](https://www.bilibili.com/video/BV1MS4y1t7Pi), [Part 2](https://www.bilibili.com/video/BV1sY4y1P7gD)
+- Dev logs: [Part 1](https://www.bilibili.com/video/BV1MS4y1t7Pi), [Part 2](https://www.bilibili.com/video/BV1sY4y1P7gD) (Chinese)
 - Twitter: https://twitter.com/sanxiaozhizi/status/1644564064931307522
 
 ### Motivation
