@@ -67,7 +67,11 @@ const schema = {
     type="application/ld+json"
     set:html={JSON.stringify(schema)}
   />
-  <main class="grid grid-cols-[1fr_minmax(0,36rem)_1fr] flex-1 px-6 py-16 md:px-12" data-opencc-root lang={lang}>
+  <main
+    class="grid grid-cols-[1fr_minmax(0,36rem)_1fr] flex-1 px-6 py-16 md:px-12"
+    data-opencc-root
+    lang={lang}
+  >
     <div></div>
     <article class="min-w-0 w-full">
       <header class="mb-10">
@@ -77,7 +81,7 @@ const schema = {
         >
           &larr; {copy.backLabel}
         </a>
-        <h1 class="detail-title fade-in-up text-3xl text-stone-900 font-700 leading-tight tracking-tight font-serif md:text-4xl dark:text-white animate-delay-100">
+        <h1 class="detail-title fade-in-up animate-delay-100 text-3xl text-stone-900 font-700 leading-tight tracking-tight font-serif md:text-4xl dark:text-white">
           <span
             class="detail-title-transition"
             style={`view-transition-name: ${titleTransitionName};`}
@@ -85,7 +89,7 @@ const schema = {
             {post.data.title}
           </span>
         </h1>
-        <div class="fade-in-up mt-2 flex items-center gap-2 text-sm text-stone-500 dark:text-stone-400 animate-delay-120">
+        <div class="fade-in-up mt-2 flex animate-delay-120 items-center gap-2 text-sm text-stone-500 dark:text-stone-400">
           <time class="ignore-opencc">{formatDate(post.data.date, lang)}</time>
           {showOpenCCToggle && (
             <div
