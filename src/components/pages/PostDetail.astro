@@ -39,6 +39,7 @@ const getPostTitleTransitionName = (slug: string, currentLang: Lang) =>
   }`
 const postSlug = getPostSlug(post.id)
 const titleTransitionName = getPostTitleTransitionName(postSlug, lang)
+const showOpenCCToggle = lang === 'zh'
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -66,20 +67,17 @@ const schema = {
     type="application/ld+json"
     set:html={JSON.stringify(schema)}
   />
-  <main class="grid grid-cols-[1fr_minmax(0,36rem)_1fr] flex-1 px-6 py-16 md:px-12">
+  <main class="grid grid-cols-[1fr_minmax(0,36rem)_1fr] flex-1 px-6 py-16 md:px-12" data-opencc-root lang={lang}>
     <div></div>
     <article class="min-w-0 w-full">
       <header class="mb-10">
         <a
           href={translatePath('/posts')}
-          class="mb-6 inline-flex items-center gap-1 text-sm text-stone-500 transition-colors duration-200 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
+          class="ignore-opencc mb-6 inline-flex items-center gap-1 text-sm text-stone-500 transition-colors duration-200 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
         >
           &larr; {copy.backLabel}
         </a>
-        <h1
-          class="detail-title fade-in-up text-3xl text-stone-900 font-700 leading-tight tracking-tight font-serif md:text-4xl dark:text-white"
-          style="animation-delay: 100ms"
-        >
+        <h1 class="detail-title fade-in-up text-3xl text-stone-900 font-700 leading-tight tracking-tight font-serif md:text-4xl dark:text-white animate-delay-100">
           <span
             class="detail-title-transition"
             style={`view-transition-name: ${titleTransitionName};`}
@@ -87,12 +85,34 @@ const schema = {
             {post.data.title}
           </span>
         </h1>
-        <time
-          class="fade-in-up mt-2 block text-sm text-stone-500 dark:text-stone-400"
-          style="animation-delay: 120ms"
-        >
-          {formatDate(post.data.date, lang)}
-        </time>
+        <div class="fade-in-up mt-2 flex items-center gap-2 text-sm text-stone-500 dark:text-stone-400 animate-delay-120">
+          <time class="ignore-opencc">{formatDate(post.data.date, lang)}</time>
+          {showOpenCCToggle && (
+            <div
+              class="ignore-opencc flex items-center gap-1 text-xs font-600 tracking-wide"
+              data-opencc-toggle
+            >
+              <button
+                class="opencc-toggle-button cursor-pointer text-stone-800 transition-colors duration-200 dark:text-stone-200"
+                type="button"
+                data-opencc-mode="simp"
+                aria-pressed="true"
+              >
+                简
+              </button>
+              <span class="text-stone-400 dark:text-stone-500">/</span>
+              <button
+                class="opencc-toggle-button cursor-pointer text-stone-400 transition-colors duration-200 dark:text-stone-500"
+                type="button"
+                data-opencc-mode="trad"
+                aria-pressed="false"
+              >
+                繁
+                <span class="opencc-spinner" aria-hidden="true" />
+              </button>
+            </div>
+          )}
+        </div>
       </header>
 
       <div style="display: none" hidden aria-hidden="true">
@@ -101,8 +121,7 @@ const schema = {
       </div>
 
       <Prose
-        class="fade-in-up"
-        style="animation-delay: 160ms"
+        class="fade-in-up animate-delay-160"
         cjkFallback={lang === 'zh'}
       >
         <Content />
@@ -116,4 +135,55 @@ const schema = {
   import { initToc } from '../../scripts/toc'
   initToc()
   </script>
+
+  {showOpenCCToggle && (
+    <script>
+    import { initOpenCCToggle } from '../../scripts/opencc'
+  initOpenCCToggle()
+    </script>
+
+    <style>
+    .opencc-toggle-button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.2em;
+    }
+
+    .opencc-toggle-button .opencc-spinner {
+      position: absolute;
+      width: 0.95em;
+      height: 0.95em;
+      border: 2px solid rgb(168 162 158);
+      border-top-color: transparent;
+      border-radius: 9999px;
+      opacity: 0;
+      pointer-events: none;
+      animation: openccSpin 0.8s linear infinite;
+    }
+
+    :global(.dark) .opencc-toggle-button .opencc-spinner {
+      border-color: rgb(120 113 108);
+      border-top-color: transparent;
+    }
+
+    .opencc-toggle-button.is-loading {
+      color: transparent;
+    }
+
+    .opencc-toggle-button.is-loading .opencc-spinner {
+      opacity: 1;
+    }
+
+    @keyframes openccSpin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    </style>
+  )}
 </Layout>
