@@ -81,7 +81,10 @@ const schema = {
         >
           &larr; {copy.backLabel}
         </a>
-        <h1 class="detail-title fade-in-up animate-delay-100 text-3xl text-stone-900 font-700 leading-tight tracking-tight font-serif md:text-4xl dark:text-white">
+        <h1
+          class="detail-title fade-in-up text-3xl text-stone-900 font-700 leading-tight tracking-tight font-serif md:text-4xl dark:text-white"
+          style="animation-delay: 100ms"
+        >
           <span
             class="detail-title-transition"
             style={`view-transition-name: ${titleTransitionName};`}
@@ -89,7 +92,10 @@ const schema = {
             {post.data.title}
           </span>
         </h1>
-        <div class="fade-in-up mt-2 flex animate-delay-120 items-center gap-2 text-sm text-stone-500 dark:text-stone-400">
+        <div
+          class="fade-in-up mt-2 flex items-center gap-2 text-sm text-stone-500 dark:text-stone-400"
+          style="animation-delay: 120ms"
+        >
           <time class="ignore-opencc">{formatDate(post.data.date, lang)}</time>
           {showOpenCCToggle && (
             <div
@@ -125,13 +131,17 @@ const schema = {
       </div>
 
       <Prose
-        class="fade-in-up animate-delay-160"
+        class="fade-in-up"
+        style="animation-delay: 160ms"
         cjkFallback={lang === 'zh'}
       >
         <Content />
       </Prose>
     </article>
-    <div class="fade-in-up hidden animate-delay-240 pl-12 xl:block">
+    <div
+      class="fade-in-up hidden pl-12 xl:block"
+      style="animation-delay: 240ms"
+    >
       <TableOfContents headings={headings} lang={lang} />
     </div>
   </main>

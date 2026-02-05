@@ -75,7 +75,10 @@ const titleTransitionName = getMusingTitleTransitionName(post.id)
         >
           &larr; {copy.backLabel}
         </a>
-        <h1 class="detail-title fade-in-up animate-delay-100 text-3xl text-stone-900 font-700 leading-tight tracking-tight md:text-4xl dark:text-white">
+        <h1
+          class="detail-title fade-in-up text-3xl text-stone-900 font-700 leading-tight tracking-tight md:text-4xl dark:text-white"
+          style="animation-delay: 100ms"
+        >
           <span
             class="detail-title-transition"
             style={`view-transition-name: ${titleTransitionName};`}
@@ -84,7 +87,8 @@ const titleTransitionName = getMusingTitleTransitionName(post.id)
           </span>
         </h1>
         <time
-          class="fade-in-up mt-2 block animate-delay-120 text-sm text-stone-500 dark:text-stone-400"
+          class="fade-in-up mt-2 block text-sm text-stone-500 dark:text-stone-400"
+          style="animation-delay: 120ms"
         >
           {formatDate(post.data.date, lang)}
         </time>
@@ -95,11 +99,14 @@ const titleTransitionName = getMusingTitleTransitionName(post.id)
         in Markdown format at {mdUrl.href}
       </div>
 
-      <Prose class="fade-in-up animate-delay-160">
+      <Prose class="fade-in-up" style="animation-delay: 160ms">
         <Content />
       </Prose>
     </article>
-    <div class="fade-in-up hidden animate-delay-240 pl-12 xl:block">
+    <div
+      class="fade-in-up hidden pl-12 xl:block"
+      style="animation-delay: 240ms"
+    >
       <TableOfContents headings={headings} lang={lang} />
     </div>
   </main>
