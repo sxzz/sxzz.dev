@@ -239,7 +239,7 @@ export const friends: Friend[] = [
   {
     name: { en: "Shilin's Blog", zh: '仕麟的博客' },
     bio: 'Great men are not born great, they grow great.',
-    avatar: 'https://edward40.com/img/kirito_hu_5693bdb87f90c6ac.jpg',
+    avatar: 'https://github.com/SASUKE40.png',
     href: 'https://edward40.com',
   },
 ]
