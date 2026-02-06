@@ -8,8 +8,9 @@ const ROOT_SELECTOR = '[data-opencc-root]'
 const TOGGLE_SELECTOR = '[data-opencc-toggle]'
 const STORAGE_KEY = 'opencc-mode'
 const FROM_LANG = 'zh'
-const TO_LANG = 'zh-Hant'
-const OPENCC_URL = 'https://cdn.jsdelivr.net/npm/opencc-js@1/dist/esm/cn2t.js'
+const TO_LANG = 'zh-TW'
+const OPENCC_URL =
+  'https://cdn.jsdelivr.net/npm/opencc-js@1/dist/esm/cn2t.min.js'
 
 let openccRoot: HTMLElement | null = null
 let toggleEl: HTMLElement | null = null
@@ -52,7 +53,10 @@ async function getHandler(): Promise<HTMLConvertHandler | undefined> {
   const OpenCC: typeof OpenCCModule = await import(
     /* @vite-ignore */ OPENCC_URL
   )
-  const converter = OpenCC.Converter({ from: 'cn', to: 't' })
+  const converter = OpenCC.Converter({
+    from: 'cn',
+    to: 'twp',
+  })
   htmlConvertHandler = OpenCC.HTMLConverter(
     converter,
     openccRoot,
