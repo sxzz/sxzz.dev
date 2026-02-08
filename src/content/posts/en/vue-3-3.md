@@ -315,8 +315,6 @@ For why it was removed, see [this comment](https://github.com/vuejs/rfcs/discuss
 
 Overall, I'm really happy to see Vue willing to accept suggestions and proposals from the community. These are roughly my contributions to Vue 3.3. For more features, check [the Vue blog post](https://blog.vuejs.org/posts/vue-3-3).
 
-P.S. If anyone is willing to translate this article into English, please submit it to [sxzz/articles](https://github.com/sxzz/articles). I'd be very grateful!
-
 ### About Vue Macros
 
 [Vue Macros](https://vue-macros.dev/) is currently an independent project, not part of official Vue. Unlike Vue core, its goal is to explore different possibilities.

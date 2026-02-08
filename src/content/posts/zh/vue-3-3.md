@@ -315,8 +315,6 @@ const emits = defineEmits<{
 
 其实总的来说，还是非常高兴能看到 Vue 愿意接受来自社区的建议和提案。这大概就是我对 Vue 3.3 做出的贡献，关于更多特性可以阅读 [Vue 博客的文章](https://blog.vuejs.org/posts/vue-3-3)。
 
-P.S. 如果有人愿意将本篇文章翻译至英文，请在翻译好后提交内容到 [sxzz/articles](https://github.com/sxzz/articles) 仓库，我将不胜感激！
-
 ### 关于 Vue Macros
 
 [Vue Macros](https://vue-macros.dev/) 目前是一个独立于 Vue 官方的项目。不同于 Vue 官方，它的目的是为了探索一些不一样的可能性。
