@@ -1,0 +1,4 @@
+Contact: mailto:sxzz@sxzz.moe
+Encryption: https://keys.openpgp.org/vks/v1/by-fingerprint/DF304DAEC54F251981E11AFA045ABF918AFE5377
+Canonical: https://sxzz.dev/.well-known/security.txt
+Expires: 2027-02-09T00:00:00.000Z

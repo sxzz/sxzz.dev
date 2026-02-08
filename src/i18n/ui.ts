@@ -76,4 +76,10 @@ export const social: ReadonlyArray<{
     label: 'X',
     localeHref: { zh: 'https://x.com/zhizijun' },
   },
+  {
+    icon: 'i-simple-icons-gnuprivacyguard',
+    href:
+      'https://keys.openpgp.org/search?q=DF304DAEC54F251981E11AFA045ABF918AFE5377',
+    label: 'GPG DF304DAEC54F251981E11AFA045ABF918AFE5377',
+  },
 ]
