@@ -24,6 +24,7 @@
     "@unocss/reset": "^66.6.0",
     "astro": "^5.17.1",
     "nprogress": "^0.2.0",
+    "rehype-external-links": "^3.0.0",
     "remark-github-blockquote-alert": "^2.0.1"
   },
   "devDependencies": {

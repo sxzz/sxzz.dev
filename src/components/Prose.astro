@@ -86,6 +86,18 @@ const mergedStyle = styleParts.join(' ')
 .prose a:hover {
   text-decoration-color: var(--prose-link);
 }
+.prose a[target="_blank"]::after {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-left: 0.1em;
+  vertical-align: -0.15em;
+  background-color: currentColor;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M7 17 17 7m0 0H7m10 0v10'/%3E%3C/svg%3E");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+}
 
 .prose strong {
   font-weight: 600;
