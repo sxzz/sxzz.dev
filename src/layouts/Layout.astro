@@ -390,6 +390,7 @@ html {
 <!-- NProgress -->
 <script>
 import NProgress from 'nprogress'
+import { initToc } from '../scripts/toc'
 
 NProgress.configure({
   showSpinner: false,
@@ -415,6 +416,7 @@ function stopProgress() {
 document.addEventListener('astro:before-preparation', startProgress)
 document.addEventListener('astro:after-swap', stopProgress)
 document.addEventListener('astro:page-load', stopProgress)
+document.addEventListener('astro:page-load', initToc)
 </script>
 <style is:global>
 :root {
