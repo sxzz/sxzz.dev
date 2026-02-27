@@ -23,7 +23,6 @@ interface AboutCopy {
   title: string
   description: string
   heading: string
-  paragraphs: string[]
 }
 
 interface LinksCopy {
@@ -123,30 +122,17 @@ export const pageCopy: PageCopy = {
       description:
         `About ${authorName.en}, an open-source enthusiast exploring front-end development.`,
       heading: 'About',
-      paragraphs: [
-        `Hi, I'm ${authorName.en}. An open-source enthusiast exploring front-end development.`,
-        'Creator of tsdown, Vue Macros, and Elk. Core team member of Vue, Vite, VueUse, unjs, unplugin, and Oxc.',
-      ],
     },
     zh: {
       title: `关于 - ${authorName.zh}`,
       description: `关于${authorName.zh}，一名探索前端开发的开源爱好者。`,
       heading: '关于',
-      paragraphs: [
-        `你好，我是${authorName.zh}，一名探索前端开发的开源爱好者。`,
-        'tsdown、Vue Macros 和 Elk 的作者，Vue、Vite、VueUse、unjs、unplugin、Oxc の核心团队成员。',
-      ],
     },
     ja: {
-      title: `${authorName.ja}について`,
+      title: `自己紹介 - ${authorName.ja}`,
       description:
-        `${authorName.ja}について。フロントエンド開発を探求するオープンソース愛好家。`,
+        `${authorName.ja}の自己紹介。フロントエンド開発を探求するオープンソース愛好家。`,
       heading: '自己紹介',
-      paragraphs: [
-        `こんにちは、${authorName.ja}です。フロントエンド開発を探求するオープンソース愛好家です。`,
-        'tsdown、Vue Macros、Elkの作者。Vue、Vite、VueUse、unjs、unplugin、Oxcのコアチームメンバー。',
-        '現在東京に住んでいて、日本語を勉強中です。よろしくお願いします～',
-      ],
     },
   },
   links: {

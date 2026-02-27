@@ -5,4 +5,13 @@ import { getLangFromUrl } from '../i18n/utils'
 const lang = getLangFromUrl(Astro.url)
 ---
 
-<AboutPage lang={lang} />
+<AboutPage lang={lang}>
+  <p>
+    Hi, I'm Kevin Deng. An open-source enthusiast exploring front-end
+    development.
+  </p>
+  <p>
+    Creator of tsdown, Vue Macros, and Elk. Core team member of Vue, Vite,
+    VueUse, unjs, unplugin, and Oxc.
+  </p>
+</AboutPage>
