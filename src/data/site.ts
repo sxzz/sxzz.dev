@@ -42,18 +42,17 @@ export const siteCopy = {
       en: [
         'https://github.com/sxzz',
         'https://x.com/sanxiaozhizi',
-        'https://x.com/zhizijun',
         'https://bsky.app/profile/sxzz.dev',
       ],
       zh: [
         'https://github.com/sxzz',
+        'https://x.com/sanxiaozhizi',
         'https://x.com/zhizijun',
         'https://bsky.app/profile/sxzz.dev',
       ],
       ja: [
         'https://github.com/sxzz',
         'https://x.com/sanxiaozhizi',
-        'https://x.com/zhizijun',
         'https://bsky.app/profile/sxzz.dev',
       ],
     },
