@@ -13,7 +13,7 @@ const copy = getPageCopy('links', lang)
 
 function getFriendName(friend: Friend): string {
   if (typeof friend.name === 'string') return friend.name
-  return friend.name[lang]
+  return friend.name[lang] ?? friend.name.en
 }
 
 function shuffleArray<T>(array: T[]): T[] {

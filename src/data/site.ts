@@ -26,14 +26,17 @@ export const siteCopy = {
     displayName: {
       en: 'Kevin Deng',
       zh: '智子',
+      ja: 'Kevin Deng',
     },
     tagline: {
       en: 'Open-source enthusiast',
       zh: 'INFP • 开源爱好者',
+      ja: 'オープンソース愛好家',
     },
     titleRole: {
       en: 'Open Source Enthusiast',
       zh: '开源爱好者',
+      ja: 'オープンソース愛好家',
     },
     sameAs: {
       en: [
@@ -47,6 +50,12 @@ export const siteCopy = {
         'https://x.com/zhizijun',
         'https://bsky.app/profile/sxzz.dev',
       ],
+      ja: [
+        'https://github.com/sxzz',
+        'https://x.com/sanxiaozhizi',
+        'https://x.com/zhizijun',
+        'https://bsky.app/profile/sxzz.dev',
+      ],
     },
   },
   rss: {
@@ -57,6 +66,10 @@ export const siteCopy = {
     zh: {
       title: '智子',
       description: '智子的博客与碎碎念。',
+    },
+    ja: {
+      title: 'Kevin Deng',
+      description: 'Kevin Dengのブログ記事。オープンソース愛好家。',
     },
   },
 } as const satisfies {
@@ -92,7 +105,7 @@ interface Link {
 }
 
 export interface Friend {
-  name: string | { en: string; zh: string }
+  name: string | Record<string, string>
   bio: string
   avatar: string
   href: string

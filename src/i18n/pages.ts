@@ -100,6 +100,22 @@ export const pageCopy: PageCopy = {
         url: `${siteMeta.url}${getUrlPrefix('zh')}`,
       },
     },
+    ja: {
+      title: `${authorName.ja} - ${authorTitleRole.ja}`,
+      description:
+        `${authorName.ja}はフロントエンド開発を探求するオープンソース愛好家です。tsdown、Vue Macros、Elkの作者。Vue、Viteなどのコアチームメンバー。`,
+      name: authorName.ja,
+      avatar: {
+        avif: '/avatar.avif',
+        fallback: '/avatar.jpg',
+      },
+      tagline: authorTagline.ja,
+      nameSerif: true,
+      schema: {
+        name: authorName.ja,
+        url: `${siteMeta.url}${getUrlPrefix('ja')}`,
+      },
+    },
   },
   about: {
     en: {
@@ -118,7 +134,18 @@ export const pageCopy: PageCopy = {
       heading: '关于',
       paragraphs: [
         `你好，我是${authorName.zh}，一名探索前端开发的开源爱好者。`,
-        'tsdown、Vue Macros 和 Elk 的作者，Vue、Vite、VueUse、unjs、unplugin、Oxc 的核心团队成员。',
+        'tsdown、Vue Macros 和 Elk 的作者，Vue、Vite、VueUse、unjs、unplugin、Oxc の核心团队成员。',
+      ],
+    },
+    ja: {
+      title: `${authorName.ja}について`,
+      description:
+        `${authorName.ja}について。フロントエンド開発を探求するオープンソース愛好家。`,
+      heading: '自己紹介',
+      paragraphs: [
+        `こんにちは、${authorName.ja}です。フロントエンド開発を探求するオープンソース愛好家です。`,
+        'tsdown、Vue Macros、Elkの作者。Vue、Vite、VueUse、unjs、unplugin、Oxcのコアチームメンバー。',
+        '現在東京に住んでいて、日本語を勉強中です。よろしくお願いします～',
       ],
     },
   },
@@ -135,6 +162,12 @@ export const pageCopy: PageCopy = {
       heading: '友链',
       subheading: '互联网的朋友们。',
     },
+    ja: {
+      title: `リンク - ${authorName.ja}`,
+      description: `${authorName.ja}の友人とリンク。`,
+      heading: 'リンク',
+      subheading: 'インターネット上の友人たち。',
+    },
   },
   posts: {
     en: {
@@ -147,6 +180,11 @@ export const pageCopy: PageCopy = {
       description: `${authorName.zh}的博客文章。`,
       heading: '文章',
     },
+    ja: {
+      title: `記事 - ${authorName.ja}`,
+      description: `${authorName.ja}のブログ記事。`,
+      heading: '記事',
+    },
   },
   post: {
     en: {
@@ -156,6 +194,10 @@ export const pageCopy: PageCopy = {
     zh: {
       backLabel: '返回文章列表',
       titleSuffix: authorName.zh,
+    },
+    ja: {
+      backLabel: '記事一覧に戻る',
+      titleSuffix: authorName.ja,
     },
   },
   musings: {
@@ -172,6 +214,13 @@ export const pageCopy: PageCopy = {
       heading: '碎碎念',
       backLabel: '返回碎碎念',
       titleSuffix: authorName.zh,
+    },
+    ja: {
+      title: `つぶやき - ${authorName.ja}`,
+      description: `${authorName.ja}のつぶやき。`,
+      heading: 'つぶやき',
+      backLabel: 'つぶやき一覧に戻る',
+      titleSuffix: authorName.ja,
     },
   },
 }
