@@ -102,22 +102,26 @@ To add a friend link, edit [`src/data/site.ts`](https://github.com/sxzz/sxzz.dev
 export const friends: Friend[] = [
   // ... existing friends
   {
-    name: 'Name', // string, or { en: 'English', zh: '中文' } for bilingual
-    bio: 'A short bio or tagline', // string
-    avatar: 'https://github.com/xxx.png', // avatar URL
-    href: 'https://example.com', // link to the friend's site
+    name: 'Name', // string, or { en: 'English', zh: '中文' } for multi-language
+    bio: 'A short bio or tagline', // string or multi-language
+    avatar: 'https://github.com/xxx.png', // avatar URL or multi-language
+    href: 'https://example.com', // link URL or multi-language
   },
 ]
 ```
 
+All fields support multi-language values via `LocalizedString`. Use a plain string for a single value across all languages, or an object keyed by language code for per-language values.
+
 **Fields:**
 
-| Field    | Type                                   | Description                       |
-| -------- | -------------------------------------- | --------------------------------- |
-| `name`   | `string \| { en: string; zh: string }` | Display name (supports bilingual) |
-| `bio`    | `string`                               | Short description or tagline      |
-| `avatar` | `string`                               | URL to the avatar image           |
-| `href`   | `string`                               | URL to the friend's website       |
+| Field    | Type              | Description                  |
+| -------- | ----------------- | ---------------------------- |
+| `name`   | `LocalizedString` | Display name                 |
+| `bio`    | `LocalizedString` | Short description or tagline |
+| `avatar` | `LocalizedString` | URL to the avatar image      |
+| `href`   | `LocalizedString` | URL to the friend's website  |
+
+> `LocalizedString` = `string | Record<Lang, string>`
 
 Friend links are displayed on the [/links](https://sxzz.dev/links/) page and are randomly shuffled on each page load.
 

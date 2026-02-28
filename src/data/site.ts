@@ -1,6 +1,7 @@
 import type { Lang } from '../i18n/utils'
 
 type Localized<T> = Record<Lang, T>
+export type LocalizedString = string | Localized<string>
 
 interface AuthorSchema {
   '@type': 'Person'
@@ -92,10 +93,10 @@ interface Link {
 }
 
 export interface Friend {
-  name: string | { en: string; zh: string }
-  bio: string
-  avatar: string
-  href: string
+  name: LocalizedString
+  bio: LocalizedString
+  avatar: LocalizedString
+  href: LocalizedString
 }
 
 interface HomeLinks {
