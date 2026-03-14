@@ -1,6 +1,6 @@
 import rss from '@astrojs/rss'
 import { getCollection } from 'astro:content'
-import { siteCopy } from '../../data/site'
+import { getRssOptions } from '../../i18n/pages'
 import type { APIContext } from 'astro'
 
 export async function GET(context: APIContext) {
@@ -27,11 +27,8 @@ export async function GET(context: APIContext) {
     (a, b) => b.pubDate.getTime() - a.pubDate.getTime(),
   )
 
-  const rssCopy = siteCopy.rss.zh
   return rss({
-    title: rssCopy.title,
-    description: rssCopy.description,
-    site: context.site!,
+    ...getRssOptions('zh', context.site!),
     items,
   })
 }
