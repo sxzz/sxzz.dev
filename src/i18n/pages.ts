@@ -1,6 +1,7 @@
 import { siteCopy, siteMeta } from '../data/site'
 import { defaultLang } from './ui'
 import { getUrlPrefix, type Lang } from './utils'
+import type { RSSOptions } from '@astrojs/rss'
 
 interface HomeCopy {
   title: string
@@ -182,4 +183,28 @@ export function getPageCopy<K extends keyof typeof pageCopy>(
 ): (typeof pageCopy)[K][typeof defaultLang] {
   return (pageCopy[key][lang]
     ?? pageCopy[key][defaultLang]) as (typeof pageCopy)[K][typeof defaultLang]
+}
+
+export function getRssOptions(
+  lang: Lang,
+  site: URL,
+): Pick<RSSOptions, 'title' | 'description' | 'site' | 'xmlns' | 'customData'> {
+  const rssCopy = siteCopy.rss[lang]
+  const prefix = getUrlPrefix(lang)
+  const { avatar } = getPageCopy('home', lang)
+  return {
+    title: rssCopy.title,
+    description: rssCopy.description,
+    site,
+    xmlns: { atom: 'http://www.w3.org/2005/Atom' },
+    customData: [
+      `<language>${lang}</language>`,
+      `<atom:link href="${siteMeta.url}${prefix}/rss.xml" rel="self" type="application/rss+xml"/>`,
+      `<image>`,
+      `  <url>${siteMeta.url}${avatar.fallback}</url>`,
+      `  <title>${rssCopy.title}</title>`,
+      `  <link>${siteMeta.url}${prefix}</link>`,
+      `</image>`,
+    ].join('\n'),
+  }
 }
