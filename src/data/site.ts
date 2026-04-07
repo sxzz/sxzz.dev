@@ -179,8 +179,16 @@ export const friends: Friend[] = [
     href: 'https://libra.wiki',
   },
   {
-    name: 'XCちゃん',
-    bio: '困困困困困困',
+    name: {
+      en: 'XC',
+      zh: 'XCちゃん',
+      // jp: 'XCちゃん',
+    },
+    bio: {
+      en: 'Sleeeeeeeeepy',
+      zh: '困困困困困困',
+      // jp: 'nemuuuuuuuuuuuui',
+    },
     avatar: 'https://spacexc.net/logo.png',
     href: 'https://spacexc.net',
   },
