@@ -147,7 +147,7 @@ export const friends: Friend[] = [
   },
   {
     name: 'Innei',
-    bio: '静かな森',
+    bio: '致虚极，守静笃。',
     avatar: 'https://github.com/Innei.png',
     href: 'https://innei.in',
   },
