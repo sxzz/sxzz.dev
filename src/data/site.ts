@@ -243,4 +243,10 @@ export const friends: Friend[] = [
     avatar: 'https://github.com/SASUKE40.png',
     href: 'https://edward40.com',
   },
+  {
+    name: { en: 'SAZANAMI', zh: '十二' },
+    bio: '06 在逃临床医学学生',
+    avatar: 'https://sazanami.icu/assets/avatar.jpg',
+    href: 'https://sazanami.icu/',
+  },
 ]
