@@ -153,7 +153,10 @@ export const friends: Friend[] = [
   },
   {
     name: 'XiaoMouz',
-    bio: 'A normal person',
+    bio: {
+      en: 'o7, fly safe',
+      zh: '今天应该吃炒河粉还是福州鱼丸',
+    },
     avatar: 'https://github.com/XiaoMouz.png',
     href: 'https://mou.best',
   },
