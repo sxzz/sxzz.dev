@@ -247,9 +247,19 @@ export const friends: Friend[] = [
     href: 'https://edward40.com',
   },
   {
-    name: { en: 'SAZANAMI', zh: '十二' },
+    name: {
+      en: 'SAZANAMI',
+      zh: '十二',
+      // jp: 'サザナミ',
+    },
     bio: '06 在逃临床医学学生',
     avatar: 'https://sazanami.icu/assets/avatar.jpg',
     href: 'https://sazanami.icu/',
+  },
+  {
+    name: { en: 'Atlasnow', zh: '图图' },
+    bio: { en: '3D Artist', zh: '3D艺术家' },
+    avatar: 'https://atlasnow.xyz/avatar.webp',
+    href: 'https://atlasnow.xyz/',
   },
 ]
