@@ -204,7 +204,7 @@ export const friends: Friend[] = [
   },
   {
     name: 'SkyWT',
-    bio: '',
+    bio: 'Designer & Engineer.',
     avatar: 'https://img.skywt.net/avatar.jpg',
     href: 'https://skywt.net',
   },
