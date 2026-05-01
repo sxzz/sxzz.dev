@@ -10,10 +10,6 @@ export default defineConfig({
   output: 'static',
   prefetch: true,
   integrations: [UnoCSS(), sitemap()],
-  experimental: {
-    rustCompiler: true,
-  },
-
   markdown: {
     remarkPlugins: [remarkGithubBlockquoteAlert],
     rehypePlugins: [
