@@ -1,4 +1,4 @@
-import { defaultLang, localeByLang, showDefaultLang, ui } from './ui'
+import { defaultLang, localeByLang, showDefaultLang, ui } from './ui.ts'
 
 export type Lang = keyof typeof ui
 

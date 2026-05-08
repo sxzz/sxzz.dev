@@ -2,7 +2,7 @@
   "name": "sxzz.dev",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@11.0.3",
+  "packageManager": "pnpm@11.0.8",
   "engines": {
     "node": "^24.0.0"
   },
@@ -11,7 +11,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "generate:og": "unrun scripts/generate-og.ts",
+    "generate:og": "node scripts/generate-og.ts",
     "typecheck": "astro check",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -30,24 +30,23 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "@astrojs/compiler-rs": "^0.1.10",
-    "@iconify-json/simple-icons": "^1.2.80",
+    "@iconify-json/simple-icons": "^1.2.81",
     "@resvg/resvg-js": "^2.6.2",
     "@sxzz/eslint-config": "^8.0.0",
-    "@types/node": "^25.6.0",
+    "@types/node": "^25.6.2",
     "@types/nprogress": "^0.2.3",
     "@types/opencc-js": "^1.0.3",
-    "@typescript-eslint/parser": "^8.59.1",
+    "@typescript-eslint/parser": "^8.59.2",
     "@unocss/astro": "^66.6.8",
     "@unocss/eslint-plugin": "^66.6.8",
     "dprint": "^0.54.0",
     "eslint": "^10.3.0",
     "eslint-plugin-astro": "^1.7.0",
-    "lint-staged": "^16.4.0",
+    "lint-staged": "^17.0.2",
     "satori": "^0.26.0",
     "simple-git-hooks": "^2.13.1",
     "typescript": "^6.0.3",
-    "unocss": "^66.6.8",
-    "unrun": "^0.2.37"
+    "unocss": "^66.6.8"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

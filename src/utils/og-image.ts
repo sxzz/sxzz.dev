@@ -4,9 +4,9 @@ import { join } from 'node:path'
 import process from 'node:process'
 import { Resvg } from '@resvg/resvg-js'
 import satori, { type Font } from 'satori'
-import { siteCopy, siteMeta } from '../data/site'
-import { ui } from '../i18n/ui'
-import { getLocaleFromLang, type Lang } from '../i18n/utils'
+import { siteCopy, siteMeta } from '../data/site.ts'
+import { ui } from '../i18n/ui.ts'
+import { getLocaleFromLang, type Lang } from '../i18n/utils.ts'
 
 interface OgOptions {
   title: string
