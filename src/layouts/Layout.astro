@@ -2,7 +2,6 @@
 import { ClientRouter } from 'astro:transitions'
 import LanguageSwitcher from '../components/LanguageSwitcher.astro'
 import ThemeSwitcher from '../components/ThemeSwitcher.astro'
-import { siteMeta } from '../data/site'
 import { pageCopy } from '../i18n/pages'
 import { defaultLang, languages, localeByLang, nav, social } from '../i18n/ui'
 import {
@@ -130,12 +129,14 @@ const hreflangLangs = isMusingsPage
 
     <ClientRouter />
     <slot name="head" />
-    <script
-      is:inline
-      defer
-      data-domain={siteMeta.analytics.domain}
-      src={siteMeta.analytics.scriptSrc}
-    >
+
+    <script>
+    import { init } from '@plausible-analytics/tracker'
+    init({
+      domain: 'sxzz.dev',
+      endpoint: 'https://evt.sxzz.dev/api/event',
+      outboundLinks: true,
+    })
     </script>
   </head>
   <body

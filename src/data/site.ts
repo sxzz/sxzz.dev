@@ -14,10 +14,6 @@ interface AuthorSchema {
 export const siteMeta = {
   domain: 'sxzz.dev',
   url: 'https://sxzz.dev',
-  analytics: {
-    domain: 'sxzz.dev',
-    scriptSrc: 'https://analytics.sxzz.dev/js/script.js',
-  },
 } as const
 
 export const siteCopy = {
