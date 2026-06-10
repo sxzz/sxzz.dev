@@ -1,1 +1,6 @@
+allowBuilds:
+  dprint: false
+  esbuild: false
+  sharp: false
+  simple-git-hooks: true
 minimumReleaseAge: 0
