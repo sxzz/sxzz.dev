@@ -1,0 +1,16 @@
+{
+  "domain": "sxzz.dev",
+  "keys": [
+    {
+      "alg": "EdDSA",
+      "kid": "ed25519:q61fro5VGnA",
+      "publicKeyJwk": {
+        "crv": "Ed25519",
+        "kty": "OKP",
+        "x": "zjSUKp29gxsev_bUrsaMEqa_zyn-Ftxvzj-R0T1aAN0"
+      },
+      "use": "regesta-write"
+    }
+  ],
+  "object": "regesta.domain-binding"
+}
