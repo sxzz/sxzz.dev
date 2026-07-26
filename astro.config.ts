@@ -1,3 +1,4 @@
+import { unified } from '@astrojs/markdown-remark'
 import sitemap from '@astrojs/sitemap'
 import UnoCSS from '@unocss/astro'
 import { defineConfig } from 'astro/config'
@@ -11,15 +12,17 @@ export default defineConfig({
   prefetch: true,
   integrations: [UnoCSS(), sitemap()],
   markdown: {
-    remarkPlugins: [remarkGithubBlockquoteAlert],
-    rehypePlugins: [
-      [
-        rehypeExternalLinks,
-        {
-          target: '_blank',
-          rel: ['noopener', 'noreferrer'],
-        },
+    processor: unified({
+      remarkPlugins: [remarkGithubBlockquoteAlert],
+      rehypePlugins: [
+        [
+          rehypeExternalLinks,
+          {
+            target: '_blank',
+            rel: ['noopener', 'noreferrer'],
+          },
+        ],
       ],
-    ],
+    }),
   },
 })
