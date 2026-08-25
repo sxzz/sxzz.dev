@@ -119,7 +119,7 @@ const hreflangLangs = isMusingsPage
 
     <script is:inline type="module">
     const stored = localStorage.getItem('theme')
-    const prefersDark = globalThis.matchMedia(
+    const prefersDark = matchMedia(
       '(prefers-color-scheme: dark)',
     ).matches
     if (stored === 'dark' || (!stored && prefersDark)) {
@@ -129,6 +129,14 @@ const hreflangLangs = isMusingsPage
 
     <ClientRouter />
     <slot name="head" />
+
+    <script
+      is:inline
+      data-goatcounter="https://sxzz.goatcounter.com/count"
+      async
+      src="//gc.zgo.at/count.js"
+    >
+    </script>
 
     <script>
     import { init } from '@plausible-analytics/tracker'
@@ -399,10 +407,10 @@ NProgress.configure({
   minimum: 0.08,
 })
 
-let nprogressTimer: ReturnType<typeof globalThis.setTimeout> | undefined
+let nprogressTimer: ReturnType<typeof setTimeout> | undefined
 function startProgress() {
   if (nprogressTimer) return
-  nprogressTimer = globalThis.setTimeout(() => {
+  nprogressTimer = setTimeout(() => {
     NProgress.start()
   }, 120)
 }
