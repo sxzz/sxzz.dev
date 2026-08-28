@@ -3,7 +3,7 @@ import { defaultLang, localeByLang, showDefaultLang, ui } from './ui.ts'
 export type Lang = keyof typeof ui
 
 export function getLangFromUrl(url: URL): Lang {
-  const [, lang] = url.pathname.split('/')
+  const [, lang] = url.pathname.split('/', 2)
   if (lang in ui) return lang as Lang
   return defaultLang
 }

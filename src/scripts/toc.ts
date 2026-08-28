@@ -21,12 +21,11 @@ export function initToc() {
   })
 
   const slugs = new Set(
-    Array.from(links)
-      .map((link) => link.dataset.headingSlug)
+    Array.from(links, (link) => link.dataset.headingSlug)
       .filter(Boolean) as string[],
   )
 
-  const prefersReducedMotion = globalThis.matchMedia(
+  const prefersReducedMotion = matchMedia(
     '(prefers-reduced-motion: reduce)',
   ).matches
   let currentActiveSlug = ''
@@ -80,7 +79,7 @@ export function initToc() {
     })
   })
 
-  const hashSlug = decodeURIComponent(globalThis.location.hash.slice(1))
+  const hashSlug = decodeURIComponent(location.hash.slice(1))
   const initialSlug = (hashSlug && slugs.has(hashSlug) && hashSlug)
     || links[0]?.dataset.headingSlug
   if (initialSlug) setActive(initialSlug, 'auto')

@@ -14,6 +14,7 @@ export default sxzz({
     files: ['**/*.md/**', '**/*.md'],
     rules: {
       'yml/no-empty-document': 'off',
+      'unicorn/no-unused-array-method-return': 'off',
     },
   })
   .append({

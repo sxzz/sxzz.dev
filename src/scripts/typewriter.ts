@@ -1,5 +1,5 @@
 export function runTypewriter() {
-  const prefersReducedMotion = globalThis.matchMedia(
+  const prefersReducedMotion = matchMedia(
     '(prefers-reduced-motion: reduce)',
   ).matches
 
@@ -14,12 +14,12 @@ export function runTypewriter() {
       return
     }
 
-    const charDelay = Number.parseInt(el.dataset.charDelay || '60', 10)
-    const startDelay = Number.parseInt(el.dataset.startDelay || '650', 10)
+    const charDelay = +(el.dataset.charDelay || '60')
+    const startDelay = +(el.dataset.startDelay || '650')
 
     const cursor = document.createElement('span')
     cursor.className = 'terminal-cursor'
-    cursor.textContent = '\u258C'
+    cursor.textContent = '\u{258C}'
     cursor.setAttribute('aria-hidden', 'true')
     el.append(cursor)
 
