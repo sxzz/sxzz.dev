@@ -130,12 +130,14 @@ const hreflangLangs = isMusingsPage
     <ClientRouter />
     <slot name="head" />
 
-    <script
-      is:inline
-      data-goatcounter="https://sxzz.goatcounter.com/count"
-      async
-      src="//gc.zgo.at/count.js"
-    >
+    <script>
+    import { init } from 'goat-counter'
+    const goatCounter = init({
+      endpoint: 'https://stats.sxzz.dev/count',
+    })
+    document.addEventListener('astro:page-load', () => {
+      goatCounter.pageview()
+    })
     </script>
 
     <script>

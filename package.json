@@ -39,6 +39,7 @@
     "dprint": "^0.56.1",
     "eslint": "^10.9.1",
     "eslint-plugin-astro": "^3.1.0",
+    "goat-counter": "^0.1.0",
     "lint-staged": "^17.4.1",
     "nprogress": "^0.2.0",
     "rehype-external-links": "^3.0.0",

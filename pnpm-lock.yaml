@@ -169,6 +169,9 @@ importers:
       eslint-plugin-astro:
         specifier: ^3.1.0
         version: 3.1.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@typescript-eslint/parser@8.68.0(eslint@10.9.1(jiti@2.7.0))(typescript@6.0.3))(eslint@10.9.1(jiti@2.7.0))(typescript-eslint@8.68.0(eslint@10.9.1(jiti@2.7.0))(typescript@6.0.3))
+      goat-counter:
+        specifier: ^0.1.0
+        version: 0.1.0
       lint-staged:
         specifier: ^17.4.1
         version: 17.4.1
@@ -2467,6 +2470,14 @@ packages:
 
   globrex@0.1.2:
     resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
+
+  goat-counter@0.1.0:
+    resolution: {integrity: sha512-O3vglS5aiVWzYDVp+J+gy24ohunRBWeu8gQgz15mw+VWguIedFNdDZSUjvwQjt9t/tVbrZ37d7rCgzphOLlBXQ==}
+    peerDependencies:
+      nuxt: ^4.0.0
+    peerDependenciesMeta:
+      nuxt:
+        optional: true
 
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
@@ -6164,6 +6175,8 @@ snapshots:
   globals@17.8.0: {}
 
   globrex@0.1.2: {}
+
+  goat-counter@0.1.0: {}
 
   graceful-fs@4.2.11: {}
 
