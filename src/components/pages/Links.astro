@@ -13,7 +13,7 @@ const copy = getPageCopy('links', lang)
 
 function localize(value: LocalizedString): string {
   if (typeof value === 'string') return value
-  return value[lang]
+  return value[lang] ?? value.en
 }
 
 function shuffleArray<T>(array: T[]): T[] {
