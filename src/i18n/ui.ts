@@ -1,6 +1,7 @@
 export const languages = {
   en: 'English',
   zh: '中文',
+  ja: '日本語',
 } as const
 
 export const defaultLang = 'en'
@@ -14,6 +15,7 @@ export const ui = {
     'nav.about': 'About',
     'lang.en': 'EN',
     'lang.zh': '中文',
+    'lang.ja': '日本語',
     'lang.switch': 'Switch language',
     'toggle.theme': 'Toggle dark mode',
     'toc.title': 'On this page',
@@ -28,6 +30,7 @@ export const ui = {
     'nav.about': '关于',
     'lang.en': 'EN',
     'lang.zh': '中文',
+    'lang.ja': '日本語',
     'lang.switch': '切换语言',
     'toggle.theme': '切换深色模式',
     'toc.title': '目录',
@@ -35,11 +38,27 @@ export const ui = {
     'notFound.description': '您访问的页面不存在。',
     'notFound.backHome': '返回首页',
   },
+  ja: {
+    'nav.posts': '記事',
+    'nav.musings': 'つぶやき',
+    'nav.links': 'リンク',
+    'nav.about': '自己紹介',
+    'lang.en': 'EN',
+    'lang.zh': '中文',
+    'lang.ja': '日本語',
+    'lang.switch': '言語を切り替える',
+    'toggle.theme': 'ダークモード切替',
+    'toc.title': '目次',
+    'notFound.title': 'ページが見つかりません',
+    'notFound.description': 'お探しのページは存在しません。',
+    'notFound.backHome': 'ホームに戻る',
+  },
 } as const
 
 export const localeByLang = {
   en: 'en-US',
   zh: 'zh-CN',
+  ja: 'ja-JP',
 } as const
 
 export const nav: ReadonlyArray<{

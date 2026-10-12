@@ -5,4 +5,10 @@ import { getLangFromUrl } from '../../i18n/utils'
 const lang = getLangFromUrl(Astro.url)
 ---
 
-<AboutPage lang={lang} />
+<AboutPage lang={lang}>
+  <p>你好，我是智子，一名探索前端开发的开源爱好者。</p>
+  <p>
+    tsdown、Vue Macros 和 Elk 的作者，Vue、Vite、VueUse、unjs、unplugin、Oxc
+    的核心团队成员。
+  </p>
+</AboutPage>

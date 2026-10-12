@@ -28,7 +28,7 @@ const buildDate = new Date().toISOString().split('T')[0]
         class="fade-in-up text-stone-600 leading-relaxed space-y-4 dark:text-stone-400"
         style="animation-delay: 160ms"
       >
-        {copy.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        <slot />
       </section>
 
       <footer

@@ -10,6 +10,7 @@ export default defineConfig({
         serif: [
           { name: 'Newsreader', weights: [400, 500, 600, 700] },
           { name: 'Noto Serif SC', weights: [400, 500, 600, 700] },
+          { name: 'Noto Serif JP', weights: [400, 500, 600, 700] },
         ],
         mono: 'JetBrains Mono:400',
       },
