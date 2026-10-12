@@ -4,10 +4,11 @@ Personal portfolio and blog for [Kevin Deng (sxzz)](https://sxzz.dev).
 
 ## Tech Stack
 
-- [Astro 5](https://astro.build/) - Static site generator
+- [Astro 7](https://astro.build/) - Static site generator
 - [UnoCSS](https://unocss.dev/) - Atomic CSS engine (Wind3 preset)
 - [TypeScript](https://www.typescriptlang.org/) - Strict mode
-- [Satori](https://github.com/vercel/satori) + [Resvg](https://github.com/nicely/nicely-resvg-js) - OG image generation
+- [Satori](https://github.com/vercel/satori) + [Resvg](https://github.com/thx/resvg-js) - OG image generation
+- [GoatCounter](https://www.goatcounter.com/) - Privacy-friendly analytics
 
 ## Features
 
@@ -20,7 +21,7 @@ Personal portfolio and blog for [Kevin Deng (sxzz)](https://sxzz.dev).
 - View Transitions for smooth page navigation
 - Simplified/Traditional Chinese toggle (OpenCC)
 - RSS feeds (per language)
-- Raw markdown endpoints for LLM access (`/posts/[slug].md`)
+- Raw markdown endpoints for LLM access (`/posts/[slug].md`, `/zh/musings/[slug].md`)
 
 ## Development
 
@@ -36,63 +37,7 @@ pnpm format        # Format with dprint
 pnpm generate:og   # Generate default OG image
 ```
 
-Requires Node.js >= 24 and pnpm 10.
-
-## Project Structure
-
-```
-src/
-├── components/
-│   ├── pages/             # Page-level components
-│   │   ├── Home.astro
-│   │   ├── About.astro
-│   │   ├── Links.astro
-│   │   ├── PostsIndex.astro
-│   │   └── PostDetail.astro
-│   ├── LanguageSwitcher.astro
-│   ├── ThemeSwitcher.astro
-│   ├── Prose.astro
-│   └── TableOfContents.astro
-├── content/               # Markdown content collections
-│   ├── posts/en/          # English blog posts
-│   ├── posts/zh/          # Chinese blog posts
-│   └── musings/           # Chinese-only informal posts
-├── data/
-│   └── site.ts            # Site metadata, author info, home links, friend links
-├── i18n/                  # Internationalization (EN/ZH)
-│   ├── ui.ts              # Translation strings, nav, social links
-│   ├── utils.ts           # i18n helpers
-│   └── pages.ts           # Page-level copy
-├── layouts/
-│   └── Layout.astro       # Global layout
-├── pages/                 # File-based routing
-│   ├── zh/                # Chinese routes
-│   ├── posts/             # Blog post routes
-│   └── og/                # Dynamic OG image endpoints
-├── scripts/               # Client-side scripts
-│   ├── typewriter.ts
-│   ├── toc.ts
-│   ├── opencc.ts
-│   └── animate.ts
-├── utils/                 # Server-side utilities
-│   ├── content.ts         # Content collection helpers
-│   └── og-image.ts        # OG image rendering
-└── content.config.ts      # Content collection definitions
-```
-
-## Content
-
-Blog posts go in `src/content/posts/{en,zh}/` as `.md` files with frontmatter:
-
-```yaml
----
-title: Post Title
-date: 2025-01-01
-description: Short description
----
-```
-
-Musings (Chinese-only) go in `src/content/musings/`.
+Requires Node.js 24 and pnpm 12.
 
 ## Friend Links
 
