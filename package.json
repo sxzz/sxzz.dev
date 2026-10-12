@@ -2,15 +2,15 @@
   "name": "sxzz.dev",
   "type": "module",
   "version": "0.0.0",
+  "engines": {
+    "node": "^24.0.0"
+  },
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "12.5.0",
+      "version": "12.11.2",
       "onFail": "download"
     }
-  },
-  "engines": {
-    "node": "^24.0.0"
   },
   "scripts": {
     "dev": "astro dev",
@@ -26,34 +26,39 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
-    "@astrojs/compiler-rs": "^0.4.0",
-    "@astrojs/markdown-remark": "^7.2.4",
+    "@astrojs/compiler-rs": "^0.5.1",
+    "@astrojs/markdown-remark": "^7.3.2",
     "@astrojs/rss": "^4.0.19",
-    "@astrojs/sitemap": "^3.7.3",
-    "@iconify-json/simple-icons": "^1.2.93",
+    "@astrojs/sitemap": "^3.7.4",
+    "@dprint/json": "^0.21.3",
+    "@dprint/markdown": "^0.20.0",
+    "@dprint/typescript": "^0.95.15",
+    "@iconify-json/simple-icons": "^1.2.99",
     "@plausible-analytics/tracker": "^0.4.6",
     "@resvg/resvg-js": "^2.6.2",
-    "@sxzz/eslint-config": "^8.5.0",
-    "@types/node": "^26.4.0",
+    "@sxzz/eslint-config": "^8.7.0",
+    "@types/node": "^26.6.5",
     "@types/nprogress": "^0.2.3",
     "@types/opencc-js": "^1.0.3",
-    "@typescript-eslint/parser": "^8.68.0",
-    "@unocss/astro": "^66.8.1",
-    "@unocss/eslint-plugin": "^66.8.1",
-    "@unocss/reset": "^66.8.1",
-    "astro": "^7.2.9",
-    "dprint": "^0.56.1",
-    "eslint": "^10.9.1",
-    "eslint-plugin-astro": "^3.1.0",
-    "goat-counter": "^0.1.0",
-    "lint-staged": "^17.4.1",
+    "@typescript-eslint/parser": "^8.71.1",
+    "@unocss/astro": "^66.10.5",
+    "@unocss/eslint-plugin": "^66.10.5",
+    "@unocss/reset": "^66.10.5",
+    "astro": "^7.3.8",
+    "dprint": "^0.63.0",
+    "dprint-plugin-malva": "^0.15.3",
+    "dprint-plugin-markup": "^0.25.3",
+    "eslint": "^10.12.0",
+    "eslint-plugin-astro": "^3.2.1",
+    "goat-counter": "^0.2.0",
+    "lint-staged": "^17.6.0",
     "nprogress": "^0.2.0",
     "rehype-external-links": "^3.0.0",
     "remark-github-blockquote-alert": "^2.1.0",
-    "satori": "^0.33.4",
+    "satori": "^0.47.1",
     "simple-git-hooks": "^2.14.0",
     "typescript": "^6.0.3",
-    "unocss": "^66.8.1"
+    "unocss": "^66.10.5"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

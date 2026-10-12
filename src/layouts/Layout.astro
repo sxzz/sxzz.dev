@@ -131,16 +131,6 @@ const hreflangLangs = isMusingsPage
     <slot name="head" />
 
     <script>
-    import { init } from 'goat-counter'
-    const goatCounter = init({
-      endpoint: 'https://stats.sxzz.dev/count',
-    })
-    document.addEventListener('astro:page-load', () => {
-      goatCounter.pageview()
-    })
-    </script>
-
-    <script>
     import { init } from '@plausible-analytics/tracker'
     init({
       domain: 'sxzz.dev',

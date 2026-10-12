@@ -2,6 +2,7 @@ import { unified } from '@astrojs/markdown-remark'
 import sitemap from '@astrojs/sitemap'
 import UnoCSS from '@unocss/astro'
 import { defineConfig } from 'astro/config'
+import { goatCounter } from 'goat-counter/astro'
 import rehypeExternalLinks from 'rehype-external-links'
 import remarkGithubBlockquoteAlert from 'remark-github-blockquote-alert'
 
@@ -10,7 +11,13 @@ export default defineConfig({
   site: 'https://sxzz.dev',
   output: 'static',
   prefetch: true,
-  integrations: [UnoCSS(), sitemap()],
+  integrations: [
+    UnoCSS(),
+    sitemap(),
+    goatCounter({
+      endpoint: 'https://stats.sxzz.dev/count',
+    }),
+  ],
   markdown: {
     processor: unified({
       remarkPlugins: [remarkGithubBlockquoteAlert],

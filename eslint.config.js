@@ -31,6 +31,7 @@ export default sxzz({
       'perfectionist/sort-imports': 'off',
       'prefer-template': 'off',
       'unicorn/no-new-array': 'off',
+      'unicorn/no-unused-builtin-method-return': 'off',
       'unicorn/prefer-code-point': 'off',
       'unicorn/prefer-number-properties': 'off',
       'unicorn/prefer-string-raw': 'off',

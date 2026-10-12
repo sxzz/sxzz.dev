@@ -12,6 +12,7 @@ export function initToc() {
     link.dataset.active = 'false'
     link.removeAttribute('aria-current')
     const slug = link.dataset.headingSlug
+    // eslint-disable-next-line unicorn/prefer-early-return
     if (slug) {
       const heading = document.querySelector<HTMLElement>(
         `#${CSS.escape(slug)}`,
