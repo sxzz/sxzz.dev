@@ -193,9 +193,6 @@ importers:
       '@iconify-json/simple-icons':
         specifier: ^1.2.99
         version: 1.2.99
-      '@plausible-analytics/tracker':
-        specifier: ^0.4.6
-        version: 0.4.6
       '@resvg/resvg-js':
         specifier: ^2.6.2
         version: 2.6.2
@@ -1083,9 +1080,6 @@ packages:
   '@pkgr/core@0.3.6':
     resolution: {integrity: sha512-SEeaJLb3qBNF/OaXnaR1NmmBbFYk1zC0ZH/52fATcRPLFg/p791YrcyFFy44Bo9sLaGuSuLp5Q6axbb/O+v/RA==}
     engines: {node: ^14.18.0 || >=16.0.0}
-
-  '@plausible-analytics/tracker@0.4.6':
-    resolution: {integrity: sha512-nbu6xGgSP6jeYuoVklZBzucUnIpo75tVu3Kr+R0EDycVKaMC/jF5Q/YCaM/8gR4fPZ1IDcXt6FdBJFZ1uZwEPA==}
 
   '@quansync/fs@1.1.0':
     resolution: {integrity: sha512-qAPG/t3HqML1TlN7sY/pTbEjzFVAKsMjNNMGheyDosro+kT4iw2KCUoHcVdmliwWjorm4elZbgNQyU2eD97eDg==}
@@ -4585,8 +4579,6 @@ snapshots:
   '@oxc-project/types@0.153.0': {}
 
   '@pkgr/core@0.3.6': {}
-
-  '@plausible-analytics/tracker@0.4.6': {}
 
   '@quansync/fs@1.1.0':
     dependencies:

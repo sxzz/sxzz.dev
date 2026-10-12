@@ -34,7 +34,6 @@
     "@dprint/markdown": "^0.20.0",
     "@dprint/typescript": "^0.95.15",
     "@iconify-json/simple-icons": "^1.2.99",
-    "@plausible-analytics/tracker": "^0.4.6",
     "@resvg/resvg-js": "^2.6.2",
     "@sxzz/eslint-config": "^8.7.0",
     "@types/node": "^26.6.5",

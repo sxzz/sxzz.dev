@@ -129,15 +129,6 @@ const hreflangLangs = isMusingsPage
 
     <ClientRouter />
     <slot name="head" />
-
-    <script>
-    import { init } from '@plausible-analytics/tracker'
-    init({
-      domain: 'sxzz.dev',
-      endpoint: 'https://evt.sxzz.dev/api/event',
-      outboundLinks: true,
-    })
-    </script>
   </head>
   <body
     class="flex flex-col bg-stone-50 text-stone-800 antialiased min-h-dvh dark:bg-stone-950 selection:bg-stone-900/10 dark:text-stone-200 dark:selection:bg-stone-100/10"
