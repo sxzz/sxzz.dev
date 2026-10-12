@@ -42,7 +42,7 @@ src/
 │   ├── musings/       # Chinese-only informal posts
 │   └── pages/         # Home intro and About body, as `<page>/<lang>.md`
 ├── data/
-│   └── site.ts        # Site metadata, author info, home links, friend links
+│   └── site.ts        # Site metadata, author info, friend links
 ├── i18n/              # Internationalization (EN/ZH)
 │   ├── ui.ts          # Translation strings, nav, social links
 │   ├── utils.ts       # i18n helpers
@@ -67,7 +67,7 @@ scripts/
 - **Imports**: ES modules, relative paths for local files, package specifiers for deps
 - **Styling**: Utility-first UnoCSS classes; avoid custom CSS unless necessary
 - **i18n**: URL-based routing (`/` for English, `/zh/` for Chinese). Default language is English. Add translations to `src/i18n/ui.ts`, page titles and descriptions to `src/i18n/pages.ts`, and long-form page copy to `src/content/pages/`.
-- **Fonts**: Serif (Newsreader / Noto Serif SC) for headings, Sans (Outfit) for body, Mono (JetBrains Mono) for code
+- **Fonts**: Serif (Newsreader / Noto Serif SC) for headings and article body, Sans (Outfit) for UI, Mono (JetBrains Mono) for code
 
 ## Content
 
