@@ -25,8 +25,8 @@ export const siteCopy = {
       zh: '智子',
     },
     tagline: {
-      en: 'Seeking the meaning of existence.',
-      zh: '探寻存在的意义。',
+      en: 'Seeking the meaning of existence',
+      zh: '探寻存在的意义',
     },
     sameAs: {
       en: [

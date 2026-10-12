@@ -68,7 +68,7 @@ export const pageCopy: PageCopy = {
     en: {
       title: `${authorName.en} - ${authorTagline.en}`,
       description:
-        `${authorName.en}. ${authorTagline.en} Creator of tsdown, Vue Macros, and Elk. Core team member of Vue, Vite, and more.`,
+        `${authorName.en}. ${authorTagline.en}. Creator of tsdown, Vue Macros, and Elk. Core team member of Vue, Vite, and more.`,
       name: authorName.en,
       avatar: {
         avif: '/avatar.avif',
@@ -84,7 +84,7 @@ export const pageCopy: PageCopy = {
     zh: {
       title: `${authorName.zh} - ${authorTagline.zh}`,
       description:
-        `${authorName.zh}，${authorTagline.zh}tsdown、Vue Macros 与 Elk 的作者，Vue、Vite 等项目核心成员。`,
+        `${authorName.zh}，${authorTagline.zh}。tsdown、Vue Macros 与 Elk 的作者，Vue、Vite 等项目核心成员。`,
       name: authorName.zh,
       avatar: {
         avif: '/avatar-zh.avif',
@@ -101,12 +101,12 @@ export const pageCopy: PageCopy = {
   about: {
     en: {
       title: `About - ${authorName.en}`,
-      description: `About ${authorName.en}. ${authorTagline.en}`,
+      description: `About ${authorName.en}. ${authorTagline.en}.`,
       heading: 'About',
     },
     zh: {
       title: `关于 - ${authorName.zh}`,
-      description: `关于${authorName.zh}。${authorTagline.zh}`,
+      description: `关于${authorName.zh}。${authorTagline.zh}。`,
       heading: '关于',
     },
   },
