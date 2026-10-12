@@ -25,7 +25,7 @@ const { availableLangs } = Astro.props
   <summary class="cursor-pointer select-none list-none text-stone-500 transition-colors duration-200 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200">
     {t(`lang.${lang}` as const) ?? languages[lang]}
   </summary>
-  <div class="lang-switcher-menu absolute right-1/2 z-10 mt-2 min-w-22 translate-x-1/2 border border-stone-200/50 rounded-lg bg-white/80 py-1.5 shadow-lg backdrop-blur-sm dark:border-stone-800/50 dark:bg-stone-900/80">
+  <div class="lang-switcher-menu absolute right-1/2 z-10 mt-2 min-w-22 translate-x-1/2 border border-stone-200 rounded-lg bg-white/80 p-1 shadow-sm backdrop-blur-sm dark:border-stone-800 dark:bg-stone-900/80">
     {languageKeys
       .filter((key) => key !== lang)
       .map((key) => {
@@ -38,9 +38,9 @@ const { availableLangs } = Astro.props
           <a
             href={href}
             class:list={[
-              'block px-3 py-1 text-center transition-colors duration-200',
+              'block rounded-md px-3 py-1 text-center transition-colors duration-200',
               isAvailable
-                ? 'text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200'
+                ? 'text-stone-500 dark:text-stone-400 hover:bg-stone-100 hover:text-stone-800 dark:hover:bg-stone-800 dark:hover:text-stone-200'
                 : 'text-stone-300 dark:text-stone-700 line-through',
             ]}
           >
