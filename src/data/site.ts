@@ -235,4 +235,10 @@ export const friends: Friend[] = [
     avatar: 'https://atlasnow.xyz/avatar.webp',
     href: 'https://atlasnow.xyz/',
   },
+  {
+    name: "Magren's Blog",
+    bio: '不为繁华易匠心',
+    avatar: 'https://magren.cc/avatar.png',
+    href: 'https://magren.cc',
+  },
 ]
