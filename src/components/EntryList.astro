@@ -1,0 +1,60 @@
+---
+import { formatMonthDay } from '../utils/content'
+import type { Lang } from '../i18n/utils'
+
+interface Entry {
+  href: string
+  title: string
+  description: string
+  date: Date
+  transitionName: string
+}
+
+interface Props {
+  entries: Entry[]
+  lang: Lang
+}
+
+const { entries, lang } = Astro.props
+
+const years = new Map<number, Entry[]>()
+for (const entry of entries) {
+  const year = entry.date.getFullYear()
+  years.set(year, [...(years.get(year) ?? []), entry])
+}
+---
+
+<div class="space-y-10">
+  {[...years].map(([year, items]) => (
+    <section>
+      <h2 class="mb-1 text-xs text-stone-500 tracking-wide tabular-nums dark:text-stone-400">
+        {year}
+      </h2>
+      <ul>
+        {items.map((entry) => (
+          <li>
+            <a href={entry.href} class="group block py-3">
+              <div class="flex items-baseline justify-between gap-4">
+                <span
+                  class="list-title text-lg text-stone-800 leading-snug font-serif transition-colors duration-200 dark:text-stone-200 group-hover:text-accent dark:group-hover:text-accent-dark"
+                  style={`view-transition-name: ${entry.transitionName};`}
+                >
+                  {entry.title}
+                </span>
+                <time
+                  datetime={entry.date.toISOString()}
+                  class="shrink-0 text-xs text-stone-500 tabular-nums dark:text-stone-400"
+                >
+                  {formatMonthDay(entry.date, lang)}
+                </time>
+              </div>
+              <p class="mt-1 text-sm text-stone-500 leading-relaxed dark:text-stone-400">
+                {entry.description}
+              </p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</div>

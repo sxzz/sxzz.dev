@@ -1,0 +1,1 @@
+我做了一些开源项目，主要在前端。现在是 [tsdown](https://tsdown.dev)、[Vue Macros](https://vue-macros.dev) 和 [Elk](https://github.com/elk-zone/elk) 的作者，也是 [Vue](https://vuejs.org)、[Vite](https://vitejs.dev)、[VueUse](https://vueuse.org)、[unjs](https://unjs.io)、[unplugin](https://github.com/unplugin) 和 [Oxc](https://oxc.rs) 的核心团队成员。

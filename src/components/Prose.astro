@@ -12,7 +12,7 @@ const {
   ...rest
 } = Astro.props
 
-const headingFont = cjkFallback
+const font = cjkFallback
   ? "'Newsreader', 'Noto Serif SC', serif"
   : "'Newsreader', serif"
 const styleParts: string[] = []
@@ -20,41 +20,55 @@ if (styleProp) {
   const trimmed = styleProp.trim()
   styleParts.push(trimmed.endsWith(';') ? trimmed : `${trimmed};`)
 }
-styleParts.push(`--prose-heading-font: ${headingFont};`)
+styleParts.push(`--prose-font: ${font};`)
 const mergedStyle = styleParts.join(' ')
 ---
 
-<div class:list={['prose', className]} style={mergedStyle} {...rest}>
+<div
+  class:list={['prose', cjkFallback && 'prose-cjk', className]}
+  style={mergedStyle}
+  {...rest}
+>
   <slot />
 </div>
 
 <style is:global>
 .prose {
   color: var(--prose-text);
-  line-height: 1.75;
+  font-family: var(--prose-font, "Newsreader", serif);
+  font-size: 1.125rem;
+  line-height: 1.7;
   overflow-wrap: break-word;
 }
 
+/* Han characters fill the em box, so they need a smaller size and more leading
+   than Latin text to reach the same density. */
+.prose-cjk {
+  font-size: 1.0625rem;
+  line-height: 1.9;
+}
+
 :root {
-  --prose-text: #44403c;
-  --prose-heading: #1c1917;
-  --prose-muted: #a8a29e;
-  --prose-border: #e7e5e4;
-  --prose-bg-code: #f5f5f4;
-  --prose-link: #1c1917;
+  --prose-text: #483e3c;
+  --prose-heading: #1f1a19;
+  --prose-muted: #ab9d98;
+  --prose-border: #e9e1dd;
+  --prose-bg-code: #f5f0ed;
+  --prose-link: #1f1a19;
+  --prose-accent: #2f6f5e;
 }
 
 .dark {
-  --prose-text: #a8a29e;
-  --prose-heading: #fafaf9;
-  --prose-muted: #57534e;
-  --prose-border: #292524;
-  --prose-bg-code: #1c1917;
-  --prose-link: #e7e5e4;
+  --prose-text: #ab9d98;
+  --prose-heading: #fbf8f6;
+  --prose-muted: #5c504d;
+  --prose-border: #2d2625;
+  --prose-bg-code: #1f1a19;
+  --prose-link: #e9e1dd;
+  --prose-accent: #8cc7b1;
 }
 
 .prose h2 {
-  font-family: var(--prose-heading-font, "Newsreader", serif);
   font-weight: 700;
   font-size: 1.5rem;
   color: var(--prose-heading);
@@ -64,7 +78,6 @@ const mergedStyle = styleParts.join(' ')
 }
 
 .prose h3 {
-  font-family: var(--prose-heading-font, "Newsreader", serif);
   font-weight: 600;
   font-size: 1.2rem;
   color: var(--prose-heading);
@@ -79,12 +92,13 @@ const mergedStyle = styleParts.join(' ')
 .prose a {
   color: var(--prose-link);
   text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-color: var(--prose-border);
-  transition: text-decoration-color 0.2s;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--prose-accent);
+  transition: color 0.2s;
 }
 .prose a:hover {
-  text-decoration-color: var(--prose-link);
+  color: var(--prose-accent);
 }
 .prose a[target="_blank"]::after {
   content: "";
@@ -155,6 +169,10 @@ const mergedStyle = styleParts.join(' ')
   color: var(--prose-muted);
   margin-bottom: 1.25rem;
   font-style: italic;
+}
+/* Noto Serif SC has no italic; a synthesized slant is hard to read. */
+.prose-cjk blockquote {
+  font-style: normal;
 }
 
 .prose .markdown-alert {

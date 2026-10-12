@@ -1,8 +1,10 @@
 ---
-import { getAuthorSchema, homeLinks } from '../../data/site'
+import { getEntry, render } from 'astro:content'
+import { getAuthorSchema } from '../../data/site'
 import { getPageCopy } from '../../i18n/pages'
+import { useTranslatedPath, useTranslations, type Lang } from '../../i18n/utils'
 import Layout from '../../layouts/Layout.astro'
-import type { Lang } from '../../i18n/utils'
+import { formatDate, getRecentEntries } from '../../utils/content'
 
 interface Props {
   lang: Lang
@@ -10,6 +12,10 @@ interface Props {
 
 const { lang } = Astro.props
 const copy = getPageCopy('home', lang)
+const t = useTranslations(lang)
+const translatePath = useTranslatedPath(lang)
+const { Content } = await render((await getEntry('pages', `home/${lang}`))!)
+const recent = await getRecentEntries(lang)
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
@@ -53,66 +59,63 @@ const schema = {
           >
             {copy.name}
           </h1>
-          <p
-            class="mt-1.5 text-stone-500 font-mono dark:text-stone-400"
-            data-typewriter
-            data-text={copy.tagline}
-            data-char-delay={copy.taglineCharDelay}
-            aria-label={copy.tagline}
-          >
+          <p class="mt-1.5 text-sm text-stone-500 dark:text-stone-400">
+            {copy.tagline}
           </p>
         </div>
       </header>
 
-      <div class="space-y-8">
-        <section class="fade-in-up" style="animation-delay: 160ms">
-          <h2 class="mb-3 text-xs text-stone-500 tracking-wide font-mono dark:text-stone-400">
-            <span
-              class="select-none text-emerald-600/70 dark:text-emerald-500/50"
-              aria-hidden="true"
-            >$
-            </span>cat creator.md
-          </h2>
-          <div class="flex flex-wrap gap-2">
-            {homeLinks.creator.map((link) => (
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center border border-stone-200 rounded-full px-3.5 py-1.5 text-sm text-stone-600 font-500 transition-colors duration-150 dark:border-stone-800 hover:border-stone-400 dark:text-stone-300 hover:text-stone-900 dark:hover:border-stone-600 dark:hover:text-white"
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <section class="fade-in-up" style="animation-delay: 240ms">
-          <h2 class="mb-3 text-xs text-stone-500 tracking-wide font-mono dark:text-stone-400">
-            <span
-              class="select-none text-emerald-600/70 dark:text-emerald-500/50"
-              aria-hidden="true"
-            >$
-            </span>cat team.md
-          </h2>
-          <div class="flex flex-wrap gap-2">
-            {homeLinks.team.map((link) => (
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center border border-stone-200 rounded-full px-3.5 py-1.5 text-sm text-stone-600 font-500 transition-colors duration-150 dark:border-stone-800 hover:border-stone-400 dark:text-stone-300 hover:text-stone-900 dark:hover:border-stone-600 dark:hover:text-white"
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-        </section>
+      <div
+        class:list={[
+          'home-intro fade-in-up text-stone-700 font-serif space-y-4 dark:text-stone-300',
+          lang === 'zh' ? 'text-lg leading-loose' : 'text-xl leading-relaxed',
+        ]}
+        style="animation-delay: 160ms"
+      >
+        <Content />
       </div>
+
+      <section class="fade-in-up" style="animation-delay: 240ms">
+        <h2 class="mb-1 text-xs text-stone-500 tracking-wide dark:text-stone-400">
+          {t('home.recent')}
+        </h2>
+        <ul>
+          {recent.map((entry) => (
+            <li>
+              <a
+                href={translatePath(entry.href)}
+                class="group flex items-baseline justify-between gap-4 py-2"
+              >
+                <span
+                  class="text-stone-800 font-serif transition-colors duration-200 dark:text-stone-200 group-hover:text-accent dark:group-hover:text-accent-dark"
+                >
+                  {entry.title}
+                </span>
+                <time
+                  datetime={entry.date.toISOString()}
+                  class="shrink-0 text-xs text-stone-500 tabular-nums dark:text-stone-400"
+                >
+                  {formatDate(entry.date, lang)}
+                </time>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
   </main>
-  <script>
-  import { runTypewriter } from '../../scripts/typewriter'
-  document.addEventListener('astro:page-load', runTypewriter)
-  </script>
 </Layout>
+
+<style is:global>
+.home-intro a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--prose-accent);
+  transition: color 0.2s;
+}
+.home-intro a:hover {
+  color: var(--prose-accent);
+}
+</style>

@@ -39,13 +39,14 @@ src/
 ├── content/           # Markdown content collections
 │   ├── posts/en/      # English blog posts
 │   ├── posts/zh/      # Chinese blog posts
-│   └── musings/       # Chinese-only informal posts
+│   ├── musings/       # Chinese-only informal posts
+│   └── pages/         # Home intro and About body, as `<page>/<lang>.md`
 ├── data/
 │   └── site.ts        # Site metadata, author info, home links, friend links
 ├── i18n/              # Internationalization (EN/ZH)
 │   ├── ui.ts          # Translation strings, nav, social links
 │   ├── utils.ts       # i18n helpers
-│   └── pages.ts       # Page-level copy
+│   └── pages.ts       # Page titles, descriptions and headings
 ├── layouts/           # Layout components (Layout.astro)
 ├── pages/             # File-based routing
 │   ├── zh/            # Chinese routes (mirror of English, plus musings)
@@ -61,11 +62,11 @@ scripts/
 ## Conventions
 
 - **Astro components**: PascalCase (e.g., `Layout.astro`)
-- **TS/utility files**: camelCase or kebab-case (e.g., `typewriter.ts`, `og-image.ts`)
+- **TS/utility files**: camelCase or kebab-case (e.g., `opencc.ts`, `og-image.ts`)
 - **Content/blog posts**: kebab-case (e.g., `my-post-title.md`)
 - **Imports**: ES modules, relative paths for local files, package specifiers for deps
 - **Styling**: Utility-first UnoCSS classes; avoid custom CSS unless necessary
-- **i18n**: URL-based routing (`/` for English, `/zh/` for Chinese). Default language is English. Add translations to `src/i18n/ui.ts` and page copy to `src/i18n/pages.ts`.
+- **i18n**: URL-based routing (`/` for English, `/zh/` for Chinese). Default language is English. Add translations to `src/i18n/ui.ts`, page titles and descriptions to `src/i18n/pages.ts`, and long-form page copy to `src/content/pages/`.
 - **Fonts**: Serif (Newsreader / Noto Serif SC) for headings, Sans (Outfit) for body, Mono (JetBrains Mono) for code
 
 ## Content

@@ -47,6 +47,44 @@ export async function getAvailableLangsForPost(slug: string) {
   )
 }
 
+export interface RecentEntry {
+  href: string
+  title: string
+  date: Date
+}
+
+/** Latest writing for the home page; musings only exist in Chinese. */
+export async function getRecentEntries(
+  lang: Lang,
+  limit = 5,
+): Promise<RecentEntry[]> {
+  const entries: RecentEntry[] = (await getPostsByLang(lang)).map((post) => ({
+    href: `/posts/${post.slug}/`,
+    title: post.data.title,
+    date: post.data.date,
+  }))
+  if (lang === 'zh') {
+    const musings = await getCollection('musings')
+    entries.push(
+      ...musings.map((musing) => ({
+        href: `/musings/${musing.id}/`,
+        title: musing.data.title,
+        date: musing.data.date,
+      })),
+    )
+  }
+  return entries
+    .toSorted((a, b) => b.date.getTime() - a.date.getTime())
+    .slice(0, limit)
+}
+
+export function formatMonthDay(date: Date, lang: Lang) {
+  return date.toLocaleDateString(getLocaleFromLang(lang), {
+    month: 'short',
+    day: 'numeric',
+  })
+}
+
 export function formatDate(date: Date, lang: Lang) {
   return date.toLocaleDateString(getLocaleFromLang(lang), {
     year: 'numeric',

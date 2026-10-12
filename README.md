@@ -17,7 +17,6 @@ Personal portfolio and blog for [Kevin Deng (sxzz)](https://sxzz.dev).
 - Dark mode with system preference detection
 - OG image generation via Satori
 - SEO optimized with structured data (JSON-LD), sitemap, and Open Graph
-- Typewriter animation on homepage
 - View Transitions for smooth page navigation
 - Simplified/Traditional Chinese toggle (OpenCC)
 - RSS feeds (per language)

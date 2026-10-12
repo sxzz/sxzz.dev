@@ -12,7 +12,6 @@ interface HomeCopy {
     fallback: string
   }
   tagline: string
-  taglineCharDelay?: number
   nameSerif: boolean
   schema: {
     name: string
@@ -24,7 +23,6 @@ interface AboutCopy {
   title: string
   description: string
   heading: string
-  paragraphs: string[]
 }
 
 interface LinksCopy {
@@ -64,14 +62,13 @@ interface PageCopy {
 
 const authorName = siteCopy.author.displayName
 const authorTagline = siteCopy.author.tagline
-const authorTitleRole = siteCopy.author.titleRole
 
 export const pageCopy: PageCopy = {
   home: {
     en: {
-      title: `${authorName.en} - ${authorTitleRole.en}`,
+      title: `${authorName.en} - ${authorTagline.en}`,
       description:
-        `${authorName.en} is an open-source enthusiast exploring front-end development. Creator of tsdown, Vue Macros, and Elk. Core team member of Vue, Vite, and more.`,
+        `${authorName.en}. ${authorTagline.en} Creator of tsdown, Vue Macros, and Elk. Core team member of Vue, Vite, and more.`,
       name: authorName.en,
       avatar: {
         avif: '/avatar.avif',
@@ -85,16 +82,15 @@ export const pageCopy: PageCopy = {
       },
     },
     zh: {
-      title: `${authorName.zh} - ${authorTitleRole.zh}`,
+      title: `${authorName.zh} - ${authorTagline.zh}`,
       description:
-        `${authorName.zh}是一名探索前端开发的开源爱好者。tsdown、Vue Macros 与 Elk 的作者，Vue、Vite 等项目核心成员。`,
+        `${authorName.zh}，${authorTagline.zh}tsdown、Vue Macros 与 Elk 的作者，Vue、Vite 等项目核心成员。`,
       name: authorName.zh,
       avatar: {
         avif: '/avatar-zh.avif',
         fallback: '/avatar-zh.jpg',
       },
       tagline: authorTagline.zh,
-      taglineCharDelay: 160,
       nameSerif: false,
       schema: {
         name: authorName.zh,
@@ -105,22 +101,13 @@ export const pageCopy: PageCopy = {
   about: {
     en: {
       title: `About - ${authorName.en}`,
-      description:
-        `About ${authorName.en}, an open-source enthusiast exploring front-end development.`,
+      description: `About ${authorName.en}. ${authorTagline.en}`,
       heading: 'About',
-      paragraphs: [
-        `Hi, I'm ${authorName.en}. An open-source enthusiast exploring front-end development.`,
-        'Creator of tsdown, Vue Macros, and Elk. Core team member of Vue, Vite, VueUse, unjs, unplugin, and Oxc.',
-      ],
     },
     zh: {
       title: `关于 - ${authorName.zh}`,
-      description: `关于${authorName.zh}，一名探索前端开发的开源爱好者。`,
+      description: `关于${authorName.zh}。${authorTagline.zh}`,
       heading: '关于',
-      paragraphs: [
-        `你好，我是${authorName.zh}，一名探索前端开发的开源爱好者。`,
-        'tsdown、Vue Macros 和 Elk 的作者，Vue、Vite、VueUse、unjs、unplugin、Oxc 的核心团队成员。',
-      ],
     },
   },
   links: {

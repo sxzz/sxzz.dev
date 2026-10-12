@@ -131,7 +131,7 @@ const hreflangLangs = isMusingsPage
     <slot name="head" />
   </head>
   <body
-    class="flex flex-col bg-stone-50 text-stone-800 antialiased min-h-dvh dark:bg-stone-950 selection:bg-stone-900/10 dark:text-stone-200 dark:selection:bg-stone-100/10"
+    class="flex flex-col bg-stone-50 text-stone-800 antialiased min-h-dvh dark:bg-stone-950 selection:bg-accent/20 dark:text-stone-200 dark:selection:bg-accent-dark/25"
     style="text-autospace: normal"
   >
     <nav class="fade-in w-full flex items-center justify-between gap-4 px-4 py-5 md:px-12 sm:px-6">
@@ -142,14 +142,7 @@ const hreflangLangs = isMusingsPage
           pageCopy.home[lang].nameSerif && 'font-serif',
         ]}
       >
-        {pageCopy.home[lang].name}{basePath === '/' && (
-          <span
-            class="terminal-cursor ml-0.5 text-base font-mono"
-            aria-hidden="true"
-          >
-            _
-          </span>
-        )}
+        {pageCopy.home[lang].name}
       </a>
       <div class="flex items-center gap-3 text-sm text-stone-500 font-500 md:gap-6 sm:gap-4 dark:text-stone-400">
         {nav
@@ -305,21 +298,6 @@ html[data-disable-list-entry-animation="true"] .fade-in-up {
   transform: none !important;
 }
 
-@keyframes cursorBlink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-.terminal-cursor {
-  animation: cursorBlink 1s step-end infinite;
-  color: inherit;
-}
-
 :root {
   view-transition-name: root;
 }
@@ -370,13 +348,6 @@ html {
     scroll-behavior: smooth;
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .terminal-cursor {
-    animation: none;
-    display: none;
-  }
-}
 </style>
 
 <!-- NProgress -->
@@ -412,11 +383,11 @@ document.addEventListener('astro:page-load', initToc)
 </script>
 <style is:global>
 :root {
-  --nprogress-color: rgba(28, 25, 23, 0.45);
+  --nprogress-color: rgba(31, 26, 25, 0.45);
 }
 
 .dark {
-  --nprogress-color: rgba(231, 229, 228, 0.5);
+  --nprogress-color: rgba(233, 225, 221, 0.5);
 }
 
 #nprogress {

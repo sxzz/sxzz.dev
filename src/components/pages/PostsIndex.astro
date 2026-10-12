@@ -2,7 +2,8 @@
 import { getPageCopy } from '../../i18n/pages'
 import { useTranslatedPath, type Lang } from '../../i18n/utils'
 import Layout from '../../layouts/Layout.astro'
-import { formatDate, getPostsByLang } from '../../utils/content'
+import { getPostsByLang } from '../../utils/content'
+import EntryList from '../EntryList.astro'
 
 interface Props {
   lang: Lang
@@ -31,33 +32,16 @@ const getPostTitleTransitionName = (slug: string, currentLang: Lang) =>
         </h1>
       </header>
 
-      <ul class="space-y-1" style="animation-delay: 160ms">
-        {posts.map((post) => (
-          <li>
-            <a
-              href={translatePath(`/posts/${post.slug}/`)}
-              class="group flex items-baseline gap-4 py-3 transition-colors duration-200"
-            >
-              <time
-                class="shrink-0 text-xs text-stone-500 tabular-nums dark:text-stone-400"
-              >
-                {formatDate(post.data.date, lang)}
-              </time>
-              <span
-                class="list-title text-stone-700 font-serif transition-colors duration-200 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-white"
-                style={`view-transition-name: ${
-                  getPostTitleTransitionName(
-                    post.slug,
-                    lang,
-                  )
-                };`}
-              >
-                {post.data.title}
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
+      <EntryList
+        lang={lang}
+        entries={posts.map((post) => ({
+          href: translatePath(`/posts/${post.slug}/`),
+          title: post.data.title,
+          description: post.data.description,
+          date: post.data.date,
+          transitionName: getPostTitleTransitionName(post.slug, lang),
+        }))}
+      />
     </div>
   </main>
 </Layout>

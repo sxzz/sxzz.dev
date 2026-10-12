@@ -1,7 +1,9 @@
 ---
 import { execSync } from 'node:child_process'
+import { getEntry, render } from 'astro:content'
 import { getPageCopy } from '../../i18n/pages'
 import Layout from '../../layouts/Layout.astro'
+import Prose from '../Prose.astro'
 import type { Lang } from '../../i18n/utils'
 
 interface Props {
@@ -10,6 +12,7 @@ interface Props {
 
 const { lang } = Astro.props
 const copy = getPageCopy('about', lang)
+const { Content } = await render((await getEntry('pages', `about/${lang}`))!)
 
 const gitCommitSha = execSync('git rev-parse --short HEAD').toString().trim()
 const buildDate = new Date().toISOString().split('T')[0]
@@ -24,12 +27,13 @@ const buildDate = new Date().toISOString().split('T')[0]
         </h1>
       </header>
 
-      <section
-        class="fade-in-up text-stone-600 leading-relaxed space-y-4 dark:text-stone-400"
+      <Prose
+        class="fade-in-up"
         style="animation-delay: 160ms"
+        cjkFallback={lang === 'zh'}
       >
-        {copy.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
-      </section>
+        <Content />
+      </Prose>
 
       <footer
         class="fade-in-up text-sm text-stone-400 dark:text-stone-600"

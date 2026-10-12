@@ -17,6 +17,7 @@ export const ui = {
     'lang.switch': 'Switch language',
     'toggle.theme': 'Toggle dark mode',
     'toc.title': 'On this page',
+    'home.recent': 'Recent writing',
     'notFound.title': 'Page Not Found',
     'notFound.description': 'The page you are looking for does not exist.',
     'notFound.backHome': 'Back to Home',
@@ -31,6 +32,7 @@ export const ui = {
     'lang.switch': '切换语言',
     'toggle.theme': '切换深色模式',
     'toc.title': '目录',
+    'home.recent': '最近写的',
     'notFound.title': '页面未找到',
     'notFound.description': '您访问的页面不存在。',
     'notFound.backHome': '返回首页',
@@ -75,11 +77,5 @@ export const social: ReadonlyArray<{
     href: 'https://x.com/sanxiaozhizi',
     label: 'X',
     localeHref: { zh: 'https://x.com/zhizijun' },
-  },
-  {
-    icon: 'i-simple-icons-gnuprivacyguard',
-    href:
-      'https://keys.openpgp.org/search?q=DF304DAEC54F251981E11AFA045ABF918AFE5377',
-    label: 'GPG DF304DAEC54F251981E11AFA045ABF918AFE5377',
   },
 ]

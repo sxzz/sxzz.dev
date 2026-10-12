@@ -25,12 +25,8 @@ export const siteCopy = {
       zh: '智子',
     },
     tagline: {
-      en: 'Open-source enthusiast',
-      zh: 'INFP • 开源爱好者',
-    },
-    titleRole: {
-      en: 'Open Source Enthusiast',
-      zh: '开源爱好者',
+      en: 'Seeking the meaning of existence.',
+      zh: '探寻存在的意义。',
     },
     sameAs: {
       en: [
@@ -49,7 +45,7 @@ export const siteCopy = {
   rss: {
     en: {
       title: 'Kevin Deng',
-      description: 'Blog posts by Kevin Deng, an open-source enthusiast.',
+      description: 'Blog posts by Kevin Deng.',
     },
     zh: {
       title: '智子',
@@ -62,7 +58,6 @@ export const siteCopy = {
     alternateName: string
     displayName: Localized<string>
     tagline: Localized<string>
-    titleRole: Localized<string>
     sameAs: Localized<readonly string[]>
   }
   rss: Localized<{ title: string; description: string }>
@@ -83,37 +78,11 @@ export function getAuthorSchema(
   return schema
 }
 
-interface Link {
-  name: string
-  href: string
-}
-
 export interface Friend {
   name: LocalizedString
   bio: LocalizedString
   avatar: LocalizedString
   href: LocalizedString
-}
-
-interface HomeLinks {
-  creator: Link[]
-  team: Link[]
-}
-
-export const homeLinks: HomeLinks = {
-  creator: [
-    { name: 'tsdown', href: 'https://tsdown.dev' },
-    { name: 'Vue Macros', href: 'https://vue-macros.dev' },
-    { name: 'Elk', href: 'https://github.com/elk-zone/elk' },
-  ],
-  team: [
-    { name: 'Vue', href: 'https://vuejs.org' },
-    { name: 'Vite', href: 'https://vitejs.dev' },
-    { name: 'VueUse', href: 'https://vueuse.org' },
-    { name: 'unjs', href: 'https://unjs.io' },
-    { name: 'unplugin', href: 'https://github.com/unplugin' },
-    { name: 'Oxc', href: 'https://oxc.rs' },
-  ],
 }
 
 export const friends: Friend[] = [

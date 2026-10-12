@@ -21,4 +21,9 @@ const musings = defineCollection({
   schema,
 })
 
-export const collections = { posts, musings }
+// Long-form copy for standalone pages, keyed as `<page>/<lang>`.
+const pages = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/pages' }),
+})
+
+export const collections = { posts, musings, pages }
