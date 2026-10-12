@@ -52,6 +52,8 @@ const isMusingsPage = basePath.startsWith('/musings')
 const hreflangLangs = isMusingsPage
   ? []
   : languageKeys.filter((l) => !availableLangs || availableLangs.includes(l))
+// Feed readers that only pick the first discovered feed should get the current language
+const feedLangs = [lang, ...languageKeys.filter((l) => l !== lang)]
 ---
 
 <!DOCTYPE html>
@@ -110,12 +112,15 @@ const hreflangLangs = isMusingsPage
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={title} />
 
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title={pageCopy.home[lang].name}
-      href={new URL(`${getUrlPrefix(lang)}/rss.xml`, site).href}
-    />
+    {feedLangs.map((l) => (
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        title={pageCopy.home[l].name}
+        hreflang={localeByLang[l]}
+        href={new URL(`${getUrlPrefix(l)}/rss.xml`, site).href}
+      />
+    ))}
 
     <script is:inline type="module">
     const stored = localStorage.getItem('theme')
