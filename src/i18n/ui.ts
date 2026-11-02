@@ -11,6 +11,7 @@ export const ui = {
     'nav.posts': 'Posts',
     'nav.musings': 'Musings',
     'nav.links': 'Links',
+    'nav.journey': 'Journey',
     'nav.about': 'About',
     'lang.en': 'EN',
     'lang.zh': '中文',
@@ -18,6 +19,9 @@ export const ui = {
     'toggle.theme': 'Toggle dark mode',
     'toc.title': 'On this page',
     'home.recent': 'Recent writing',
+    'journey.missingToken':
+      'The map is unavailable: no Mapbox token is configured.',
+    'journey.loadFailed': 'The map failed to load.',
     'notFound.title': 'Page Not Found',
     'notFound.description': 'The page you are looking for does not exist.',
     'notFound.backHome': 'Back to Home',
@@ -26,6 +30,7 @@ export const ui = {
     'nav.posts': '文章',
     'nav.musings': '碎碎念',
     'nav.links': '友链',
+    'nav.journey': '旅程',
     'nav.about': '关于',
     'lang.en': 'EN',
     'lang.zh': '中文',
@@ -33,6 +38,8 @@ export const ui = {
     'toggle.theme': '切换深色模式',
     'toc.title': '目录',
     'home.recent': '最近写的',
+    'journey.missingToken': '地图不可用:未配置 Mapbox token。',
+    'journey.loadFailed': '地图加载失败。',
     'notFound.title': '页面未找到',
     'notFound.description': '您访问的页面不存在。',
     'notFound.backHome': '返回首页',
@@ -52,6 +59,7 @@ export const nav: ReadonlyArray<{
   { key: 'nav.posts', href: '/posts/' },
   { key: 'nav.musings', href: '/musings/', langs: ['zh'] },
   { key: 'nav.links', href: '/links/' },
+  { key: 'nav.journey', href: '/journey/' },
   { key: 'nav.about', href: '/about/' },
 ]
 

@@ -1,0 +1,8 @@
+---
+import JourneyPage from '../components/pages/Journey.astro'
+import { getLangFromUrl } from '../i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+---
+
+<JourneyPage lang={lang} />

@@ -32,6 +32,12 @@ interface LinksCopy {
   subheading: string
 }
 
+interface JourneyCopy {
+  title: string
+  description: string
+  heading: string
+}
+
 interface PostsCopy {
   title: string
   description: string
@@ -55,6 +61,7 @@ interface PageCopy {
   home: Record<Lang, HomeCopy>
   about: Record<Lang, AboutCopy>
   links: Record<Lang, LinksCopy>
+  journey: Record<Lang, JourneyCopy>
   posts: Record<Lang, PostsCopy>
   post: Record<Lang, PostCopy>
   musings: Record<Lang, MusingsCopy>
@@ -122,6 +129,18 @@ export const pageCopy: PageCopy = {
       description: `${authorName.zh}的朋友与链接。`,
       heading: '友链',
       subheading: '互联网的朋友们。',
+    },
+  },
+  journey: {
+    en: {
+      title: `Journey - ${authorName.en}`,
+      description: `A map of places ${authorName.en} has traveled.`,
+      heading: 'Journey',
+    },
+    zh: {
+      title: `旅程 - ${authorName.zh}`,
+      description: `${authorName.zh}的旅行地图。`,
+      heading: '旅程',
     },
   },
   posts: {

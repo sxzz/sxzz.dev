@@ -139,7 +139,7 @@ const feedLangs = [lang, ...languageKeys.filter((l) => l !== lang)]
     class="flex flex-col bg-stone-50 text-stone-800 antialiased min-h-dvh dark:bg-stone-950 selection:bg-accent/20 dark:text-stone-200 dark:selection:bg-accent-dark/25"
     style="text-autospace: normal"
   >
-    <nav class="fade-in w-full flex items-center justify-between gap-4 px-4 py-5 md:px-12 sm:px-6">
+    <nav class="fade-in relative z-10 w-full flex items-center justify-between gap-4 px-4 py-5 md:px-12 sm:px-6">
       <a
         href={translatePath('/')}
         class:list={[
@@ -346,6 +346,12 @@ html[data-disable-list-entry-animation="true"] .fade-in-up {
 
 html {
   scroll-padding-top: 5rem;
+  color-scheme: light;
+}
+
+/* Native UI (scrollbars, form controls) can't follow Tailwind's dark: variants */
+html.dark {
+  color-scheme: dark;
 }
 
 @media (prefers-reduced-motion: no-preference) {

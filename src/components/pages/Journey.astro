@@ -1,0 +1,77 @@
+---
+import { getPageCopy } from '../../i18n/pages'
+import { useTranslations, type Lang } from '../../i18n/utils'
+import Layout from '../../layouts/Layout.astro'
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+const copy = getPageCopy('journey', lang)
+const t = useTranslations(lang)
+---
+
+<Layout title={copy.title} description={copy.description}>
+  <main class="flex flex-1 flex-col gap-4 px-4 pb-6 md:px-12 sm:px-6">
+    <h1 class="sr-only">{copy.heading}</h1>
+    <!-- The map fills its container, so it needs a definite height: viewport minus nav and footer. -->
+    <div
+      id="journey-map"
+      data-lang={lang}
+      class="fade-in-up h-[calc(100dvh-10.5rem)] min-h-96 overflow-hidden border border-stone-200/80 rounded-xl dark:border-stone-800/80"
+      data-missing-token={t('journey.missingToken')}
+      data-load-failed={t('journey.loadFailed')}
+    >
+    </div>
+  </main>
+</Layout>
+
+<!-- The library ships unscoped utility classes (.gap-3, .px-3, ...). Unlayered site styles always beat layered ones, so they can't override the site's responsive utilities. -->
+<style is:global>
+@import "kevins-journey/style.css" layer(kevins-journey);
+</style>
+
+<script>
+let unmount: (() => void) | undefined
+
+function showMessage(container: HTMLElement, message: string) {
+  const p = document.createElement('p')
+  p.className =
+    'flex h-full items-center justify-center px-6 text-center text-sm text-stone-500 dark:text-stone-400'
+  p.textContent = message
+  container.replaceChildren(p)
+}
+
+async function mountJourney() {
+  const container = document.querySelector<HTMLElement>('#journey-map')
+  if (!container) return
+
+  const token = import.meta.env.PUBLIC_MAPBOX_TOKEN
+  if (!token) {
+    showMessage(container, container.dataset.missingToken!)
+    return
+  }
+
+  try {
+    const { mount } = await import('kevins-journey')
+    // The user may have navigated away while the library was loading.
+    if (!container.isConnected) return
+    // Follow the site language instead of the library's browser-language default.
+    const language = container.dataset.lang === 'zh' ? 'zh' : 'en'
+    unmount = mount(container, { token, language })
+  } catch (error) {
+    console.error(error)
+    showMessage(container, container.dataset.loadFailed!)
+  }
+}
+
+function unmountJourney() {
+  unmount?.()
+  unmount = undefined
+}
+
+document.addEventListener('astro:page-load', mountJourney)
+// ClientRouter swaps the body without a reload, so tear the map down first.
+document.addEventListener('astro:before-swap', unmountJourney)
+</script>

@@ -241,6 +241,9 @@ importers:
       goat-counter:
         specifier: ^0.2.0
         version: 0.2.0(astro@7.3.8(@astrojs/markdown-remark@7.3.2)(@types/node@26.6.5)(jiti@2.7.0)(yaml@2.9.1))
+      kevins-journey:
+        specifier: https://pkg.pr.new/sxzz/kevins-journey@91a70aa3a0c304e15558ebb3cf0ab104eed4a15a
+        version: https://pkg.pr.new/sxzz/kevins-journey@91a70aa3a0c304e15558ebb3cf0ab104eed4a15a
       lint-staged:
         specifier: ^17.6.0
         version: 17.6.0
@@ -922,6 +925,11 @@ packages:
   '@keyv/serialize@1.1.1':
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
 
+  '@mapbox/mapbox-gl-language@1.0.1':
+    resolution: {integrity: sha512-gL58ojl7gaWLfbSISoB2QJEfTK3j+NKvPH9og0r+c3bd5BNqhY19Eb4OPfDc5+dGmjW03LhtZBc4n2b7Xn8kjA==}
+    peerDependencies:
+      mapbox-gl: '>=0.29.0'
+
   '@mdx-js/mdx@3.1.1':
     resolution: {integrity: sha512-f6ZO2ifpwAQIpzGWaBQT2TXxPv6z3RBzQKpVftEWN78Vl/YweF1uwussDx8ECAXVtr3Rs89fKyG9YlzUs9DyGQ==}
 
@@ -1303,6 +1311,16 @@ packages:
     resolution: {integrity: sha512-TeheYy0ILzBEI/CO55CP6zJCSdSWeRtGnHy8U8dWSUH4I68iqTsy7HkMktR4xakThc9jotkPQUXT4ITdbV7cHA==}
     engines: {node: '>=18'}
 
+  '@solidjs/signals@2.0.0-rc.20':
+    resolution: {integrity: sha512-BIL5dKm0dAtPGsCEuLSNw60spDbmYG5QFK+aHUxPIgPLweA8IeJKd62DiqqqU/jqX0x39ty31GoP1n+ZINkrcg==}
+    engines: {node: '>=22.12.0'}
+
+  '@solidjs/web@2.0.0-rc.20':
+    resolution: {integrity: sha512-ACGUZ1XBNxiHnWW274na+1JZfuIhiS/BN5XM72wVKNYSopR/NyjVPR4O/nvshtbYlEk1lKJ9d1uBaXDaz6ddYg==}
+    engines: {node: '>=22.12.0'}
+    peerDependencies:
+      solid-js: ^2.0.0-rc.20
+
   '@sxzz/eslint-config@8.7.0':
     resolution: {integrity: sha512-MUEcziWYggmKyytgEjnON4pqXH7L1X2oe0+yrzcy6jeSVr66YrC5NlRoel/h0iXJkbMALeQ9H5djLu22ad+0Zw==}
     engines: {node: ^22.23.0 || ^24.15.0 || >=26.0.0}
@@ -1525,6 +1543,35 @@ packages:
     resolution: {integrity: sha512-aFJ+lTcqIbtqxsKD1OI1gtvfEieJPVa9KOZr1Wj/ChrSCStcS7QP/DTbYvM6hC+qa07W6hEbSEgYqOUtCvFKVw==}
     peerDependencies:
       vite: ^5.0.0-0 || ^6.0.0-0 || ^7.0.0-0 || ^8.0.0-0
+
+  '@vercel/analytics@2.0.1':
+    resolution: {integrity: sha512-MTQG6V9qQrt1tsDeF+2Uoo5aPjqbVPys1xvnIftXSJYG2SrwXRHnqEvVoYID7BTruDz4lCd2Z7rM1BdkUehk2g==}
+    peerDependencies:
+      '@remix-run/react': ^2
+      '@sveltejs/kit': ^1 || ^2
+      next: '>= 13'
+      nuxt: '>= 3'
+      react: ^18 || ^19 || ^19.0.0-rc
+      svelte: '>= 4'
+      vue: ^3
+      vue-router: ^4
+    peerDependenciesMeta:
+      '@remix-run/react':
+        optional: true
+      '@sveltejs/kit':
+        optional: true
+      next:
+        optional: true
+      nuxt:
+        optional: true
+      react:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
+      vue-router:
+        optional: true
 
   '@volar/kit@2.4.28':
     resolution: {integrity: sha512-cKX4vK9dtZvDRaAzeoUdaAJEew6IdxHNCRrdp5Kvcl6zZOqb6jTOfk3kXkIkG3T7oTFXguEMt5+9ptyqYR84Pg==}
@@ -1842,6 +1889,9 @@ packages:
   csso@5.0.5:
     resolution: {integrity: sha512-0LrrStPOdJj+SPCCrGhzryycLjwcgUSHBtxNA8aIDxf0GLsRh1cKYhB00Gd1lDOS4yGH69+SNn13+TWbVHETFQ==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
+
+  csstype@3.2.3:
+    resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
@@ -2589,6 +2639,10 @@ packages:
     resolution: {integrity: sha512-Eeo8Ys1doU1z+x8AZsPpQu+p/QcZBI5PeOo7QGQdy2x2m0MU/hYagBbGOmXwr5KVbEfVuWv9LpnQWeehogurjg==}
     hasBin: true
 
+  kevins-journey@https://pkg.pr.new/sxzz/kevins-journey@91a70aa3a0c304e15558ebb3cf0ab104eed4a15a:
+    resolution: {integrity: sha512-3LscqJ+Exi3793niQubkCr8JHLPA2yLZkRvba5gCa5n92M97TW8a2TsDT1cPmr8HeDu+C/Raupw0GnshlOmmwg==, tarball: https://pkg.pr.new/sxzz/kevins-journey@91a70aa3a0c304e15558ebb3cf0ab104eed4a15a}
+    version: 0.0.0
+
   keyv@5.6.0:
     resolution: {integrity: sha512-CYDD3SOtsHtyXeEORYRx2qBtpDJFjRTGXUtmNEMGyzYOKj1TE3tycdlho7kA1Ufx9OYWZzg52QFBGALTirzDSw==}
 
@@ -2704,6 +2758,9 @@ packages:
 
   magicast@0.5.5:
     resolution: {integrity: sha512-UicdXN8zQ3JHlxVq+28afMXPr1z7WNY6+7EJnzTdQWkTAlMLF5fNCCKxJHBQwGaNGR11581EiQmQzx73+MvszA==}
+
+  mapbox-gl@3.34.1:
+    resolution: {integrity: sha512-r4UbcZyEljltuMkMoHhwBSpbWnflHKFBUAfhvjEGxlR2mBjNxI0OBFzrr4AlbHsXnMVPMCWAvdHD5HWtMThWPg==}
 
   markdown-extensions@2.0.0:
     resolution: {integrity: sha512-o5vL7aDWatOTX8LzaS1WMoaoxIiLRQJuIKKe2wAw6IeULDHaqbiqiggmx+pKvZDb1Sj+pE46Sn1T7lCqfFtg1Q==}
@@ -3265,6 +3322,16 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  seroval-plugins@1.7.0:
+    resolution: {integrity: sha512-WM4rArfPtLZriTuxC5DBvNulEwAaRcjNe/dkMOEesOcuvXf5nEwKf5Bw3AT92WHohqcc45+57GdtsCuBTI0mjw==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      seroval: ^1.0
+
+  seroval@1.7.0:
+    resolution: {integrity: sha512-FU+LUkmDzWNsJ6oubZFN3dGPKny53DRhPJG6nftEaXDL8MIn19+kEE1Gvc+63Go+qPOwVUlKIdKhsu2HN6tksw==}
+    engines: {node: '>=20'}
+
   sharp@0.35.5:
     resolution: {integrity: sha512-Ywn4OnzGukp7CDMrp08RQ50YKmuwG47brZgIVPTvBaaAfQlRlygrRqSrxdCiL9M+LlzLBiJ68IR1QqvzHyjC7g==}
     engines: {node: '>=20.9.0'}
@@ -3301,6 +3368,10 @@ packages:
   smol-toml@1.9.1:
     resolution: {integrity: sha512-j7WyPdf0CJoutMzMoPLF/bVXHtKZIT9Rb4eGeEbWw8X2t5oirjPgpL+OpaENZrILYaXqYwnVH+qgUwVbl+pUJQ==}
     engines: {node: '>= 18'}
+
+  solid-js@2.0.0-rc.20:
+    resolution: {integrity: sha512-FxaEI7LHupehFoR9j2CfJAGCoRgiKgeNlzii4szUS6lnD8RkpdtvX1k6WFG71vl5bskXRRsmEQVAXsbIemQOuw==}
+    engines: {node: '>=22.12.0'}
 
   source-map-js@1.2.2:
     resolution: {integrity: sha512-KGj/8Y43x35aZVDtt+J4mK1hoLGHULMYfSkODJNQjNDC3oW1PqPoxMwo0pLUsWM/UEGzON/NxeHywEfNXNP3Vw==}
@@ -4461,6 +4532,10 @@ snapshots:
 
   '@keyv/serialize@1.1.1': {}
 
+  '@mapbox/mapbox-gl-language@1.0.1(mapbox-gl@3.34.1)':
+    dependencies:
+      mapbox-gl: 3.34.1
+
   '@mdx-js/mdx@3.1.1':
     dependencies:
       '@types/estree': 1.0.9
@@ -4728,6 +4803,14 @@ snapshots:
       string.prototype.codepointat: 0.2.1
 
   '@sindresorhus/base62@1.0.0': {}
+
+  '@solidjs/signals@2.0.0-rc.20': {}
+
+  '@solidjs/web@2.0.0-rc.20(solid-js@2.0.0-rc.20)':
+    dependencies:
+      seroval: 1.7.0
+      seroval-plugins: 1.7.0(seroval@1.7.0)
+      solid-js: 2.0.0-rc.20
 
   '@sxzz/eslint-config@8.7.0(@typescript-eslint/eslint-plugin@8.71.1(@typescript-eslint/parser@8.71.1(eslint@10.12.0(jiti@2.7.0))(typescript@6.0.3))(eslint@10.12.0(jiti@2.7.0))(typescript@6.0.3))(@typescript-eslint/parser@8.71.1(eslint@10.12.0(jiti@2.7.0))(typescript@6.0.3))(@typescript-eslint/typescript-estree@8.71.1(typescript@6.0.3))(@typescript-eslint/utils@8.71.1(eslint@10.12.0(jiti@2.7.0))(typescript@6.0.3))(@unocss/eslint-plugin@66.10.5(eslint@10.12.0(jiti@2.7.0))(typescript@6.0.3))(eslint-plugin-astro@3.2.1(@typescript-eslint/parser@8.71.1(eslint@10.12.0(jiti@2.7.0))(typescript@6.0.3))(eslint@10.12.0(jiti@2.7.0))(typescript-eslint@8.71.1(eslint@10.12.0(jiti@2.7.0))(typescript@6.0.3)))(eslint@10.12.0(jiti@2.7.0))(prettier@3.9.10)(typescript@6.0.3)':
     dependencies:
@@ -5105,6 +5188,8 @@ snapshots:
       - ocache
       - srvx
 
+  '@vercel/analytics@2.0.1': {}
+
   '@volar/kit@2.4.28(typescript@6.0.3)':
     dependencies:
       '@volar/language-service': 2.4.28(typescript@6.0.3)
@@ -5473,6 +5558,8 @@ snapshots:
   csso@5.0.5:
     dependencies:
       css-tree: 2.2.1
+
+  csstype@3.2.3: {}
 
   debug@4.4.3:
     dependencies:
@@ -6318,6 +6405,24 @@ snapshots:
     dependencies:
       commander: 8.3.0
 
+  kevins-journey@https://pkg.pr.new/sxzz/kevins-journey@91a70aa3a0c304e15558ebb3cf0ab104eed4a15a:
+    dependencies:
+      '@mapbox/mapbox-gl-language': 1.0.1(mapbox-gl@3.34.1)
+      '@solidjs/web': 2.0.0-rc.20(solid-js@2.0.0-rc.20)
+      '@unocss/reset': 66.10.5
+      '@vercel/analytics': 2.0.1
+      mapbox-gl: 3.34.1
+      solid-js: 2.0.0-rc.20
+    transitivePeerDependencies:
+      - '@remix-run/react'
+      - '@sveltejs/kit'
+      - next
+      - nuxt
+      - react
+      - svelte
+      - vue
+      - vue-router
+
   keyv@5.6.0:
     dependencies:
       '@keyv/serialize': 1.1.1
@@ -6422,6 +6527,8 @@ snapshots:
       '@babel/parser': 7.29.9
       '@babel/types': 7.29.8
       source-map-js: 1.2.2
+
+  mapbox-gl@3.34.1: {}
 
   markdown-extensions@2.0.0: {}
 
@@ -7384,6 +7491,12 @@ snapshots:
 
   semver@7.8.5: {}
 
+  seroval-plugins@1.7.0(seroval@1.7.0):
+    dependencies:
+      seroval: 1.7.0
+
+  seroval@1.7.0: {}
+
   sharp@0.35.5(@types/node@26.6.5):
     dependencies:
       '@img/colour': 1.1.0
@@ -7447,6 +7560,13 @@ snapshots:
       sax: 1.6.1
 
   smol-toml@1.9.1: {}
+
+  solid-js@2.0.0-rc.20:
+    dependencies:
+      '@solidjs/signals': 2.0.0-rc.20
+      csstype: 3.2.3
+      seroval: 1.7.0
+      seroval-plugins: 1.7.0(seroval@1.7.0)
 
   source-map-js@1.2.2: {}
 
